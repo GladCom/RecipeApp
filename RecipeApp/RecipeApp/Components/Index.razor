@@ -1,0 +1,74 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@using RecipeApp.Model
+@inject RecipesDbContext DbContext
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JS
+
+<h1>Рецепты</h1>
+
+<button class="btn btn-primary mb-3" @onclick="AddRecipe">➕</button>
+
+@if (recipes == null)
+{
+    <p>Загрузка...</p>
+}
+else if (!recipes.Any())
+{
+    <p>Рецептов пока нет.</p>
+}
+else
+{
+    <ul class="list-group">
+        @foreach (var recipe in recipes)
+        {
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+                <span @onclick="() => ViewRecipe(recipe.Id)" style="cursor: pointer;">@recipe.Title</span>
+                <span>
+                    <button class="btn btn-sm btn-outline-secondary me-2" @onclick="() => EditRecipe(recipe.Id)">✏️</button>
+                    <button class="btn btn-sm btn-outline-danger" @onclick="() => ConfirmDelete(recipe.Id)">🗑️</button>
+                </span>
+            </li>
+        }
+    </ul>
+}
+
+@code {
+    private List<Recipe>? recipes;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipes = await DbContext.Recipes.ToListAsync();
+    }
+
+    void AddRecipe()
+    {
+        NavigationManager.NavigateTo("/recipes/new");
+    }
+
+    void ViewRecipe(int id)
+    {
+        NavigationManager.NavigateTo($"/recipes/{id}");
+    }
+
+    void EditRecipe(int id)
+    {
+        NavigationManager.NavigateTo($"/recipes/edit/{id}");
+    }
+
+    async Task ConfirmDelete(int id)
+    {
+        var confirmed = await JS.InvokeAsync<bool>("confirm", "Удалить рецепт?");
+        if (confirmed)
+        {
+            var recipe = await DbContext.Recipes.FindAsync(id);
+            if (recipe is not null)
+            {
+                DbContext.Recipes.Remove(recipe);
+                await DbContext.SaveChangesAsync();
+                recipes = await DbContext.Recipes.ToListAsync();
+                StateHasChanged();
+            }
+        }
+    }
+}

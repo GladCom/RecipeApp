@@ -1,0 +1,87 @@
+﻿@page "/recipes/new"
+@using RecipeApp.Model
+@inject RecipesDbContext DbContext
+@inject NavigationManager NavigationManager
+
+<h1>Новый рецепт</h1>
+
+<div class="mb-3">
+    <label class="form-label">Название</label>
+    <input class="form-control" @bind="recipe.Title" />
+</div>
+
+<div class="mb-3">
+    <label class="form-label">Инструкция (Markdown)</label>
+    <textarea class="form-control" rows="5" @bind="recipe.Content"></textarea>
+</div>
+
+<h5>Ингредиенты</h5>
+
+@foreach (var ing in recipe.Ingredients)
+{
+    <div class="row g-2 mb-2">
+        <div class="col">
+            <input class="form-control" placeholder="Название" @bind="ing.Name" />
+        </div>
+        <div class="col">
+            <input class="form-control" placeholder="Кол-во" type="number" @bind="ing.Amount" />
+        </div>
+        <div class="col">
+            <select class="form-select" @bind="ing.Unit">
+                <option value="грамм">грамм</option>
+                <option value="штука">штука</option>
+            </select>
+        </div>
+        <div class="col">
+            <input class="form-control" placeholder="Ккал" type="number" @bind="ing.Calories" />
+        </div>
+        <div class="col">
+            <input class="form-control" placeholder="Белки" type="number" @bind="ing.Protein" />
+        </div>
+        <div class="col">
+            <input class="form-control" placeholder="Жиры" type="number" @bind="ing.Fat" />
+        </div>
+        <div class="col">
+            <input class="form-control" placeholder="Углеводы" type="number" @bind="ing.Carbs" />
+        </div>
+        <div class="col-auto">
+            <button class="btn btn-outline-danger" @onclick="() => RemoveIngredient(ing)">✕</button>
+        </div>
+    </div>
+}
+
+<button class="btn btn-secondary mb-3" @onclick="AddIngredient">+ Добавить ингредиент</button>
+
+<div class="mt-4">
+    <button class="btn btn-primary" @onclick="Save">Сохранить</button>
+    <button class="btn btn-secondary ms-2" @onclick="Cancel">Отмена</button>
+</div>
+
+@code {
+    private Recipe recipe = new()
+    {
+        Ingredients = new List<Ingredient>()
+    };
+
+    void AddIngredient()
+    {
+        recipe.Ingredients.Add(new Ingredient());
+    }
+
+    void RemoveIngredient(Ingredient ing)
+    {
+        recipe.Ingredients.Remove(ing);
+    }
+
+    async Task Save()
+    {
+        DbContext.Recipes.Add(recipe);
+        await DbContext.SaveChangesAsync();
+        NavigationManager.NavigateTo("/");
+    }
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}

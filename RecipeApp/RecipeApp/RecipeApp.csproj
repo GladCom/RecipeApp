@@ -22,4 +22,9 @@
       <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="8.0.16" />
     </ItemGroup>
 
+    <ItemGroup>
+      <_ContentIncludedByDefault Remove="Components\Layout\MainLayout.razor" />
+      <_ContentIncludedByDefault Remove="Components\Layout\NavMenu.razor" />
+    </ItemGroup>
+
 </Project>
