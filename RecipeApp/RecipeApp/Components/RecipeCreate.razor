@@ -78,13 +78,6 @@
         DbContext.Recipes.Add(recipe);
         await DbContext.SaveChangesAsync();
 
-        foreach (var ingredient in recipe.Ingredients)
-        {
-            ingredient.RecipeId = recipe.Id;
-            DbContext.Ingredients.Add(ingredient);
-        }
-        await DbContext.SaveChangesAsync();
-
         NavigationManager.NavigateTo("/");
     }
 
