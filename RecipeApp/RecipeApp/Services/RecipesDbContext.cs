@@ -1,12 +1,21 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RecipeApp.Model;
+﻿using RecipeApp.Model;
 
 namespace RecipeApp.Services;
 
-public class RecipesDbContext(DbContextOptions<RecipesDbContext> options) 
+using Microsoft.EntityFrameworkCore;
+
+public class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
   : DbContext(options)
 {
-  public DbSet<Recipe> Recipes => Set<Recipe>();
+  public DbSet<Recipe> Recipes { get; set; }
+  public DbSet<Ingredient> Ingredients { get; set; }
 
-  public DbSet<Ingredient> Ingredients => Set<Ingredient>();
+  protected override void OnModelCreating(ModelBuilder modelBuilder)
+  {
+    modelBuilder.Entity<Recipe>()
+      .HasMany(r => r.Ingredients)
+      .WithOne()
+      .HasForeignKey(i => i.RecipeId)
+      .OnDelete(DeleteBehavior.Cascade);
+  }
 }

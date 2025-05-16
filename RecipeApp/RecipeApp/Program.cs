@@ -1,4 +1,6 @@
+using Microsoft.EntityFrameworkCore;
 using RecipeApp.Components;
+using RecipeApp.Services;
 
 namespace RecipeApp;
 
@@ -11,6 +13,8 @@ public class Program
     // Add services to the container.
     builder.Services.AddRazorComponents()
       .AddInteractiveServerComponents();
+    builder.Services.AddDbContext<RecipesDbContext>(options =>
+      options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
 
     var app = builder.Build();
 
