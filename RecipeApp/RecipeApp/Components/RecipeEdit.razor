@@ -26,9 +26,11 @@ else
         <input class="form-control" @bind="recipe.Title" />
     </div>
 
-    <div class="mb-3">
-        <label class="form-label">Содержимое (markdown)</label>
-        <textarea class="form-control" rows="10" @bind="recipe.Content"></textarea>
+    <div class="col-md-12">
+        <MarkdownEditor
+            @bind-Value="@markdownValue"
+            ValueHTMLChanged="@OnMarkdownValueHTMLChanged" />
+        <hr />
     </div>
 
     <h4>Ингредиенты</h4>
@@ -38,7 +40,7 @@ else
             <input class="form-control mb-1" placeholder="Название" @bind="ingredient.Name" />
             <div class="d-flex gap-2">
                 <input class="form-control" placeholder="Количество" type="number" @bind="ingredient.Amount" />
-                <input class="form-control" placeholder="Тип (грамм, шт.)" @bind="ingredient.Unit" />
+                <input class="form-control" placeholder="Тип" @bind="ingredient.Unit" />
                 <input class="form-control" placeholder="Ккал" type="number" @bind="ingredient.Calories" />
                 <input class="form-control" placeholder="Белки" type="number" @bind="ingredient.Protein" />
                 <input class="form-control" placeholder="Жиры" type="number" @bind="ingredient.Fat" />
@@ -57,12 +59,15 @@ else
     [Parameter] public int Id { get; set; }
 
     private Recipe? recipe;
+    private string markdownValue;
+    private string markdownHtml;
 
     protected override async Task OnInitializedAsync()
     {
         recipe = await DbContext.Recipes
             .Include(r => r.Ingredients)
             .FirstOrDefaultAsync(r => r.Id == Id);
+        markdownValue = recipe.Content;
     }
 
     void AddIngredient()
@@ -77,6 +82,7 @@ else
 
     async Task Save()
     {
+        recipe.Content = ((MarkupString)markdownValue).ToString();
         await DbContext.SaveChangesAsync();
         NavigationManager.NavigateTo($"/recipes/{Id}");
     }
@@ -89,5 +95,11 @@ else
     void GoBack()
     {
         NavigationManager.NavigateTo("/");
+    }
+
+    Task OnMarkdownValueHTMLChanged(string value)
+    {
+        markdownHtml = value;
+        return Task.CompletedTask;
     }
 }

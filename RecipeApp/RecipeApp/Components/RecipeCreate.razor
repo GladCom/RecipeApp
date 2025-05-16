@@ -11,8 +11,13 @@
 </div>
 
 <div class="mb-3">
-    <label class="form-label">Инструкция (Markdown)</label>
-    <textarea class="form-control" rows="5" @bind="recipe.Content"></textarea>
+    <label class="form-label">Рецепт</label>
+    <div class="col-md-12">
+        <MarkdownEditor
+            @bind-Value="@markdownValue"
+            ValueHTMLChanged="@OnMarkdownValueHTMLChanged" />
+        <hr />
+    </div>
 </div>
 
 <h5>Ингредиенты</h5>
@@ -58,6 +63,9 @@
 </div>
 
 @code {
+    private string markdownValue;
+    private string markdownHtml;
+
     private Recipe recipe = new()
     {
         Ingredients = new List<Ingredient>()
@@ -75,6 +83,7 @@
 
     async Task Save()
     {
+        recipe.Content = markdownValue;
         DbContext.Recipes.Add(recipe);
         await DbContext.SaveChangesAsync();
 
@@ -84,5 +93,11 @@
     void Cancel()
     {
         NavigationManager.NavigateTo("/");
+    }
+
+    Task OnMarkdownValueHTMLChanged(string value)
+    {
+        markdownHtml = value;
+        return Task.CompletedTask;
     }
 }

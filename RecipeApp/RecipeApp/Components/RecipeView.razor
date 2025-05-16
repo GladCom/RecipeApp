@@ -1,4 +1,5 @@
 ﻿@page "/recipes/{Id:int}"
+@using Microsoft.AspNetCore.Html
 @using RecipeApp.Model
 @inject RecipesDbContext DbContext
 @inject NavigationManager NavigationManager
@@ -25,7 +26,10 @@
 else
 {
     <article>
-        <Markdown>@recipe.Content</Markdown>
+        <div class="col-md-12">
+            <h3>Result</h3>
+            @((MarkupString)recipe.ContentHTML)
+        </div>
 
         <h4 class="mt-4">Ингредиенты</h4>
         <table class="table">
@@ -89,4 +93,5 @@ else
     {
         NavigationManager.NavigateTo("/");
     }
+
 }
