@@ -1,0 +1,93 @@
+﻿@page "/recipes/edit/{Id:int}"
+@using RecipeApp.Model
+@inject RecipesDbContext DbContext
+@inject NavigationManager NavigationManager
+
+<h2 class="d-flex justify-content-between align-items-center">
+    @if (recipe != null)
+    {
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>Редактировать рецепт</h2>
+            <div>
+                <button class="btn btn-sm btn-outline-primary" @onclick="GoBack">↩️ Назад</button>
+            </div>
+        </div>
+    }
+</h2>
+
+@if (recipe == null)
+{
+    <p>Загрузка...</p>
+}
+else
+{
+    <div class="mb-3">
+        <label class="form-label">Название</label>
+        <input class="form-control" @bind="recipe.Title" />
+    </div>
+
+    <div class="mb-3">
+        <label class="form-label">Содержимое (markdown)</label>
+        <textarea class="form-control" rows="10" @bind="recipe.Content"></textarea>
+    </div>
+
+    <h4>Ингредиенты</h4>
+    @foreach (var ingredient in recipe.Ingredients)
+    {
+        <div class="mb-2 border p-2 rounded">
+            <input class="form-control mb-1" placeholder="Название" @bind="ingredient.Name" />
+            <div class="d-flex gap-2">
+                <input class="form-control" placeholder="Количество" type="number" @bind="ingredient.Amount" />
+                <input class="form-control" placeholder="Тип (грамм, шт.)" @bind="ingredient.Unit" />
+                <input class="form-control" placeholder="Ккал" type="number" @bind="ingredient.Calories" />
+                <input class="form-control" placeholder="Белки" type="number" @bind="ingredient.Protein" />
+                <input class="form-control" placeholder="Жиры" type="number" @bind="ingredient.Fat" />
+                <input class="form-control" placeholder="Углеводы" type="number" @bind="ingredient.Carbs" />
+                <button class="btn btn-secondary me-2" @onclick="() => DeleteIngredient(ingredient)">➖</button>
+            </div>
+        </div>
+    }
+
+    <button class="btn btn-secondary me-2" @onclick="AddIngredient">➕ Добавить ингредиент</button>
+    <button class="btn btn-primary me-2" @onclick="Save">💾 Сохранить</button>
+    <button class="btn btn-outline-secondary" @onclick="Cancel">↩️ Отмена</button>
+}
+
+@code {
+    [Parameter] public int Id { get; set; }
+
+    private Recipe? recipe;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipe = await DbContext.Recipes
+            .Include(r => r.Ingredients)
+            .FirstOrDefaultAsync(r => r.Id == Id);
+    }
+
+    void AddIngredient()
+    {
+        recipe?.Ingredients.Add(new Ingredient());
+    }
+
+    void DeleteIngredient(Ingredient ingredient)
+    {
+        recipe?.Ingredients.Remove(ingredient);
+    }
+
+    async Task Save()
+    {
+        await DbContext.SaveChangesAsync();
+        NavigationManager.NavigateTo($"/recipes/{Id}");
+    }
+
+    void Cancel()
+    {
+        NavigationManager.NavigateTo($"/recipes/{Id}");
+    }
+
+    void GoBack()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}
