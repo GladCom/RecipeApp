@@ -1,0 +1,92 @@
+﻿@page "/recipes/{Id:int}"
+@using RecipeApp.Model
+@inject RecipesDbContext DbContext
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+
+<h2 class="d-flex justify-content-between align-items-center">
+    @if (recipe != null)
+    {
+        <div class="d-flex justify-content-between align-items-center mb-3">
+            <h2>@recipe.Title</h2>
+            <div>
+                <button class="btn btn-sm btn-outline-secondary me-2" @onclick="EditRecipe">✏️ Редактировать</button>
+                <button class="btn btn-sm btn-outline-danger me-2" @onclick="ConfirmDelete">🗑️ Удалить</button>
+                <button class="btn btn-sm btn-outline-primary" @onclick="GoBack">↩️ Назад</button>
+            </div>
+        </div>
+    }
+</h2>
+
+@if (recipe == null)
+{
+    <p>Загрузка...</p>
+}
+else
+{
+    <article>
+        <Markdown>@recipe.Content</Markdown>
+
+        <h4 class="mt-4">Ингредиенты</h4>
+        <table class="table">
+            <thead>
+            <tr>
+                <th>Название</th>
+                <th>Количество</th>
+                <th>Калории</th>
+                <th>Белки</th>
+                <th>Жиры</th>
+                <th>Углеводы</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var ingredient in recipe.Ingredients)
+            {
+                <tr>
+                    <td>@ingredient.Name</td>
+                    <td>@ingredient.Amount @ingredient.Unit</td>
+                    <td>@ingredient.Calories</td>
+                    <td>@ingredient.Protein</td>
+                    <td>@ingredient.Fat</td>
+                    <td>@ingredient.Carbs</td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </article>
+}
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Recipe? recipe;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipe = await DbContext.Recipes
+            .Include(r => r.Ingredients)
+            .FirstOrDefaultAsync(r => r.Id == Id);
+    }
+
+    void EditRecipe()
+    {
+        NavigationManager.NavigateTo($"/recipes/edit/{Id}");
+    }
+
+    async Task ConfirmDelete()
+    {
+        var confirmed = await Js.InvokeAsync<bool>("confirm", "Удалить рецепт?");
+        if (confirmed)
+        {
+            DbContext.Recipes.Remove(recipe!);
+            await DbContext.SaveChangesAsync();
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+    void GoBack()
+    {
+        NavigationManager.NavigateTo("/");
+    }
+}
