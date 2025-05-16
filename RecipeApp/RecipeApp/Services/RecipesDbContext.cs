@@ -14,7 +14,7 @@ public class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
   {
     modelBuilder.Entity<Recipe>()
       .HasMany(r => r.Ingredients)
-      .WithOne()
+      .WithOne(i => i.Recipe)
       .HasForeignKey(i => i.RecipeId)
       .OnDelete(DeleteBehavior.Cascade);
   }

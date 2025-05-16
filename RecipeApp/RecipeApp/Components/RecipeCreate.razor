@@ -29,7 +29,7 @@
         <div class="col">
             <select class="form-select" @bind="ing.Unit">
                 <option value="грамм">грамм</option>
-                <option value="штука">штука</option>
+                <option value="штука">штук</option>
             </select>
         </div>
         <div class="col">
@@ -77,6 +77,14 @@
     {
         DbContext.Recipes.Add(recipe);
         await DbContext.SaveChangesAsync();
+
+        foreach (var ingredient in recipe.Ingredients)
+        {
+            ingredient.RecipeId = recipe.Id;
+            DbContext.Ingredients.Add(ingredient);
+        }
+        await DbContext.SaveChangesAsync();
+
         NavigationManager.NavigateTo("/");
     }
 

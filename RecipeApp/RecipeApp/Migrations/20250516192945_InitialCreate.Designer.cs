@@ -47,17 +47,12 @@ namespace RecipeApp.Migrations
                     b.Property<int>("RecipeId")
                         .HasColumnType("INTEGER");
 
-                    b.Property<int>("RecipeId1")
-                        .HasColumnType("INTEGER");
-
                     b.Property<int>("Unit")
                         .HasColumnType("INTEGER");
 
                     b.HasKey("Id");
 
                     b.HasIndex("RecipeId");
-
-                    b.HasIndex("RecipeId1");
 
                     b.ToTable("Ingredients");
                 });
@@ -86,12 +81,6 @@ namespace RecipeApp.Migrations
                     b.HasOne("RecipeApp.Model.Recipe", null)
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("RecipeApp.Model.Recipe", "Recipe")
-                        .WithMany()
-                        .HasForeignKey("RecipeId1")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

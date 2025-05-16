@@ -38,7 +38,6 @@ namespace RecipeApp.Migrations
                     Fat = table.Column<float>(type: "REAL", nullable: false),
                     Carbs = table.Column<float>(type: "REAL", nullable: false),
                     RecipeId = table.Column<int>(type: "INTEGER", nullable: false),
-                    RecipeId1 = table.Column<int>(type: "INTEGER", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -49,23 +48,12 @@ namespace RecipeApp.Migrations
                         principalTable: "Recipes",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Ingredients_Recipes_RecipeId1",
-                        column: x => x.RecipeId1,
-                        principalTable: "Recipes",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(
                 name: "IX_Ingredients_RecipeId",
                 table: "Ingredients",
                 column: "RecipeId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Ingredients_RecipeId1",
-                table: "Ingredients",
-                column: "RecipeId1");
         }
 
         /// <inheritdoc />
