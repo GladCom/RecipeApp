@@ -132,3 +132,8 @@ $RECYCLE.BIN/
 
 _NCrunch*
 *.db
+*.db-wal
+
+*.db-shm
+
+RecipeApp/.idea/.idea.RecipeApp/.idea/
