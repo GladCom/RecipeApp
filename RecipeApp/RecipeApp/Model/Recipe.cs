@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-
-namespace RecipeApp.Model;
+﻿namespace RecipeApp.Model;
 
 public class Recipe
 {
