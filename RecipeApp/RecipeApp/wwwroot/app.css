@@ -1,9 +1,11 @@
 /* Базовый фон и шрифт */
-body {
+html, body {
     background-color: #fdf5e6; /* светлый фон */
     font-family: 'Montserrat', serif; /* похожий на ресторанный шрифт */
     margin: 0;
     padding: 0;
+    max-width: 100vw;
+    overflow-x: hidden;
 }
 
 /* Центрирование контента */
@@ -98,4 +100,104 @@ button:hover, .btn:hover {
     font-family: 'Montserrat', sans-serif;
     text-transform: lowercase;
     padding-top: 1rem;
+}
+
+.search-container {
+    padding: 1rem;
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.search-box {
+    width: 100%;
+    border: none;
+    border-radius: 12px;
+    background-color: #f5eadd;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #4b2e2e;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    transition: box-shadow 0.2s ease-in-out;
+    box-sizing: border-box;
+    padding: 0.6rem 1rem;
+}
+
+.search-box::placeholder {
+    color: #a59382;
+    font-style: italic;
+}
+
+.search-box:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(155, 125, 95, 0.2);
+}
+
+.search-box:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(155, 125, 95, 0.2);
+}
+
+.search-and-add {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0 auto 0.3rem auto;
+    width: 100%;
+    padding: 0;
+}
+
+.add-button {
+    font-size: 1rem;
+    margin: 0 1rem;
+    padding: 0.5rem 1.2rem;
+    border-radius: 12px;
+    background-color: #a67c52; /* нейтральный бежевый */
+    border: none;
+    color: white;
+    font-family: 'Montserrat', sans-serif;
+    transition: background-color 0.3s ease;
+}
+
+.add-button:hover {
+    background-color: #8b6744;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    padding: 1rem 0;
+    gap: 0.5rem;
+    list-style: none;
+}
+
+.page-item {
+    display: inline-block;
+}
+
+.page-link {
+    background-color: #f6f3f0;
+    color: #5c4438;
+    border: none;
+    border-radius: 10px;
+    padding: 0.5rem 0.9rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.2s ease;
+}
+
+.page-link:hover {
+    background-color: #e3dcd3;
+}
+
+.page-item.active .page-link {
+    background-color: #a67c52;
+    color: white;
+    cursor: default;
+}
+
+.page-item.disabled .page-link {
+    opacity: 0.4;
+    cursor: not-allowed;
 }
