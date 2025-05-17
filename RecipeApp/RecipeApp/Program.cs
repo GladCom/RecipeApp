@@ -1,3 +1,4 @@
+using Microsoft.AspNetCore.Http.Features;
 using Microsoft.EntityFrameworkCore;
 using RecipeApp.Components;
 using RecipeApp.Services;
@@ -12,9 +13,11 @@ public class Program
 
     builder.Services.AddRazorComponents()
       .AddInteractiveServerComponents();
-
     builder.Services.AddDbContext<RecipesDbContext>(options =>
       options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+    builder.Services.Configure<FormOptions>(options => {
+      options.MultipartBodyLengthLimit = 10 * 1024 * 1024;
+    });
 
     var app = builder.Build();
 

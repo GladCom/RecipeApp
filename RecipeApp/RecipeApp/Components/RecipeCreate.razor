@@ -2,6 +2,7 @@
 @using RecipeApp.Model
 @inject RecipesDbContext DbContext
 @inject NavigationManager NavigationManager
+@inject IWebHostEnvironment Env
 
 <h1>Новый рецепт</h1>
 
@@ -12,6 +13,12 @@
 
 <div class="mb-3">
     <label class="form-label">Рецепт</label>
+    <InputFile OnChange="HandleFileSelected" />
+    @if (!string.IsNullOrEmpty(imagePreviewUrl))
+    {
+        <img src="@imagePreviewUrl" style="max-width: 200px;" class="img-thumbnail mt-2" />
+    }
+
     <div class="col-md-12">
         <MarkdownEditor
             @bind-Value="@markdownValue"
@@ -99,5 +106,23 @@
     {
         markdownHtml = value;
         return Task.CompletedTask;
+    }
+
+    IBrowserFile? selectedFile;
+    string? imagePreviewUrl;
+
+    private async Task HandleFileSelected(InputFileChangeEventArgs e)
+    {
+        selectedFile = e.File;
+
+        var fileName = $"{Guid.NewGuid()}{Path.GetExtension(selectedFile.Name)}";
+        var savePath = Path.Combine(Env.WebRootPath, "uploads", fileName);
+
+        await using var stream = File.Create(savePath);
+        await selectedFile.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024).CopyToAsync(stream);
+
+        recipe.ImagePath = $"uploads/{fileName}";
+
+        imagePreviewUrl = recipe.ImagePath;
     }
 }
