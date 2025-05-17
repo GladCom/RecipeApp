@@ -25,12 +25,6 @@
     </ItemGroup>
 
     <ItemGroup>
-      <_ContentIncludedByDefault Remove="Components\Layout\MainLayout.razor" />
-      <_ContentIncludedByDefault Remove="Components\Layout\NavMenu.razor" />
-      <_ContentIncludedByDefault Remove="wwwroot\js\interop.js" />
-    </ItemGroup>
-
-    <ItemGroup>
       <Folder Include="wwwroot\uploads\" />
     </ItemGroup>
 
