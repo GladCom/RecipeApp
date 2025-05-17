@@ -16,5 +16,5 @@ public class Recipe
 
   public string? ImagePath { get; set; }
 
-  public List<Ingredient> Ingredients { get; set; } = [];
+  public List<Ingredient> Ingredients { get; set; } = new();
 }

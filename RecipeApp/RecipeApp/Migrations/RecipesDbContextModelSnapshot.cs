@@ -64,6 +64,9 @@ namespace RecipeApp.Migrations
                         .IsRequired()
                         .HasColumnType("TEXT");
 
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("TEXT");
+
                     b.Property<string>("Title")
                         .IsRequired()
                         .HasColumnType("TEXT");
@@ -75,7 +78,7 @@ namespace RecipeApp.Migrations
 
             modelBuilder.Entity("RecipeApp.Model.Ingredient", b =>
                 {
-                    b.HasOne("RecipeApp.Model.Recipe", null)
+                    b.HasOne("RecipeApp.Model.Recipe", "Recipe")
                         .WithMany("Ingredients")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
