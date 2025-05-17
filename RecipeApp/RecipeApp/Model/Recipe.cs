@@ -12,7 +12,7 @@ public class Recipe
   public string Content { get; set; } = string.Empty;
 
   [NotMapped]
-  public string ContentHTML => new HtmlString(Content).ToString();
+  public string ContentHTML => Markdig.Markdown.ToHtml(Content);
 
   public List<Ingredient> Ingredients { get; set; } = [];
 }
