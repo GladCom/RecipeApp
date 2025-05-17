@@ -10,7 +10,7 @@
 <input type="text"
        class="form-control mb-3"
        placeholder="Поиск рецептов..."
-       @bind="searchText"
+       @bind="SearchText"
        @bind:event="oninput" />
 
 
@@ -27,7 +27,7 @@ else if (!recipes.Any())
 else
 {
     <ul class="list-group">
-        @foreach (var recipe in FilteredRecipes)
+        @foreach (var recipe in PagedRecipes)
         {
             <li class="list-group-item d-flex justify-content-between align-items-center">
                 <span @onclick="() => ViewRecipe(recipe.Id)" style="cursor: pointer;">@recipe.Title</span>
@@ -38,6 +38,27 @@ else
             </li>
         }
     </ul>
+    @if (TotalPages > 1)
+    {
+        <nav>
+            <ul class="pagination">
+                <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                    <button class="page-link" @onclick="() => GoToPage(currentPage - 1)">«</button>
+                </li>
+                @for (int i = 1; i <= TotalPages; i++)
+                {
+                    var pageNumber = i; // Локальная переменная для замыкания
+                    <li class="page-item @(pageNumber == currentPage ? "active" : "")">
+                        <button class="page-link" @onclick="() => GoToPage(pageNumber)">@pageNumber</button>
+                    </li>
+                }
+                <li class="page-item @(currentPage == TotalPages ? "disabled" : "")">
+                    <button class="page-link" @onclick="() => GoToPage(currentPage + 1)">»</button>
+                </li>
+            </ul>
+        </nav>
+    }
+
 }
 
 @code {
@@ -79,16 +100,48 @@ else
         }
     }
 
-    private string searchText = "";
+    private string _searchText = "";
+
+    private string SearchText
+    {
+        get => _searchText;
+        set
+        {
+            if (_searchText != value)
+            {
+                _searchText = value;
+                currentPage = 1;
+            }
+        }
+    }
 
     private IEnumerable<Recipe> FilteredRecipes
     {
         get
         {
-            return string.IsNullOrWhiteSpace(searchText)
+            return string.IsNullOrWhiteSpace(_searchText)
                 ? recipes!
                 : recipes!.Where(r =>
-                    r.Title.Contains(searchText, StringComparison.OrdinalIgnoreCase));
+                    r.Title.Contains(_searchText, StringComparison.OrdinalIgnoreCase));
+        }
+    }
+
+    private int currentPage = 1;
+    private const int pageSize = 10;
+
+    private int TotalPages => (int)Math.Ceiling((double)(FilteredRecipes?.Count() ?? 0) / pageSize);
+
+    private IEnumerable<Recipe> PagedRecipes =>
+        FilteredRecipes?
+            .Skip((currentPage - 1) * pageSize)
+            .Take(pageSize)
+        ?? [];
+
+    void GoToPage(int page)
+    {
+        if (page >= 1 && page <= TotalPages)
+        {
+            currentPage = page;
         }
     }
 }
