@@ -3,9 +3,10 @@
 @using RecipeApp.Model
 @inject RecipesDbContext DbContext
 @inject NavigationManager NavigationManager
-@inject IJSRuntime JS
+@inject IJSRuntime Js
 
-<h1>Рецепты</h1>
+<main>
+    <h1 class="text-center">Рецепты</h1>
 
 <input type="text"
        class="form-control mb-3"
@@ -26,18 +27,26 @@ else if (!recipes.Any())
 }
 else
 {
-    <ul class="list-group">
+    <div class="recipe-list">
         @foreach (var recipe in PagedRecipes)
         {
-            <li class="list-group-item d-flex justify-content-between align-items-center">
-                <span @onclick="() => ViewRecipe(recipe.Id)" style="cursor: pointer;">@recipe.Title</span>
-                <span>
-                    <button class="btn btn-sm btn-outline-secondary me-2" @onclick="() => EditRecipe(recipe.Id)">✏️</button>
-                    <button class="btn btn-sm btn-outline-danger" @onclick="() => ConfirmDelete(recipe.Id)">🗑️</button>
-                </span>
-            </li>
+            <div class="recipe-item border-bottom pb-3 mb-3">
+                <div class="recipe-title" @onclick="() => ViewRecipe(recipe.Id)">
+                    @recipe.Title
+                </div>
+
+                @if (recipe.Ingredients.Any())
+                {
+                    <div class="recipe-ingredients mt-1">
+                        @string.Join(", ", recipe.Ingredients.Select(i => i.Name.ToLower()))
+                    </div>
+                }
+            </div>
         }
-    </ul>
+    </div>
+
+
+
     @if (TotalPages > 1)
     {
         <nav>
@@ -60,13 +69,15 @@ else
     }
 
 }
-
+</main>
 @code {
     private List<Recipe>? recipes;
 
     protected override async Task OnInitializedAsync()
     {
-        recipes = await DbContext.Recipes.ToListAsync();
+        recipes = await DbContext.Recipes
+            .Include(r => r.Ingredients)
+            .ToListAsync();
     }
 
     void AddRecipe()
@@ -86,7 +97,7 @@ else
 
     async Task ConfirmDelete(int id)
     {
-        var confirmed = await JS.InvokeAsync<bool>("confirm", "Удалить рецепт?");
+        var confirmed = await Js.InvokeAsync<bool>("confirm", "Удалить рецепт?");
         if (confirmed)
         {
             var recipe = await DbContext.Recipes.FindAsync(id);

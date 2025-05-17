@@ -1,5 +1,4 @@
 ﻿@page "/recipes/{Id:int}"
-@using Microsoft.AspNetCore.Html
 @using RecipeApp.Model
 @inject RecipesDbContext DbContext
 @inject NavigationManager NavigationManager
@@ -16,9 +15,15 @@
             }
 
             <div>
-                <button class="btn btn-sm btn-outline-secondary me-2" @onclick="EditRecipe">✏️ Редактировать</button>
-                <button class="btn btn-sm btn-outline-danger me-2" @onclick="ConfirmDelete">🗑️ Удалить</button>
-                <button class="btn btn-sm btn-outline-primary" @onclick="GoBack">↩️ Назад</button>
+                <button class="btn btn-sm btn-outline-secondary me-2" @onclick="EditRecipe">
+                    <img src="icons/edit.png" alt="Редактировать" width="16" class="me-1" />
+                </button>
+                <button class="btn btn-sm btn-outline-danger me-2" @onclick="ConfirmDelete">
+                    <img src="icons/delete.png" alt="Удалить" width="16" class="me-1" />
+                </button>
+                <button class="btn btn-sm btn-outline-primary" @onclick="GoBack">
+                    <img src="icons/back.png" alt="Назад" width="16" class="me-1" />
+                </button>
             </div>
         </div>
     }

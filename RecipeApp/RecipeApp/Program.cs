@@ -18,6 +18,8 @@ public class Program
     builder.Services.Configure<FormOptions>(options => {
       options.MultipartBodyLengthLimit = 10 * 1024 * 1024;
     });
+    builder.Services.AddRazorPages();
+    builder.Services.AddServerSideBlazor();
 
     var app = builder.Build();
 
@@ -30,10 +32,12 @@ public class Program
     app.UseHttpsRedirection();
 
     app.UseStaticFiles();
-    app.UseAntiforgery();
 
     app.MapRazorComponents<App>()
       .AddInteractiveServerRenderMode();
+
+    app.UseRouting();
+    app.UseAntiforgery();
 
     app.Run();
   }
