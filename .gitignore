@@ -137,3 +137,5 @@ _NCrunch*
 *.db-shm
 
 RecipeApp/.idea/.idea.RecipeApp/.idea/
+
+RecipeApp/RecipeApp/wwwroot/uploads/
