@@ -7,15 +7,12 @@
 
 <main>
     <h1 class="text-center">Рецепты</h1>
-
-<input type="text"
-       class="form-control mb-3"
-       placeholder="Поиск рецептов..."
-       @bind="SearchText"
-       @bind:event="oninput" />
-
-
-<button class="btn btn-primary mb-3" @onclick="AddRecipe">➕</button>
+    <div class="search-and-add">
+        <div class="search-container">
+            <input type="text" class="form-control search-box" placeholder="Найти блюдо..." @bind="SearchText" />
+        </div>
+        <button class="btn btn-primary add-button mt-2" @onclick="AddRecipe">Добавить блюдо</button>
+    </div>
 
 @if (recipes == null)
 {
@@ -44,8 +41,6 @@ else
             </div>
         }
     </div>
-
-
 
     @if (TotalPages > 1)
     {
