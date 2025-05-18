@@ -18,6 +18,8 @@ main {
 h1, h2, h3 {
     font-family: 'Montserrat', serif;
     color: #3b2b2b;
+    outline: none;
+    border: none;
 }
 
 button, .btn {
@@ -28,6 +30,7 @@ button, .btn {
     font-weight: bold;
     cursor: pointer;
     transition: background-color 0.6s;
+    align-content: flex-start;
 }
 button:hover, .btn:hover {
     background-color: #b5865e;
@@ -53,6 +56,23 @@ button:hover, .btn:hover {
     font-family: 'Montserrat', serif;
     font-size: 2rem;
     border: 3px solid  #604631;
+}
+
+.recipe-view {
+    background-color: #fdfaf4;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+article {
+    text-align: left;
+    padding: 2rem;
+}
+
+.delete-btn:hover {
+    background-color: #f8d7da;
+    border-color: #f5c2c7;
+    color: #842029;
 }
 
 .recipe-list {
@@ -197,4 +217,49 @@ button:hover, .btn:hover {
 .page-item.disabled .page-link {
     opacity: 0.4;
     cursor: not-allowed;
+}
+
+.recipe-image {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 1rem;
+}
+
+.ingredient-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    color: #4b2e2e;
+    margin-top: 1.5rem;
+
+}
+
+.ingredient-table th,
+.ingredient-table td {
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid #f0e6d8;
+    vertical-align: top;
+    text-align: left;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.ingredient-table th {
+    font-weight: 600;
+    color: #7a6654;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
+.ingredient-table td:first-child {
+    max-width: 200px;
+}
+
+.ingredient-table tr:last-child td {
+    border-bottom: none;
 }

@@ -4,70 +4,73 @@
 @inject NavigationManager NavigationManager
 @inject IJSRuntime Js
 
-<h2 class="d-flex justify-content-between align-items-center">
-    @if (recipe != null)
+<div class="recipe-view container p-4 rounded">
+    <div class="d-flex align-items-center mb-3">
+        <button class="btn btn-sm btn-outline-primary d-flex align-items-center me-auto" @onclick="GoBack">
+            <img src="icons/back.png" alt="Назад" width="16" class="me-2"/>
+            <span>Назад</span>
+        </button>
+    </div>
+
+    @if (recipe == null)
     {
-        <div class="d-flex justify-content-between align-items-center mb-3">
-            <h2>@recipe.Title</h2>
+        <p>Загрузка...</p>
+    }
+    else
+    {
+        <div class="text-center">
+            <h2 class="fw-bold mb-3">@recipe.Title</h2>
+
             @if (!string.IsNullOrEmpty(recipe.ImagePath))
             {
-                <img src="@recipe.ImagePath" class="img-fluid rounded mb-3" />
+                <img src="@recipe.ImagePath" class="recipe-image" />
             }
 
-            <div>
-                <button class="btn btn-sm btn-outline-secondary me-2" @onclick="EditRecipe">
-                    <img src="icons/edit.png" alt="Редактировать" width="16" class="me-1" />
+            <div class="d-flex justify-content-start gap-2 mb-4">
+                <button class="btn btn-sm btn-outline-secondary" @onclick="EditRecipe">
+                    <img src="icons/edit.png" alt="Редактировать" width="16" class="me-1"/>
+                    Редактировать
                 </button>
-                <button class="btn btn-sm btn-outline-danger me-2" @onclick="ConfirmDelete">
-                    <img src="icons/delete.png" alt="Удалить" width="16" class="me-1" />
+                <button class="btn btn-sm btn-outline-danger delete-btn" @onclick="ConfirmDelete">
+                    <img src="icons/delete.png" alt="Удалить" width="16" class="me-1"/>
+                    Удалить
                 </button>
-                <button class="btn btn-sm btn-outline-primary" @onclick="GoBack">
-                    <img src="icons/back.png" alt="Назад" width="16" class="me-1" />
-                </button>
+            </div>
+
+            <article class="mb-4 text-start">
+                <div>@((MarkupString)recipe.ContentHTML)</div>
+            </article>
+
+            <div class="table-responsive">
+                <table class="ingredient-table">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            <th>Кол-во</th>
+                            <th>К</th>
+                            <th>Б</th>
+                            <th>Ж</th>
+                            <th>У</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var ingredient in recipe.Ingredients)
+                        {
+                            <tr>
+                                <td>@ingredient.Name</td>
+                                <td>@ingredient.Amount @ingredient.Unit</td>
+                                <td>@ingredient.Calories</td>
+                                <td>@ingredient.Protein</td>
+                                <td>@ingredient.Fat</td>
+                                <td>@ingredient.Carbs</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
             </div>
         </div>
     }
-</h2>
-
-@if (recipe == null)
-{
-    <p>Загрузка...</p>
-}
-else
-{
-    <article>
-        <div class="col-md-12">
-            @((MarkupString)recipe.ContentHTML)
-        </div>
-
-        <h4 class="mt-4">Ингредиенты</h4>
-        <table class="table">
-            <thead>
-            <tr>
-                <th>Название</th>
-                <th>Количество</th>
-                <th>Калории</th>
-                <th>Белки</th>
-                <th>Жиры</th>
-                <th>Углеводы</th>
-            </tr>
-            </thead>
-            <tbody>
-            @foreach (var ingredient in recipe.Ingredients)
-            {
-                <tr>
-                    <td>@ingredient.Name</td>
-                    <td>@ingredient.Amount @ingredient.Unit</td>
-                    <td>@ingredient.Calories</td>
-                    <td>@ingredient.Protein</td>
-                    <td>@ingredient.Fat</td>
-                    <td>@ingredient.Carbs</td>
-                </tr>
-            }
-            </tbody>
-        </table>
-    </article>
-}
+</div>
 
 @code {
     [Parameter]
@@ -82,10 +85,7 @@ else
             .FirstOrDefaultAsync(r => r.Id == Id);
     }
 
-    void EditRecipe()
-    {
-        NavigationManager.NavigateTo($"/recipes/edit/{Id}");
-    }
+    void EditRecipe() => NavigationManager.NavigateTo($"/recipes/edit/{Id}");
 
     async Task ConfirmDelete()
     {
@@ -98,9 +98,5 @@ else
         }
     }
 
-    void GoBack()
-    {
-        NavigationManager.NavigateTo("/");
-    }
-
+    void GoBack() => NavigationManager.NavigateTo("/");
 }
