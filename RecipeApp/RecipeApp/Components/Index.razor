@@ -85,27 +85,6 @@ else
         NavigationManager.NavigateTo($"/recipes/{id}");
     }
 
-    void EditRecipe(int id)
-    {
-        NavigationManager.NavigateTo($"/recipes/edit/{id}");
-    }
-
-    async Task ConfirmDelete(int id)
-    {
-        var confirmed = await Js.InvokeAsync<bool>("confirm", "Удалить рецепт?");
-        if (confirmed)
-        {
-            var recipe = await DbContext.Recipes.FindAsync(id);
-            if (recipe is not null)
-            {
-                DbContext.Recipes.Remove(recipe);
-                await DbContext.SaveChangesAsync();
-                recipes = await DbContext.Recipes.ToListAsync();
-                StateHasChanged();
-            }
-        }
-    }
-
     private string _searchText = "";
 
     private string SearchText
