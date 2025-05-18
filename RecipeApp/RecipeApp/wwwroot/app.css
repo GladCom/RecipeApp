@@ -263,3 +263,116 @@ article {
 .ingredient-table tr:last-child td {
     border-bottom: none;
 }
+
+
+.ingredient-table td {
+    padding: 0.4rem;
+    vertical-align: middle;
+}
+
+.ingredient-table th {
+    background-color: #f6f3f0;
+    color: #604631;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    text-align: left;
+    border-bottom: 1px solid #e8e1d9;
+}
+
+.ingredient-table input,
+.ingredient-table select {
+    border: 1px solid #e3dcd3;
+    border-radius: 8px;
+    background-color: #fdfaf4;
+    padding: 0.4rem 0.6rem;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color: #4b2e2e;
+    font-size: 0.95rem;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+}
+
+.ingredient-table input:focus,
+.ingredient-table select:focus {
+    outline: none;
+    border-color: #a67c52;
+    box-shadow: 0 0 0 2px rgba(155, 125, 95, 0.15);
+}
+
+.recipe-title-input {
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Montserrat', serif;
+    border: none;
+    border-bottom: 2px solid #a67c52;
+    background-color: transparent;
+    color: #3b2b2b;
+    outline: none;
+    width: 100%;
+    padding: 0.5rem 0;
+    margin-bottom: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+.recipe-title-input:focus {
+    border-color: #604631;
+    background-color: #fffaf3;
+}
+
+.image-upload-wrapper {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 2rem ;
+}
+
+.image-upload-label {
+    cursor: pointer;
+    text-align: center;
+}
+
+.recipe-image-preview {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    object-fit: cover;
+    box-shadow: 0 0 4px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.recipe-image-preview:hover {
+    box-shadow: 0 0 6px rgba(0, 0, 0, 0.2);
+}
+
+.image-placeholder {
+    width: 200px;
+    height: 200px;
+    border-radius: 50%;
+    background-color: #f5eadd;
+    color: #a4937d;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.image-placeholder:hover {
+    background-color: #e8dac8;
+}
+
+.upload-icon {
+    font-size: 2rem;
+    margin-bottom: 0.5rem;
+}
+
+.d-none {
+    display: none !important;
+}
+
+.form-label {
+}

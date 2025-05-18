@@ -4,70 +4,88 @@
 @inject NavigationManager NavigationManager
 @inject IWebHostEnvironment Env
 
-<h1>Новый рецепт</h1>
+<main class="recipe-view">
+    <div class="recipe-card">
+        <input
+            class="form-control recipe-title-input mb-4"
+            placeholder="Введите название рецепта"
+            @bind="recipe.Title" />
 
-<div class="mb-3">
-    <label class="form-label">Название</label>
-    <input class="form-control" @bind="recipe.Title" />
-</div>
+        <div class="image-upload-wrapper mb-4">
+            <label for="imageInput" class="image-upload-label">
+                @if (!string.IsNullOrEmpty(imagePreviewUrl))
+                {
+                    <img src="@imagePreviewUrl" class="recipe-image-preview" />
+                }
+                else
+                {
+                    <div class="image-placeholder">
+                        <span class="upload-text">
+                            <img src="icons/add_image.png" alt="Удалить" width="40" class="me-1"/>
+                        </span>
+                    </div>
+                }
+            </label>
+            <InputFile id="imageInput" class="d-none" OnChange="HandleFileSelected" />
+        </div>
 
-<div class="mb-3">
-    <label class="form-label">Рецепт</label>
-    <InputFile OnChange="HandleFileSelected" />
-    @if (!string.IsNullOrEmpty(imagePreviewUrl))
-    {
-        <img src="@imagePreviewUrl" style="max-width: 200px;" class="img-thumbnail mt-2" />
-    }
 
-    <div class="col-md-12">
-        <MarkdownEditor
-            @bind-Value="@markdownValue"
-            ValueHTMLChanged="@OnMarkdownValueHTMLChanged" />
-        <hr />
+        <div class="mb-3">
+            <h3 >Рецепт</h3>
+            <MarkdownEditor
+                @bind-Value="@markdownValue"
+                ValueHTMLChanged="@OnMarkdownValueHTMLChanged" />
+        </div>
+
+        <h5>Ингредиенты</h5>
+
+        <div class="table-responsive">
+            <table class="table table-bordered ingredient-table">
+                <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Кол-во</th>
+                    <th>К</th>
+                    <th>Б</th>
+                    <th>Ж</th>
+                    <th>У</th>
+                    <th></th>
+                </tr>
+                </thead>
+                <tbody>
+                @foreach (var ing in recipe.Ingredients)
+                {
+                    <tr>
+                        <td><input class="form-control" @bind="ing.Name" /></td>
+                        <td><input class="form-control" type="number" @bind="ing.Amount" /></td>
+                        <td>
+                            <select class="form-select" @bind="ing.Unit">
+                                <option value="грамм">грамм</option>
+                                <option value="штука">штук</option>
+                            </select>
+                        </td>
+                        <td><input class="form-control" type="number" @bind="ing.Calories" /></td>
+                        <td><input class="form-control" type="number" @bind="ing.Protein" /></td>
+                        <td><input class="form-control" type="number" @bind="ing.Fat" /></td>
+                        <td><input class="form-control" type="number" @bind="ing.Carbs" /></td>
+                        <td>
+                            <button class="btn btn-outline-danger btn-sm" @onclick="() => RemoveIngredient(ing)">✕</button>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+
+        <button class="btn btn-secondary mb-3" @onclick="AddIngredient">+ Добавить ингредиент</button>
+
+
+        <div class="mt-4">
+            <button class="btn btn-primary" @onclick="Save">Сохранить</button>
+            <button class="btn btn-secondary ms-2" @onclick="Cancel">Отмена</button>
+        </div>
     </div>
-</div>
-
-<h5>Ингредиенты</h5>
-
-@foreach (var ing in recipe.Ingredients)
-{
-    <div class="row g-2 mb-2">
-        <div class="col">
-            <input class="form-control" placeholder="Название" @bind="ing.Name" />
-        </div>
-        <div class="col">
-            <input class="form-control" placeholder="Кол-во" type="number" @bind="ing.Amount" />
-        </div>
-        <div class="col">
-            <select class="form-select" @bind="ing.Unit">
-                <option value="грамм">грамм</option>
-                <option value="штука">штук</option>
-            </select>
-        </div>
-        <div class="col">
-            <input class="form-control" placeholder="Ккал" type="number" @bind="ing.Calories" />
-        </div>
-        <div class="col">
-            <input class="form-control" placeholder="Белки" type="number" @bind="ing.Protein" />
-        </div>
-        <div class="col">
-            <input class="form-control" placeholder="Жиры" type="number" @bind="ing.Fat" />
-        </div>
-        <div class="col">
-            <input class="form-control" placeholder="Углеводы" type="number" @bind="ing.Carbs" />
-        </div>
-        <div class="col-auto">
-            <button class="btn btn-outline-danger" @onclick="() => RemoveIngredient(ing)">✕</button>
-        </div>
-    </div>
-}
-
-<button class="btn btn-secondary mb-3" @onclick="AddIngredient">+ Добавить ингредиент</button>
-
-<div class="mt-4">
-    <button class="btn btn-primary" @onclick="Save">Сохранить</button>
-    <button class="btn btn-secondary ms-2" @onclick="Cancel">Отмена</button>
-</div>
+</main>
 
 @code {
     private string markdownValue;
