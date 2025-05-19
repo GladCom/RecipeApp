@@ -53,13 +53,6 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Generated version: $VERSION"
 
-#      - name: Create git tag on current commit
-#        run: |
-#          git config user.name "github-actions[bot]"
-#          git config user.email "github-actions[bot]@users.noreply.github.com"
-#          git tag ${{ steps.tag_version.outputs.version }}
-#          git push origin ${{ steps.tag_version.outputs.version }}
-
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
@@ -68,12 +61,3 @@ jobs:
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
-#      - name: Upload published app to release
-#        uses: softprops/action-gh-release@v2
-#        with:
-#          tag_name: ${{ steps.tag_version.outputs.version }}
-#          files: |
-#            publish/**
-#        env:
-#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
