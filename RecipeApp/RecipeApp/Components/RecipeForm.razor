@@ -71,14 +71,13 @@
                 </table>
             </div>
 
-            <button class="btn btn-secondary mb-3" @onclick="AddIngredient">+ Добавить ингредиент</button>
+            <button type="button" class="btn btn-secondary mb-3" @onclick="AddIngredient">+ Добавить ингредиент</button>
 
             <div class="mt-4">
                 <div class="mt-4">
                     <button type="submit" class="btn btn-primary">Сохранить</button>
                     <button class="btn btn-secondary ms-2" @onclick="OnCancel">Отмена</button>
 
-                    <!-- Ошибка под кнопками -->
                     <div class="text-danger mt-2">
                         <ValidationMessage For="@(() => Recipe.Title)"/>
                     </div>
