@@ -20,11 +20,6 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
 
-      - name: Create git tag and push
-        run: |
-          git tag ${{ steps.tag_version.outputs.version }}
-          git push origin ${{ steps.tag_version.outputs.version }}
-
       - name: Fetch tags
         run: git fetch --tags
 
@@ -44,6 +39,11 @@ jobs:
 
       - name: Publish app
         run: dotnet publish ./RecipeApp/RecipeApp.sln --configuration Release -o publish
+
+      - name: Create git tag and push
+        run: |
+          git tag ${{ steps.tag_version.outputs.version }}
+          git push origin ${{ steps.tag_version.outputs.version }}
 
       - name: Calculate version tag
         id: tag_version
