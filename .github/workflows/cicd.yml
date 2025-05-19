@@ -39,6 +39,9 @@ jobs:
       - name: Build the project
         run: dotnet build ./RecipeApp/RecipeApp.sln --configuration Release --no-restore
 
+      - name: Run tests
+        run: dotnet test ./RecipeApp/RecipeApp.sln --configuration Release --no-restore --verbosity normal
+
       - name: Publish app
         run: dotnet publish ./RecipeApp/RecipeApp.sln --configuration Release -o publish
 
