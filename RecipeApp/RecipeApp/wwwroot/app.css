@@ -70,7 +70,7 @@ article {
 }
 
 .delete-btn:hover {
-    background-color: #f8d7da;
+    background-color: #f8444a;
     border-color: #f5c2c7;
     color: #842029;
 }
@@ -389,4 +389,8 @@ article {
 }
 
 .form-label {
+}
+
+.text-danger {
+    color: #ff0300;
 }
