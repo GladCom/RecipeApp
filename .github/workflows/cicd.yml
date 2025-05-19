@@ -35,22 +35,19 @@ jobs:
         run: |
           YEAR=$(date +'%Y')
           MONTH=$(date +'%m')
-          PREFIX="${YEAR}.${MONTH}"
+          # Используем встроенный номер билда GitHub Actions
+          BUILD_NUMBER=${{ github.run_number }}
           
-          # Получим все теги, начинающиеся с текущего префикса (например, 2025.05)
-          TAGS=$(git tag --list "${PREFIX}.*" | sort -V)
-          
-          if [ -z "$TAGS" ]; then
-            BUILD=1
-          else
-            LAST_TAG=$(echo "$TAGS" | tail -n 1)
-            LAST_BUILD=$(echo "$LAST_TAG" | awk -F '.' '{print $3}')
-            BUILD=$((10#$LAST_BUILD + 1))
-          fi
-          
-          VERSION=$(printf "%s.%03d" "$PREFIX" "$BUILD")
+          VERSION=$(printf "%s.%s.%03d" "$YEAR" "$MONTH" "$BUILD_NUMBER")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Generated version: $VERSION"
+
+      - name: Create git tag on current commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git tag ${{ steps.tag_version.outputs.version }}
+          git push origin ${{ steps.tag_version.outputs.version }}
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
