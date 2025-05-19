@@ -13,6 +13,9 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v3
 
+      - name: Fetch tags
+        run: git fetch --tags
+
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -24,18 +27,30 @@ jobs:
       - name: Build the project
         run: dotnet build --configuration Release --no-restore
 
-      # Здесь можно добавить тесты позже
-      # - name: Run tests
-      #   run: dotnet test --no-restore --verbosity normal
-
       - name: Publish app
         run: dotnet publish --configuration Release -o publish
 
-      - name: Create release tag
+      - name: Calculate version tag
         id: tag_version
         run: |
-          VERSION="v$(date +'%Y.%m.%d.%H%M%S')"
+          YEAR=$(date +'%Y')
+          MONTH=$(date +'%m')
+          PREFIX="${YEAR}.${MONTH}"
+          
+          # Получим все теги, начинающиеся с текущего префикса (например, 2025.05)
+          TAGS=$(git tag --list "${PREFIX}.*" | sort -V)
+          
+          if [ -z "$TAGS" ]; then
+            BUILD=1
+          else
+            LAST_TAG=$(echo "$TAGS" | tail -n 1)
+            LAST_BUILD=$(echo "$LAST_TAG" | awk -F '.' '{print $3}')
+            BUILD=$((10#$LAST_BUILD + 1))
+          fi
+          
+          VERSION=$(printf "%s.%03d" "$PREFIX" "$BUILD")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "Generated version: $VERSION"
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
