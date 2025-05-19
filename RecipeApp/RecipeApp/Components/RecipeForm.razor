@@ -10,15 +10,15 @@
 
         <div class="image-upload-wrapper mb-4">
             <label for="imageInput" class="image-upload-label">
-                @if (!string.IsNullOrEmpty(imagePreviewUrl ?? Recipe.ImagePath))
+                @if (!string.IsNullOrEmpty(imagePreviewUrl))
                 {
-                    <img src="@imagePreviewUrl ?? Recipe.ImagePath" class="recipe-image-preview" />
+                    <img src="@imagePreviewUrl" class="recipe-image-preview" />
                 }
                 else
                 {
                     <div class="image-placeholder">
                         <span class="upload-text">
-                            <img src="icons/add_image.png" alt="Добавить изображение" width="40" class="me-1"/>
+                            <img src="icons/add_image.png" alt="Удалить" width="40" class="me-1"/>
                         </span>
                     </div>
                 }
