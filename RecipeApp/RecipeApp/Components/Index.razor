@@ -27,8 +27,8 @@ else
     <div class="recipe-list">
         @foreach (var recipe in PagedRecipes)
         {
-            <div class="recipe-item border-bottom pb-3 mb-3">
-                <div class="recipe-title" @onclick="() => ViewRecipe(recipe.Id)">
+            <div class="recipe-item border-bottom pb-3 mb-3" @onclick="() => ViewRecipe(recipe.Id)">
+                <div class="recipe-title">
                     @recipe.Title
                 </div>
 

@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using Microsoft.AspNetCore.Html;
 
 namespace RecipeApp.Model;
@@ -7,6 +8,7 @@ public class Recipe
 {
   public int Id { get; set; }
 
+  [Required(ErrorMessage = "Название обязательно")]
   public string Title { get; set; } = string.Empty;
 
   public string Content { get; set; } = string.Empty;
