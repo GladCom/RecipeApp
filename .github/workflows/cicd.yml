@@ -1,0 +1,56 @@
+name: Build and Release Blazor Server App
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v4
+        with:
+          dotnet-version: '8.0.x'
+
+      - name: Restore dependencies
+        run: dotnet restore
+
+      - name: Build the project
+        run: dotnet build --configuration Release --no-restore
+
+      # Здесь можно добавить тесты позже
+      # - name: Run tests
+      #   run: dotnet test --no-restore --verbosity normal
+
+      - name: Publish app
+        run: dotnet publish --configuration Release -o publish
+
+      - name: Create release tag
+        id: tag_version
+        run: |
+          VERSION="v$(date +'%Y.%m.%d.%H%M%S')"
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Create GitHub release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag_version.outputs.version }}
+          name: Release ${{ steps.tag_version.outputs.version }}
+          generate_release_notes: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Upload published app to release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.tag_version.outputs.version }}
+          files: |
+            publish/**
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
