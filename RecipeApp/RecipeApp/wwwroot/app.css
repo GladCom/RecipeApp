@@ -236,7 +236,9 @@ article {
     font-size: 0.95rem;
     color: #4b2e2e;
     margin-top: 1.5rem;
-
+    white-space: normal;
+    word-break: break-word;
+    table-layout: fixed;
 }
 
 .ingredient-table th,
@@ -247,6 +249,7 @@ article {
     text-align: left;
     word-break: break-word;
     white-space: normal;
+    width: 60%;
 }
 
 .ingredient-table th {
@@ -286,13 +289,14 @@ article {
     border: 1px solid #e3dcd3;
     border-radius: 8px;
     background-color: #fdfaf4;
-    padding: 0.4rem 0.6rem;
     width: 100%;
     box-sizing: border-box;
     font-family: 'Montserrat', sans-serif;
     color: #4b2e2e;
-    font-size: 0.95rem;
     transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    min-width: 100px;
+    padding: 0.3rem;
+    font-size: 0.95rem;
 }
 
 .ingredient-table input:focus,
@@ -300,6 +304,16 @@ article {
     outline: none;
     border-color: #a67c52;
     box-shadow: 0 0 0 2px rgba(155, 125, 95, 0.15);
+}
+
+.quantity-unit input {
+    flex: 2;
+    min-width: 40px;
+}
+
+.quantity-unit select {
+    flex: 1;
+    min-width: 30px;
 }
 
 .recipe-title-input {

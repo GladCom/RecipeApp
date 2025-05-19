@@ -29,7 +29,6 @@
             <InputFile id="imageInput" class="d-none" OnChange="HandleFileSelected" />
         </div>
 
-
         <div class="mb-3">
             <h3 >Рецепт</h3>
             <MarkdownEditor
@@ -43,13 +42,8 @@
             <table class="table table-bordered ingredient-table">
                 <thead>
                 <tr>
-                    <th>Название</th>
+                    <th style="width: 60%">Название</th>
                     <th>Кол-во</th>
-                    <th>К</th>
-                    <th>Б</th>
-                    <th>Ж</th>
-                    <th>У</th>
-                    <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -57,17 +51,17 @@
                 {
                     <tr>
                         <td><input class="form-control" @bind="ing.Name" /></td>
-                        <td><input class="form-control" type="number" @bind="ing.Amount" /></td>
                         <td>
-                            <select class="form-select" @bind="ing.Unit">
-                                <option value="грамм">грамм</option>
-                                <option value="штука">штук</option>
-                            </select>
+                            <div class="quantity-unit">
+                                <input class="form-control form-control-sm" type="number" @bind="ing.Amount" style="max-width: 100px;" />
+                                <select class="form-select form-select-sm" @bind="ing.Unit" style="max-width: 100px;">
+                                    @foreach (var unit in unitTypes)
+                                    {
+                                        <option value="@unit">@GetUnitLabel(unit)</option>
+                                    }
+                                </select>
+                            </div>
                         </td>
-                        <td><input class="form-control" type="number" @bind="ing.Calories" /></td>
-                        <td><input class="form-control" type="number" @bind="ing.Protein" /></td>
-                        <td><input class="form-control" type="number" @bind="ing.Fat" /></td>
-                        <td><input class="form-control" type="number" @bind="ing.Carbs" /></td>
                         <td>
                             <button class="btn btn-outline-danger btn-sm" @onclick="() => RemoveIngredient(ing)">✕</button>
                         </td>
@@ -90,6 +84,21 @@
 @code {
     private string markdownValue;
     private string markdownHtml;
+    private List<UnitType> unitTypes = Enum.GetValues(typeof(UnitType)).Cast<UnitType>().ToList();
+
+    private string GetUnitLabel(UnitType unit)
+    {
+        return unit switch
+        {
+            UnitType.Gram => "г",
+            UnitType.Piece => "шт",
+            UnitType.Tablespoon => "ст. ложка",
+            UnitType.Milliliter => "мл",
+            UnitType.Liter => "л",
+            _ => unit.ToString()
+        };
+    }
+
 
     private Recipe recipe = new()
     {
