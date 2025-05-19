@@ -22,13 +22,13 @@ jobs:
           dotnet-version: '8.0.x'
 
       - name: Restore dependencies
-        run: dotnet restore
+        run: dotnet restore ./RecipeApp/RecipeApp.sln
 
       - name: Build the project
-        run: dotnet build --configuration Release --no-restore
+        run: dotnet build ./RecipeApp/RecipeApp.sln --configuration Release --no-restore
 
       - name: Publish app
-        run: dotnet publish --configuration Release -o publish
+        run: dotnet publish ./RecipeApp/RecipeApp.sln --configuration Release -o publish
 
       - name: Calculate version tag
         id: tag_version
