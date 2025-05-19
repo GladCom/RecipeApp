@@ -12,6 +12,18 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
+        with:
+          persist-credentials: false
+
+      - name: Configure Git user
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+      - name: Create git tag and push
+        run: |
+          git tag ${{ steps.tag_version.outputs.version }}
+          git push origin ${{ steps.tag_version.outputs.version }}
 
       - name: Fetch tags
         run: git fetch --tags
