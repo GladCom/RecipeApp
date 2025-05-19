@@ -131,3 +131,11 @@ $RECYCLE.BIN/
 .DS_Store
 
 _NCrunch*
+*.db
+*.db-wal
+
+*.db-shm
+
+RecipeApp/.idea/.idea.RecipeApp/.idea/
+
+RecipeApp/RecipeApp/wwwroot/uploads/

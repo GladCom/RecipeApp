@@ -1,0 +1,108 @@
+﻿@page "/recipes/{Id:int}"
+@using RecipeApp.Model
+@inject RecipesDbContext DbContext
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+
+<div class="recipe-view container p-4 rounded">
+    <div class="d-flex align-items-center mb-3">
+        <button class="btn btn-sm btn-outline-primary d-flex align-items-center me-auto" @onclick="GoBack">
+            <img src="icons/back.png" alt="Назад" width="16" class="me-2"/>
+            <span>Назад</span>
+        </button>
+    </div>
+
+    @if (recipe == null)
+    {
+        <p>Загрузка...</p>
+    }
+    else
+    {
+        <div class="text-center">
+            <h2 class="fw-bold mb-3">@recipe.Title</h2>
+
+            @if (!string.IsNullOrEmpty(recipe.ImagePath))
+            {
+                <img src="@recipe.ImagePath" class="recipe-image" />
+            }
+
+            <div class="d-flex justify-content-start gap-2 mb-4">
+                <button class="btn btn-sm btn-outline-secondary" @onclick="EditRecipe">
+                    <img src="icons/edit.png" alt="Редактировать" width="16" class="me-1"/>
+                    Редактировать
+                </button>
+                <button class="btn btn-sm btn-outline-danger delete-btn" @onclick="ConfirmDelete">
+                    <img src="icons/delete.png" alt="Удалить" width="16" class="me-1"/>
+                    Удалить
+                </button>
+            </div>
+
+            <article class="mb-4 text-start">
+                <div>@((MarkupString)recipe.ContentHTML)</div>
+            </article>
+
+            <div class="table-responsive">
+                <table class="table table-bordered ingredient-table">
+                    <thead>
+                    <tr>
+                        <th style="width: 60%">Название</th>
+                        <th>Кол-во</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var ing in recipe.Ingredients)
+                    {
+                        <tr>
+                            <td>
+                                <div class="form-control" style="background-color: transparent; border: none;">
+                                    @ing.Name
+                                </div>
+                            </td>
+                            <td>
+                                <div class="quantity-unit" style="display: flex; gap: 0.5rem;">
+                                    <div class="form-control form-control-sm" style="max-width: 100px; background-color: transparent; border: none;">
+                                        @ing.Amount
+                                    </div>
+                                    <div class="form-select form-select-sm" style="max-width: 100px; background-color: transparent; border: none;">
+                                        @UnitTypeUtils.GetUnitLabel(ing.Unit)
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+@code {
+    [Parameter]
+    public int Id { get; set; }
+
+    private Recipe? recipe;
+
+    protected override async Task OnInitializedAsync()
+    {
+        recipe = await DbContext.Recipes
+            .Include(r => r.Ingredients)
+            .FirstOrDefaultAsync(r => r.Id == Id);
+    }
+
+    void EditRecipe() => NavigationManager.NavigateTo($"/recipes/edit/{Id}");
+
+    async Task ConfirmDelete()
+    {
+        var confirmed = await Js.InvokeAsync<bool>("confirm", "Удалить рецепт?");
+        if (confirmed)
+        {
+            DbContext.Recipes.Remove(recipe!);
+            await DbContext.SaveChangesAsync();
+            NavigationManager.NavigateTo("/");
+        }
+    }
+
+    void GoBack() => NavigationManager.NavigateTo("/");
+}
