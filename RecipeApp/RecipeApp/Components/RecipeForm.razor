@@ -1,4 +1,4 @@
-﻿@using RecipeApp.Model
+@using RecipeApp.Model
 @inject IWebHostEnvironment Env
 
 <EditForm Model="Recipe" OnValidSubmit="Save" OnInvalidSubmit="HandleInvalidSubmit">
@@ -63,7 +63,7 @@
                                 </div>
                             </td>
                             <td>
-                                <button class="btn btn-outline-danger btn-sm" @onclick="() => RemoveIngredient(ing)">✕</button>
+                                <button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => RemoveIngredient(ing)">✕</button>
                             </td>
                         </tr>
                     }
