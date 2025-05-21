@@ -25,4 +25,4 @@
 - **Entity Framework Core** + **SQLite**
 - **.NET 8**
 - **Markdown редактор** (кастомный компонент)
-- **CSS
+- **CSS**
