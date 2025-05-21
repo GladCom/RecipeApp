@@ -3,35 +3,11 @@
 @inject RecipesDbContext DbContext
 @inject NavigationManager NavigationManager
 
-@if (recipe == null)
+@if (_recipe == null)
 {
   <p>Загрузка...</p>
 }
 else
 {
-  <RecipeForm Recipe="recipe" OnSave="Save" OnCancel="Cancel" IsEditMode="true" />
-}
-
-@code {
-  [Parameter] public int Id { get; set; }
-  private Recipe? recipe;
-
-  protected override async Task OnInitializedAsync()
-  {
-    recipe = await DbContext.Recipes
-      .Include(r => r.Ingredients)
-      .FirstOrDefaultAsync(r => r.Id == Id);
-  }
-
-  async Task Save()
-  {
-    await DbContext.SaveChangesAsync();
-    NavigationManager.NavigateTo($"/recipes/{Id}");
-  }
-
-  void Cancel()
-  {
-    NavigationManager.NavigateTo($"/recipes/{Id}");
-  }
-
+  <RecipeForm Recipe="_recipe" OnSave="Save" OnCancel="Cancel" IsEditMode="true" />
 }

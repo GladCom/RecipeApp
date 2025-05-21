@@ -12,9 +12,9 @@
 
             <div class="image-upload-wrapper mb-4">
                 <label for="imageInput" class="image-upload-label">
-                    @if (!string.IsNullOrEmpty(imagePreviewUrl))
+                    @if (!string.IsNullOrEmpty(_imagePreviewUrl))
                     {
-                        <img src="@imagePreviewUrl" class="recipe-image-preview"/>
+                        <img src="@_imagePreviewUrl" class="recipe-image-preview"/>
                     }
                     else
                     {
@@ -31,7 +31,7 @@
             <div class="mb-3">
                 <h3>Рецепт</h3>
                 <MarkdownEditor
-                    @bind-Value="markdownValue"
+                    @bind-Value="_markdownValue"
                     ValueHTMLChanged="@OnMarkdownValueHTMLChanged"/>
             </div>
 
@@ -86,63 +86,3 @@
         </div>
     </main>
 </EditForm>
-@code {
-    [Parameter] public Recipe Recipe { get; set; } = new();
-    [Parameter] public EventCallback OnSave { get; set; }
-    [Parameter] public EventCallback OnCancel { get; set; }
-    [Parameter] public bool IsEditMode { get; set; }
-
-    private string markdownValue = "";
-    private string markdownHtml = "";
-    private string? imagePreviewUrl;
-    private IBrowserFile? selectedFile;
-
-    protected override void OnInitialized()
-    {
-        markdownValue = Recipe.Content;
-        imagePreviewUrl = Recipe.ImagePath;
-    }
-
-    void AddIngredient()
-    {
-        Recipe.Ingredients.Add(new Ingredient());
-    }
-
-    void RemoveIngredient(Ingredient ing)
-    {
-        Recipe.Ingredients.Remove(ing);
-    }
-
-    async Task Save()
-    {
-        Recipe.Content = markdownValue;
-        await OnSave.InvokeAsync();
-    }
-
-    Task OnMarkdownValueHTMLChanged(string value)
-    {
-        markdownHtml = value;
-        return Task.CompletedTask;
-    }
-
-    private async Task HandleFileSelected(InputFileChangeEventArgs e)
-    {
-        selectedFile = e.File;
-
-        var fileName = $"{Guid.NewGuid()}{Path.GetExtension(selectedFile.Name)}";
-        var savePath = Path.Combine(Env.WebRootPath, "uploads", fileName);
-
-        await using var stream = File.Create(savePath);
-        await selectedFile.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024).CopyToAsync(stream);
-
-        Recipe.ImagePath = $"uploads/{fileName}";
-        imagePreviewUrl = Recipe.ImagePath;
-    }
-
-    private void HandleInvalidSubmit()
-    {
-        // Ничего не делаем, просто оставляем пользователя на форме
-        // Можно при желании добавить лог или визуальный фокус
-    }
-
-}
