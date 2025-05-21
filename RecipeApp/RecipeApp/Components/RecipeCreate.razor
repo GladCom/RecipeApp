@@ -1,19 +1,8 @@
 ﻿@page "/recipes/create"
-@using RecipeApp.Model
-@inject RecipesDbContext DbContext
+@inject RecipeService RecipeService
 @inject NavigationManager NavigationManager
 
-<RecipeForm Recipe="recipe" OnSave="Save" OnCancel="Cancel" IsEditMode="false" />
-
-@code {
-  private Recipe recipe = new() { Ingredients = new List<Ingredient>() };
-
-  async Task Save()
-  {
-    DbContext.Recipes.Add(recipe);
-    await DbContext.SaveChangesAsync();
-    NavigationManager.NavigateTo("/");
-  }
-
-  void Cancel() => NavigationManager.NavigateTo("/");
-}
+<RecipeForm Recipe="_recipe"
+            OnSave="Save"
+            OnCancel="Cancel"
+            IsEditMode="false" />

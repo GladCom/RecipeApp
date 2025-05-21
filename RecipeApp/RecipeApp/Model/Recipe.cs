@@ -1,6 +1,5 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
-using Microsoft.AspNetCore.Html;
 
 namespace RecipeApp.Model;
 
@@ -14,7 +13,7 @@ public class Recipe
   public string Content { get; set; } = string.Empty;
 
   [NotMapped]
-  public string ContentHTML => Markdig.Markdown.ToHtml(Content);
+  public string ContentHtml => Markdig.Markdown.ToHtml(Content);
 
   public string? ImagePath { get; set; }
 

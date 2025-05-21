@@ -1,6 +1,5 @@
 ﻿@page "/recipes/{Id:int}"
-@using RecipeApp.Model
-@inject RecipesDbContext DbContext
+@inject RecipeService RecipeService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime Js
 
@@ -12,18 +11,18 @@
         </button>
     </div>
 
-    @if (recipe == null)
+    @if (_recipe == null)
     {
         <p>Загрузка...</p>
     }
     else
     {
         <div class="text-center">
-            <h2 class="fw-bold mb-3">@recipe.Title</h2>
+            <h2 class="fw-bold mb-3">@_recipe.Title</h2>
 
-            @if (!string.IsNullOrEmpty(recipe.ImagePath))
+            @if (!string.IsNullOrEmpty(_recipe.ImagePath))
             {
-                <img src="@recipe.ImagePath" class="recipe-image" />
+                <img src="@_recipe.ImagePath" class="recipe-image" />
             }
 
             <div class="d-flex justify-content-start gap-2 mb-4">
@@ -38,7 +37,7 @@
             </div>
 
             <article class="mb-4 text-start">
-                <div>@((MarkupString)recipe.ContentHTML)</div>
+                <div>@((MarkupString)_recipe.ContentHtml)</div>
             </article>
 
             <div class="table-responsive">
@@ -51,7 +50,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach (var ing in recipe.Ingredients)
+                    @foreach (var ing in _recipe.Ingredients)
                     {
                         <tr>
                             <td>
@@ -77,32 +76,3 @@
         </div>
     }
 </div>
-
-@code {
-    [Parameter]
-    public int Id { get; set; }
-
-    private Recipe? recipe;
-
-    protected override async Task OnInitializedAsync()
-    {
-        recipe = await DbContext.Recipes
-            .Include(r => r.Ingredients)
-            .FirstOrDefaultAsync(r => r.Id == Id);
-    }
-
-    void EditRecipe() => NavigationManager.NavigateTo($"/recipes/edit/{Id}");
-
-    async Task ConfirmDelete()
-    {
-        var confirmed = await Js.InvokeAsync<bool>("confirm", "Удалить рецепт?");
-        if (confirmed)
-        {
-            DbContext.Recipes.Remove(recipe!);
-            await DbContext.SaveChangesAsync();
-            NavigationManager.NavigateTo("/");
-        }
-    }
-
-    void GoBack() => NavigationManager.NavigateTo("/");
-}
