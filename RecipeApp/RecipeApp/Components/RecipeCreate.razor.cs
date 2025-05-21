@@ -9,12 +9,16 @@ public partial class RecipeCreate
     Ingredients = []
   };
 
-  private async Task Save()
+  private Task Save()
   {
-    DbContext.Recipes.Add(_recipe);
-    await DbContext.SaveChangesAsync();
+    RecipeService.AddRecipe(_recipe);
     NavigationManager.NavigateTo("/");
+
+    return Task.CompletedTask;
   }
 
-  private void Cancel() => NavigationManager.NavigateTo("/");
+  private void Cancel()
+  {
+    NavigationManager.NavigateTo("/");
+  }
 }

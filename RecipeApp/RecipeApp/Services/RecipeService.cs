@@ -7,7 +7,9 @@ public class RecipeService(RecipesDbContext db)
 {
   public List<Recipe> GetRecipes()
   {
-    return db.Recipes.Include(r => r.Ingredients).ToList();
+    return db.Recipes
+      .Include(r => r.Ingredients)
+      .ToList();
   }
 
   public Recipe GetRecipe(int id)
@@ -15,6 +17,11 @@ public class RecipeService(RecipesDbContext db)
     return db.Recipes
       .Include(r => r.Ingredients)
       .FirstOrDefault(r => r.Id == id);
+  }
+
+  public void SaveDbContext()
+  {
+    db.SaveChanges();
   }
 
   public void AddRecipe(Recipe recipe)

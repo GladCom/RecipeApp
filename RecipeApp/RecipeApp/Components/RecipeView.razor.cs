@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.EntityFrameworkCore;
 using Microsoft.JSInterop;
 using RecipeApp.Model;
 
@@ -12,11 +11,11 @@ public partial class RecipeView
 
   private Recipe? _recipe;
 
-  protected override async Task OnInitializedAsync()
+  protected override Task OnInitializedAsync()
   {
-    _recipe = await DbContext.Recipes
-      .Include(r => r.Ingredients)
-      .FirstOrDefaultAsync(r => r.Id == Id);
+    _recipe = RecipeService.GetRecipe(Id);
+
+    return Task.CompletedTask;
   }
 
   private void EditRecipe()
@@ -29,8 +28,7 @@ public partial class RecipeView
     var confirmed = await Js.InvokeAsync<bool>("confirm", "Удалить рецепт?");
     if (confirmed)
     {
-      DbContext.Recipes.Remove(_recipe!);
-      await DbContext.SaveChangesAsync();
+      RecipeService.DeleteRecipe(Id);
       NavigationManager.NavigateTo("/");
     }
   }

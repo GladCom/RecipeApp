@@ -1,8 +1,10 @@
-@using RecipeApp.Model
-@inject IWebHostEnvironment Env
+﻿@inject IWebHostEnvironment Env
 
-<EditForm Model="Recipe" OnValidSubmit="Save" OnInvalidSubmit="HandleInvalidSubmit">
+<EditForm Model="Recipe"
+          OnValidSubmit="Save"
+          OnInvalidSubmit="HandleInvalidSubmit">
     <DataAnnotationsValidator/>
+
     <main class="recipe-view">
         <div class="recipe-card">
             <input
@@ -31,8 +33,7 @@
             <div class="mb-3">
                 <h3>Рецепт</h3>
                 <MarkdownEditor
-                    @bind-Value="_markdownValue"
-                    ValueHTMLChanged="@OnMarkdownValueHTMLChanged"/>
+                    @bind-Value="_markdownValue"/>
             </div>
 
             <h5>Ингредиенты</h5>

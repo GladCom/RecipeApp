@@ -1,34 +1,23 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RecipeApp.Model;
+﻿using RecipeApp.Model;
 
 namespace RecipeApp.Components;
 
 public partial class Index
 {
+  private const int PageSize = 10;
+
   private List<Recipe>? _recipes;
-
-  protected override async Task OnInitializedAsync()
-  {
-    _recipes = await DbContext.Recipes
-      .Include(r => r.Ingredients)
-      .ToListAsync();
-  }
-
-  private void AddRecipe()
-  {
-    NavigationManager.NavigateTo("/recipes/create");
-  }
-
-  private void ViewRecipe(int id)
-  {
-    NavigationManager.NavigateTo($"/recipes/{id}");
-  }
 
   private string _searchText = "";
 
+  private int _currentPage = 1;
+
   private string SearchText
   {
-    get => _searchText;
+    get
+    {
+      return _searchText;
+    }
     set
     {
       if (_searchText != value)
@@ -50,10 +39,8 @@ public partial class Index
     }
   }
 
-  private int _currentPage = 1;
-  private const int PageSize = 10;
-
-  private int TotalPages => (int)Math.Ceiling((double)(FilteredRecipes?.Count() ?? 0) / PageSize);
+  private int TotalPages =>
+    (int)Math.Ceiling((double)(FilteredRecipes?.Count() ?? 0) / PageSize);
 
   private IEnumerable<Recipe> PagedRecipes =>
     FilteredRecipes?
@@ -61,11 +48,26 @@ public partial class Index
       .Take(PageSize)
     ?? [];
 
+  protected override Task OnInitializedAsync()
+  {
+    _recipes = RecipeService.GetRecipes();
+
+    return Task.CompletedTask;
+  }
+
+  private void AddRecipe()
+  {
+    NavigationManager.NavigateTo("/recipes/create");
+  }
+
+  private void ViewRecipe(int id)
+  {
+    NavigationManager.NavigateTo($"/recipes/{id}");
+  }
+
   private void GoToPage(int page)
   {
     if (page >= 1 && page <= TotalPages)
-    {
       _currentPage = page;
-    }
   }
 }

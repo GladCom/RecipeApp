@@ -6,10 +6,17 @@ namespace RecipeApp.Components;
 
 public partial class RecipeForm
 {
-  [Parameter] public Recipe Recipe { get; set; } = new();
-  [Parameter] public EventCallback OnSave { get; set; }
-  [Parameter] public EventCallback OnCancel { get; set; }
-  [Parameter] public bool IsEditMode { get; set; }
+  [Parameter]
+  public Recipe Recipe { get; set; } = new();
+
+  [Parameter]
+  public EventCallback OnSave { get; set; }
+
+  [Parameter]
+  public EventCallback OnCancel { get; set; }
+
+  [Parameter]
+  public bool IsEditMode { get; set; }
 
   private string _markdownValue = "";
 
@@ -36,12 +43,8 @@ public partial class RecipeForm
   private async Task Save()
   {
     Recipe.Content = _markdownValue;
-    await OnSave.InvokeAsync();
-  }
 
-  private static Task OnMarkdownValueHTMLChanged(string value)
-  {
-    return Task.CompletedTask;
+    await OnSave.InvokeAsync();
   }
 
   private async Task HandleFileSelected(InputFileChangeEventArgs e)
@@ -58,7 +61,7 @@ public partial class RecipeForm
     _imagePreviewUrl = Recipe.ImagePath;
   }
 
-  private void HandleInvalidSubmit()
+  private static void HandleInvalidSubmit()
   {
   }
 }

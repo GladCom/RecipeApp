@@ -1,6 +1,5 @@
 ﻿@page "/recipes/edit/{Id:int}"
-@using RecipeApp.Model
-@inject RecipesDbContext DbContext
+@inject RecipeService RecipeService
 @inject NavigationManager NavigationManager
 
 @if (_recipe == null)
@@ -9,5 +8,8 @@
 }
 else
 {
-  <RecipeForm Recipe="_recipe" OnSave="Save" OnCancel="Cancel" IsEditMode="true" />
+  <RecipeForm Recipe="_recipe"
+              OnSave="Save"
+              OnCancel="Cancel"
+              IsEditMode="true" />
 }

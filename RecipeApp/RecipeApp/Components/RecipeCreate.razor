@@ -1,5 +1,8 @@
 ﻿@page "/recipes/create"
-@inject RecipesDbContext DbContext
+@inject RecipeService RecipeService
 @inject NavigationManager NavigationManager
 
-<RecipeForm Recipe="_recipe" OnSave="Save" OnCancel="Cancel" IsEditMode="false" />
+<RecipeForm Recipe="_recipe"
+            OnSave="Save"
+            OnCancel="Cancel"
+            IsEditMode="false" />

@@ -1,26 +1,28 @@
 ﻿using Microsoft.AspNetCore.Components;
-using Microsoft.EntityFrameworkCore;
 using RecipeApp.Model;
 
 namespace RecipeApp.Components;
 
 public partial class RecipeEdit
 {
-  [Parameter] public int Id { get; set; }
+  [Parameter]
+  public int Id { get; set; }
 
   private Recipe? _recipe;
 
-  protected override async Task OnInitializedAsync()
+  protected override Task OnInitializedAsync()
   {
-    _recipe = await DbContext.Recipes
-      .Include(r => r.Ingredients)
-      .FirstOrDefaultAsync(r => r.Id == Id);
+    _recipe = RecipeService.GetRecipe(Id);
+
+    return Task.CompletedTask;
   }
 
-  private async Task Save()
+  private Task Save()
   {
-    await DbContext.SaveChangesAsync();
+    RecipeService.SaveDbContext();
     NavigationManager.NavigateTo($"/recipes/{Id}");
+
+    return Task.CompletedTask;
   }
 
   private void Cancel()
