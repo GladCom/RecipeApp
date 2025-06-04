@@ -46,17 +46,6 @@ jobs:
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Build Docker image
-        run: |
-          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
-                       -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag_version.outputs.version }} \
-                       -f ./Dockerfile .
-
-      - name: Push Docker image
-        run: |
-          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag_version.outputs.version }}
-
       - name: Calculate version tag
         id: tag_version
         run: |
@@ -67,6 +56,17 @@ jobs:
           VERSION=$(printf "%s.%s.%03d" "$YEAR" "$MONTH" "$BUILD_NUMBER")
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Generated version: $VERSION"
+
+      - name: Build Docker image
+        run: |
+          docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
+                       -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag_version.outputs.version }} \
+                       -f ./Dockerfile .
+
+      - name: Push Docker image
+        run: |
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag_version.outputs.version }}
 
       - name: Create git tag and push
         run: |
