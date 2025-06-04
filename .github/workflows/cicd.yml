@@ -59,6 +59,7 @@ jobs:
 
       - name: Build Docker image
         run: |
+          cd RecipeApp
           docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
                        -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag_version.outputs.version }} \
                        -f ./Dockerfile .
