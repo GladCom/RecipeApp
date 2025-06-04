@@ -1,13 +1,6 @@
 ﻿services:
-  recipeapp2:
-    image: recipeapp2
+  recipeapp:
+    image: recipeapp
     build:
       context: .
-      dockerfile: RecipeApp2/Dockerfile
-
-  blazorapp1:
-    image: blazorapp1
-    build:
-      context: .
-      dockerfile: BlazorApp1/Dockerfile
-
+      dockerfile: RecipeApp/Dockerfile
