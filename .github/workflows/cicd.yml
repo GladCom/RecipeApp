@@ -10,7 +10,7 @@ env:
   IMAGE_NAME: dezodemius/recipeapp
 
 jobs:
-  checkout:
+  checkout_code:
     runs-on: ubuntu-latest
     outputs:
       sha: ${{ steps.get_sha.outputs.sha }}
@@ -22,9 +22,9 @@ jobs:
         id: get_sha
         run: echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
 
-  version:
+  generate_version:
     runs-on: ubuntu-latest
-    needs: checkout
+    needs: checkout_code
     outputs:
       version: ${{ steps.tag_version.outputs.version }}
     steps:
@@ -38,9 +38,9 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Generated version: $VERSION"
 
-  build:
+  build_app:
     runs-on: ubuntu-latest
-    needs: [checkout, version]
+    needs: [checkout_code, generate_version]
     steps:
       - uses: actions/checkout@v4
 
@@ -58,9 +58,9 @@ jobs:
       - name: Publish app
         run: dotnet publish ./RecipeApp/RecipeApp.sln --configuration Release -o ./publish
 
-  test:
+  run_tests:
     runs-on: ubuntu-latest
-    needs: build
+    needs: build_app
     steps:
       - uses: actions/checkout@v4
 
@@ -72,15 +72,13 @@ jobs:
       - name: Run tests
         run: dotnet test ./RecipeApp/RecipeApp.sln --configuration Release --no-restore --verbosity normal
 
-  docker-release:
+  release_docker_and_create_tag:
     runs-on: ubuntu-latest
-    needs: [test, version]
+    needs: [run_tests, generate_version]
     if: success()
     steps:
       - uses: actions/checkout@v4
-
-      - name: Setup .NET (for consistency, if needed)
-        uses: actions/setup-dotnet@v4
+      - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
 
@@ -95,13 +93,13 @@ jobs:
         run: |
           cd RecipeApp/RecipeApp
           docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
-                       -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.version.outputs.version }} \
+                       -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.generate_version.outputs.version }} \
                        -f ./Dockerfile .
 
       - name: Push Docker image
         run: |
           docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
-          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.version.outputs.version }}
+          docker push ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.generate_version.outputs.version }}
 
       - name: Configure Git user
         run: |
@@ -110,18 +108,18 @@ jobs:
 
       - name: Create git tag and push
         run: |
-          git tag ${{ needs.version.outputs.version }}
-          git push origin ${{ needs.version.outputs.version }}
+          git tag ${{ needs.generate_version.outputs.version }}
+          git push origin ${{ needs.generate_version.outputs.version }}
 
       - name: Create GitHub release
         uses: softprops/action-gh-release@v2
         with:
-          tag_name: ${{ needs.version.outputs.version }}
-          name: Release ${{ needs.version.outputs.version }}
+          tag_name: ${{ needs.generate_version.outputs.version }}
+          name: Release ${{ needs.generate_version.outputs.version }}
           body: |
             Docker image available at:
             - `${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest`
-            - `${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.version.outputs.version }}`
+            - `${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.generate_version.outputs.version }}`
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
