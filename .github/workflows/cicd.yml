@@ -106,7 +106,7 @@ jobs:
           cd RecipeApp/RecipeApp
           docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
                        -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.generate_version.outputs.version }} \
-                       -f ./Dockerfile .
+                       -f ./RecipeApp/RecipeApp/Dockerfile ./publish
 
       - name: Push Docker image
         run: |
