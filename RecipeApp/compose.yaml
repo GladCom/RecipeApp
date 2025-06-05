@@ -1,6 +1,0 @@
-﻿services:
-  recipeapp:
-    image: recipeapp
-    build:
-      context: .
-      dockerfile: RecipeApp/Dockerfile
