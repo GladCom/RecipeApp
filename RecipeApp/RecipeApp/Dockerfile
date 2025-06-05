@@ -4,7 +4,6 @@ WORKDIR /app
 
 COPY ./ .
 
-EXPOSE 8080
-EXPOSE 8081
+EXPOSE 5128
 
 ENTRYPOINT ["dotnet", "RecipeApp.dll"]
