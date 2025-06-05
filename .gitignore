@@ -139,3 +139,7 @@ _NCrunch*
 RecipeApp/.idea/.idea.RecipeApp/.idea/
 
 RecipeApp/RecipeApp/wwwroot/uploads/
+
+RecipeApp/RecipeApp/appsettings.json
+
+RecipeApp/RecipeApp/appsettings.Development.json
