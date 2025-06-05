@@ -2,7 +2,7 @@
 
 WORKDIR /app
 
-COPY ./ .
+COPY ./publish .
 
 EXPOSE 8080
 EXPOSE 8081
