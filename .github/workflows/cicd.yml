@@ -11,7 +11,7 @@ env:
 
 jobs:
   checkout_code:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     outputs:
       sha: ${{ steps.get_sha.outputs.sha }}
     steps:
@@ -23,7 +23,7 @@ jobs:
         run: echo "sha=${{ github.sha }}" >> "$GITHUB_OUTPUT"
 
   generate_version:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: checkout_code
     outputs:
       version: ${{ steps.tag_version.outputs.version }}
@@ -40,7 +40,7 @@ jobs:
 
 
   build_app:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [checkout_code, generate_version]
     steps:
       - uses: actions/checkout@v4
@@ -60,7 +60,7 @@ jobs:
         run: dotnet publish ./RecipeApp/RecipeApp.sln --configuration Release -o ./publish
 
   run_tests:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: build_app
     steps:
       - uses: actions/checkout@v4
@@ -74,7 +74,7 @@ jobs:
         run: dotnet test ./RecipeApp/RecipeApp.sln --configuration Release --no-restore --verbosity normal
 
   release_docker_and_create_tag:
-    runs-on: ubuntu-latest
+    runs-on: self-hosted
     needs: [run_tests, generate_version]
     if: success()
     steps:
