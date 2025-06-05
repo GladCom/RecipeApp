@@ -14,7 +14,7 @@ public class Program
     builder.Services.AddRazorComponents()
       .AddInteractiveServerComponents();
     builder.Services.AddDbContext<RecipesDbContext>(options =>
-      options.UseSqlite(builder.Configuration.GetConnectionString("DefaultConnection")));
+      options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
     builder.Services.Configure<FormOptions>(options => {
       options.MultipartBodyLengthLimit = 10 * 1024 * 1024;
     });
@@ -23,6 +23,12 @@ public class Program
     builder.Services.AddScoped<RecipeService>();
 
     var app = builder.Build();
+
+    using (var scope = app.Services.CreateScope())
+    {
+      var db = scope.ServiceProvider.GetRequiredService<RecipesDbContext>();
+      db.Database.Migrate();
+    }
 
     if (!app.Environment.IsDevelopment())
     {
