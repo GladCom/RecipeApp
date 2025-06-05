@@ -38,13 +38,10 @@ jobs:
           echo "version=$VERSION" >> "$GITHUB_OUTPUT"
           echo "Generated version: $VERSION"
 
-
   build_app:
     runs-on: self-hosted
     needs: [checkout_code, generate_version]
     steps:
-      - uses: actions/checkout@v4
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -63,8 +60,6 @@ jobs:
     runs-on: self-hosted
     needs: build_app
     steps:
-      - uses: actions/checkout@v4
-
       - name: Setup .NET
         uses: actions/setup-dotnet@v4
         with:
@@ -78,7 +73,6 @@ jobs:
     needs: [run_tests, generate_version]
     if: success()
     steps:
-      - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
         with:
           dotnet-version: '8.0.x'
