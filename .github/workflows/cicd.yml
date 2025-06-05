@@ -5,6 +5,9 @@ on:
     branches:
       - master
 
+permissions:
+  contents: read
+
 env:
   REGISTRY: ghcr.io
   IMAGE_NAME: dezodemius/recipeapp
@@ -82,6 +85,10 @@ jobs:
     runs-on: ubuntu-latest
     needs: [build_app, run_tests, generate_version]
     if: success()
+    permissions:
+      contents: write
+      packages: write
+      pull-requests: write
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-dotnet@v4
