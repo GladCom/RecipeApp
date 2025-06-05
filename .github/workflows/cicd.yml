@@ -135,3 +135,21 @@ jobs:
           generate_release_notes: true
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Delete artifact
+        if: always()
+        run: |
+          ARTIFACT_ID=$(gh api \
+            -H "Accept: application/vnd.github+json" \
+            /repos/${{ github.repository }}/actions/artifacts \
+            | jq '.artifacts[] | select(.name=="published-app") | .id')
+
+          echo "Artifact ID: $ARTIFACT_ID"
+
+          if [ "$ARTIFACT_ID" != "" ]; then
+            gh api --method DELETE \
+              -H "Accept: application/vnd.github+json" \
+              /repos/${{ github.repository }}/actions/artifacts/$ARTIFACT_ID
+          fi
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
