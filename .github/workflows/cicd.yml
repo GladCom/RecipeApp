@@ -106,7 +106,7 @@ jobs:
           cd RecipeApp/RecipeApp
           docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
                        -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.generate_version.outputs.version }} \
-                       -f ./RecipeApp/RecipeApp/Dockerfile ./publish
+                       -f ./Dockerfile ./publish
 
       - name: Push Docker image
         run: |
@@ -136,20 +136,21 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
-      - name: Delete artifact
-        if: always()
+      - name: Delete publish artifact
         run: |
           ARTIFACT_ID=$(gh api \
             -H "Accept: application/vnd.github+json" \
-            /repos/${{ github.repository }}/actions/artifacts \
+            /repos/Dezodemius/RecipeApp/actions/artifacts \
             | jq '.artifacts[] | select(.name=="published-app") | .id')
-
+          
           echo "Artifact ID: $ARTIFACT_ID"
-
-          if [ "$ARTIFACT_ID" != "" ]; then
+          
+          if [ -n "$ARTIFACT_ID" ]; then
             gh api --method DELETE \
               -H "Accept: application/vnd.github+json" \
-              /repos/${{ github.repository }}/actions/artifacts/$ARTIFACT_ID
+              /repos/Dezodemius/RecipeApp/actions/artifacts/$ARTIFACT_ID
+          else
+            echo "Artifact not found"
           fi
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
