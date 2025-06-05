@@ -103,10 +103,9 @@ jobs:
 
       - name: Build Docker image
         run: |
-          cd RecipeApp/RecipeApp
           docker build -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest \
                        -t ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ needs.generate_version.outputs.version }} \
-                       -f ./Dockerfile ./publish
+                       -f ./RecipeApp/RecipeApp/Dockerfile ./publish
 
       - name: Push Docker image
         run: |
@@ -137,6 +136,7 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Delete publish artifact
+        if: always()
         run: |
           ARTIFACT_ID=$(gh api \
             -H "Accept: application/vnd.github+json" \
