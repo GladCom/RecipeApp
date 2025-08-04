@@ -24,25 +24,3 @@
 <script src="/_content/PSC.Blazor.Components.MarkdownEditor/js/markdownEditor.js"></script>
 
 </html>
-
-@code {
-    @inject AuthService AuthService
-    
-    private bool IsAuthenticated => AuthService.IsAuthenticated;
-    
-    protected override void OnInitialized()
-    {
-        AuthService.AuthenticationStateChanged += StateHasChanged;
-    }
-    
-    private void OnLoginModalChanged(bool isVisible)
-    {
-        // Модальное окно всегда видимо, так как пользователь неавторизован
-        StateHasChanged();
-    }
-    
-    public void Dispose()
-    {
-        AuthService.AuthenticationStateChanged -= StateHasChanged;
-    }
-}
