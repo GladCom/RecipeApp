@@ -1,0 +1,23 @@
+﻿@rendermode InteractiveServer
+@inject AuthService AuthService
+
+@if (AuthService.IsAuthenticated)
+{
+    <Routes @rendermode="InteractiveServer" />
+}
+else
+{
+    <LoginModal IsVisible="true" />
+}
+
+@code {
+    protected override void OnInitialized()
+    {
+        AuthService.AuthenticationStateChanged += StateHasChanged;
+    }
+
+    public void Dispose()
+    {
+        AuthService.AuthenticationStateChanged -= StateHasChanged;
+    }
+}
