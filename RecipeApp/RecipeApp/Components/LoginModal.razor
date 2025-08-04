@@ -1,0 +1,70 @@
+﻿@rendermode InteractiveServer
+@inject AuthService AuthService
+
+@if (IsVisible)
+{
+    <div class="login-overlay">
+        <div class="login-modal">
+            <div class="login-header">
+                <h2>Авторизация</h2>
+            </div>
+
+            <div class="login-body">
+                <div class="form-group">
+                    <label for="username" class="form-label">Логин:</label>
+                    <input type="text"
+                           id="username"
+                           class="login-input"
+                           @bind="Username"
+                           placeholder="Введите логин"
+                           @onkeydown="@(e => { if (e.Key == "Enter") Login(); })" />
+                </div>
+
+                <div class="form-group">
+                    <label for="password" class="form-label">Пароль:</label>
+                    <input type="password"
+                           id="password"
+                           class="login-input"
+                           @bind="Password"
+                           placeholder="Введите пароль"
+                           @onkeydown="@(e => { if (e.Key == "Enter") Login(); })" />
+                </div>
+
+                @if (!string.IsNullOrEmpty(ErrorMessage))
+                {
+                    <div class="error-message">
+                        @ErrorMessage
+                    </div>
+                }
+            </div>
+
+            <div class="login-footer">
+                <button class="login-btn" @onclick="Login">
+                    Войти
+                </button>
+            </div>
+        </div>
+    </div>
+}
+
+@code {
+    [Parameter] public bool IsVisible { get; set; }
+    [Parameter] public EventCallback<bool> IsVisibleChanged { get; set; }
+
+    private string Username { get; set; } = "";
+    private string Password { get; set; } = "";
+    private string ErrorMessage { get; set; } = "";
+
+    private async Task Login()
+    {
+        
+        // Захардкоженная логика - всегда считаем пользователя неавторизованным
+        var success = await AuthService.LoginAsync(Username, Password);
+        if (!success)
+        {
+            ErrorMessage = "Неверный логин или пароль";
+            Username = "";
+            Password = "";
+        }
+    }
+}
