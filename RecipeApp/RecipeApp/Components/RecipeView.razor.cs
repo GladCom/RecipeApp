@@ -7,35 +7,35 @@ namespace RecipeApp.Components;
 
 public partial class RecipeView
 {
+  private Recipe? _recipe;
+
   [Parameter]
   public int Id { get; set; }
 
-  private Recipe? _recipe;
-
   protected override Task OnInitializedAsync()
   {
-    _recipe = RecipeService.GetRecipe(Id);
+    this._recipe = this.RecipeService.GetRecipe(this.Id);
 
     return Task.CompletedTask;
   }
 
   private void EditRecipe()
   {
-    NavigationManager.NavigateTo($"/recipes/edit/{Id}");
+    this.NavigationManager.NavigateTo($"/recipes/edit/{this.Id}");
   }
 
   private async Task ConfirmDelete()
   {
-    var confirmed = await Js.InvokeAsync<bool>("confirm", "Удалить рецепт?");
+    var confirmed = await this.Js.InvokeAsync<bool>("confirm", "Удалить рецепт?");
     if (confirmed)
     {
-      RecipeService.DeleteRecipe(Id);
-      NavigationManager.NavigateTo("/");
+      this.RecipeService.DeleteRecipe(this.Id);
+      this.NavigationManager.NavigateTo("/");
     }
   }
 
   private void GoBack()
   {
-    NavigationManager.NavigateTo("/");
+    this.NavigationManager.NavigateTo("/");
   }
 }

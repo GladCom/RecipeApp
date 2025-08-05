@@ -5,21 +5,21 @@ namespace RecipeApp.Components;
 
 public partial class RecipeCreate
 {
-  private readonly Recipe _recipe = new()
+  private readonly Recipe _recipe = new ()
   {
     Ingredients = []
   };
 
   private Task Save()
   {
-    RecipeService.AddRecipe(_recipe);
-    NavigationManager.NavigateTo("/");
+    this.RecipeService.AddRecipe(this._recipe);
+    this.NavigationManager.NavigateTo("/");
 
     return Task.CompletedTask;
   }
 
   private void Cancel()
   {
-    NavigationManager.NavigateTo("/");
+    this.NavigationManager.NavigateTo("/");
   }
 }

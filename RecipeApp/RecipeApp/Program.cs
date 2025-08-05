@@ -9,7 +9,7 @@ using RecipeApp.Services;
 
 namespace RecipeApp;
 
-public class Program
+public static class Program
 {
   public static void Main(string[] args)
   {

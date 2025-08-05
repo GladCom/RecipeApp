@@ -10,7 +10,7 @@ namespace RecipeApp.Components;
 public partial class RecipeForm
 {
   [Parameter]
-  public Recipe Recipe { get; set; } = new();
+  public Recipe Recipe { get; set; } = new ();
 
   [Parameter]
   public EventCallback OnSave { get; set; }
@@ -21,7 +21,7 @@ public partial class RecipeForm
   [Parameter]
   public bool IsEditMode { get; set; }
 
-  private string _markdownValue = "";
+  private string _markdownValue = string.Empty;
 
   private string? _imagePreviewUrl;
 
@@ -29,39 +29,39 @@ public partial class RecipeForm
 
   protected override void OnInitialized()
   {
-    _markdownValue = Recipe.Content;
-    _imagePreviewUrl = Recipe.ImagePath;
+    this._markdownValue = this.Recipe.Content;
+    this._imagePreviewUrl = this.Recipe.ImagePath;
   }
 
   private void AddIngredient()
   {
-    Recipe.Ingredients.Add(new Ingredient());
+    this.Recipe.Ingredients.Add(new Ingredient());
   }
 
   private void RemoveIngredient(Ingredient ing)
   {
-    Recipe.Ingredients.Remove(ing);
+    this.Recipe.Ingredients.Remove(ing);
   }
 
   private async Task Save()
   {
-    Recipe.Content = _markdownValue;
+    this.Recipe.Content = this._markdownValue;
 
-    await OnSave.InvokeAsync();
+    await this.OnSave.InvokeAsync();
   }
 
   private async Task HandleFileSelected(InputFileChangeEventArgs e)
   {
-    _selectedFile = e.File;
+    this._selectedFile = e.File;
 
-    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(_selectedFile.Name)}";
-    var savePath = Path.Combine(Env.WebRootPath, "uploads", fileName);
+    var fileName = $"{Guid.NewGuid()}{Path.GetExtension(this._selectedFile.Name)}";
+    var savePath = Path.Combine(this.Env.WebRootPath, "uploads", fileName);
 
     await using var stream = File.Create(savePath);
-    await _selectedFile.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024).CopyToAsync(stream);
+    await this._selectedFile.OpenReadStream(maxAllowedSize: 10 * 1024 * 1024).CopyToAsync(stream);
 
-    Recipe.ImagePath = $"uploads/{fileName}";
-    _imagePreviewUrl = Recipe.ImagePath;
+    this.Recipe.ImagePath = $"uploads/{fileName}";
+    this._imagePreviewUrl = this.Recipe.ImagePath;
   }
 
   private static void HandleInvalidSubmit()

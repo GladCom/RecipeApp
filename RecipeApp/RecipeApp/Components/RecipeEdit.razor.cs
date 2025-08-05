@@ -6,28 +6,28 @@ namespace RecipeApp.Components;
 
 public partial class RecipeEdit
 {
+  private Recipe? _recipe;
+
   [Parameter]
   public int Id { get; set; }
 
-  private Recipe? _recipe;
-
   protected override Task OnInitializedAsync()
   {
-    _recipe = RecipeService.GetRecipe(Id);
+    this._recipe = this.RecipeService.GetRecipe(this.Id);
 
     return Task.CompletedTask;
   }
 
   private Task Save()
   {
-    RecipeService.SaveDbContext();
-    NavigationManager.NavigateTo($"/recipes/{Id}");
+    this.RecipeService.SaveDbContext();
+    this.NavigationManager.NavigateTo($"/recipes/{this.Id}");
 
     return Task.CompletedTask;
   }
 
   private void Cancel()
   {
-    NavigationManager.NavigateTo($"/recipes/{Id}");
+    this.NavigationManager.NavigateTo($"/recipes/{this.Id}");
   }
 }

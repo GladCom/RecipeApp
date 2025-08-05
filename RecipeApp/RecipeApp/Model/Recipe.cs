@@ -14,9 +14,9 @@ public class Recipe
   public string Content { get; set; } = string.Empty;
 
   [NotMapped]
-  public string ContentHtml => Markdig.Markdown.ToHtml(Content);
+  public string ContentHtml => Markdig.Markdown.ToHtml(this.Content);
 
   public string? ImagePath { get; set; }
 
-  public List<Ingredient> Ingredients { get; set; } = new();
+  public List<Ingredient> Ingredients { get; set; } = [];
 }

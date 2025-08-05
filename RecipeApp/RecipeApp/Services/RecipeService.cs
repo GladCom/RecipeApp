@@ -14,7 +14,7 @@ public class RecipeService(RecipesDbContext db)
       .ToList();
   }
 
-  public Recipe GetRecipe(int id)
+  public Recipe? GetRecipe(int id)
   {
     return db.Recipes
       .Include(r => r.Ingredients)
@@ -34,7 +34,11 @@ public class RecipeService(RecipesDbContext db)
 
   public void DeleteRecipe(int id)
   {
-    db.Recipes.Remove(GetRecipe(id));
-    db.SaveChanges();
+    var entity = this.GetRecipe(id);
+    if (entity != null)
+    {
+      db.Recipes.Remove(entity);
+      db.SaveChanges();
+    }
   }
 }
