@@ -6,6 +6,8 @@ on:
       - dev
       - master
 
+x-repo: &repo Dezodemius/RecipeApp
+
 jobs:
   pull_request_build:
     name: Run build
@@ -13,6 +15,6 @@ jobs:
 
     steps:
       - name: Run StyleCop check
-        uses: ${{ github.repository }}/.github/workflows/build.yml
+        uses: *repo/.github/workflows/build.yml
         with:
-          solution-path: ${{ github.repository }}/Recipe/RecipeApp/RecipeApp.sln
+          solution-path: *repo/Recipe/RecipeApp/RecipeApp.sln
