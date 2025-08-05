@@ -1,4 +1,7 @@
-﻿namespace RecipeApp.Services;
+﻿using System;
+using System.Threading.Tasks;
+
+namespace RecipeApp.Services;
 
 public class AuthService
 {
