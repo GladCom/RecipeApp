@@ -1,4 +1,5 @@
-﻿using RecipeApp.Model;
+﻿using System.Threading.Tasks;
+using RecipeApp.Model;
 
 namespace RecipeApp.Components;
 
