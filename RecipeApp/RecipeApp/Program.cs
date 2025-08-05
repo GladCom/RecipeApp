@@ -10,7 +10,7 @@ using RecipeApp.Services;
 namespace RecipeApp;
 
 /// <summary>
-/// Программа.
+/// Главный класс приложения.
 /// </summary>
 public static class Program
 {
@@ -21,9 +21,6 @@ public static class Program
   public static void Main(string[] args)
   {
     var builder = WebApplication.CreateBuilder(args);
-    ;
-    ;
-    ;
 
     builder.Services.AddRazorComponents()
       .AddInteractiveServerComponents();
