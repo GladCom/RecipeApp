@@ -23,6 +23,7 @@ public static class Program
     var builder = WebApplication.CreateBuilder(args);
     ;
     ;
+    ;
 
     builder.Services.AddRazorComponents()
       .AddInteractiveServerComponents();
