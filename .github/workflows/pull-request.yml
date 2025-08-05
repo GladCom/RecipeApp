@@ -1,4 +1,4 @@
-﻿name: StyleCop Check
+﻿name: Pull request build
 
 on:
   pull_request:
@@ -13,6 +13,6 @@ jobs:
 
     steps:
       - name: Run StyleCop check
-        uses: ./.github/workflows/stylecheck.yml
+        uses: ${{ github.repository }}/.github/workflows/build.yml
         with:
-          solution-path: ./RecipeApp/RecipeApp.sln
+          solution-path: ${{ github.repository }}/Recipe/RecipeApp/RecipeApp.sln
