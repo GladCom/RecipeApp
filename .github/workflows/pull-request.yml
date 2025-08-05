@@ -13,6 +13,6 @@ jobs:
 
     steps:
       - name: Run StyleCop check
-        uses: Dezodemius/RecipeApp/.github/workflows/build.yml
+        uses: Dezodemius/RecipeApp/.github/workflows/build.yml@dev
         with:
           solution-path: ./RecipeApp/RecipeApp.sln
