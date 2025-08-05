@@ -8,6 +8,6 @@ on:
 
 jobs:
   pull_request_build:
-    uses: Dezodemius/RecipeApp/.github/workflows/build.yml@dev
+    uses: GladCom/RecipeApp/.github/workflows/build.yml@master
     with:
       solution-path: ./RecipeApp/RecipeApp.sln
