@@ -8,11 +8,6 @@ on:
 
 jobs:
   pull_request_build:
-    name: Run build
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Run StyleCop check
-        uses: Dezodemius/RecipeApp/.github/workflows/build.yml@dev
-        with:
-          solution-path: ./RecipeApp/RecipeApp.sln
+    uses: Dezodemius/RecipeApp/.github/workflows/build.yml@dev
+    with:
+      solution-path: ./RecipeApp/RecipeApp.sln
