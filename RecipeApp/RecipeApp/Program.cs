@@ -9,8 +9,15 @@ using RecipeApp.Services;
 
 namespace RecipeApp;
 
+/// <summary>
+/// Программа.
+/// </summary>
 public static class Program
 {
+  /// <summary>
+  /// Точка входа в программу.
+  /// </summary>
+  /// <param name="args">Аргументы командной строки.</param>
   public static void Main(string[] args)
   {
     var builder = WebApplication.CreateBuilder(args);
@@ -19,7 +26,8 @@ public static class Program
       .AddInteractiveServerComponents();
     builder.Services.AddDbContext<RecipesDbContext>(options =>
       options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
-    builder.Services.Configure<FormOptions>(options => {
+    builder.Services.Configure<FormOptions>(options =>
+    {
       options.MultipartBodyLengthLimit = 10 * 1024 * 1024;
     });
     builder.Services.AddRazorPages();

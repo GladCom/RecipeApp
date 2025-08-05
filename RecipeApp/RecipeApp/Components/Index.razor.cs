@@ -7,7 +7,7 @@ using RecipeApp.Model;
 namespace RecipeApp.Components;
 
 /// <summary>
-/// Кодовая часть страницы всех рецептов.
+/// Компонента отображения всех рецептов.
 /// </summary>
 public partial class Index
 {

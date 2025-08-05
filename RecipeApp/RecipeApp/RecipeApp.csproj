@@ -11,8 +11,9 @@
 
     <PropertyGroup Condition="'$(Configuration)' == 'StyleCheck'">
         <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
-        <WarningsAsErrors>SA1***</WarningsAsErrors>
         <EnableNETAnalyzers>true</EnableNETAnalyzers>
+        <WarningsAsErrors>SA1***</WarningsAsErrors>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
         <AnalysisMode>AllEnabledByDefault</AnalysisMode>
     </PropertyGroup>
 
