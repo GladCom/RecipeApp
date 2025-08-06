@@ -9,6 +9,15 @@ namespace RecipeApp.Services;
 /// </summary>
 public class AuthService
 {
+    #region События
+
+    /// <summary>
+    /// Событие, которое возникает при изменении состояния аутентификации.
+    /// </summary>
+    public event EventHandler? AuthenticationStateChanged;
+
+    #endregion
+
     #region Поля и свойства
 
     /// <summary>
@@ -18,15 +27,6 @@ public class AuthService
     /// <c>true</c> если пользователь авторизован; иначе <c>false</c>.
     /// </value>
     public bool IsAuthenticated { get; private set; }
-
-    #endregion
-
-    #region События
-
-    /// <summary>
-    /// Событие, которое возникает при изменении состояния аутентификации.
-    /// </summary>
-    public event EventHandler? AuthenticationStateChanged;
 
     #endregion
 
@@ -48,8 +48,8 @@ public class AuthService
     {
         // Захардкоженная логика - всегда возвращаем false
         await Task.Delay(1);
-        IsAuthenticated = false;
-        AuthenticationStateChanged?.Invoke(this, EventArgs.Empty);
+        this.IsAuthenticated = false;
+        this.AuthenticationStateChanged?.Invoke(this, EventArgs.Empty);
         return false;
     }
 
@@ -62,8 +62,8 @@ public class AuthService
     /// </remarks>
     public void Logout()
     {
-        IsAuthenticated = false;
-        AuthenticationStateChanged?.Invoke(this, EventArgs.Empty);
+        this.IsAuthenticated = false;
+        this.AuthenticationStateChanged?.Invoke(this, EventArgs.Empty);
     }
 
     #endregion

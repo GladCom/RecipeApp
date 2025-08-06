@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using System;
+﻿using System;
+using Microsoft.AspNetCore.Components;
 using RecipeApp.Services;
 
 namespace RecipeApp.Components;
@@ -27,7 +27,7 @@ public partial class AuthRouter : ComponentBase, IDisposable
     /// </summary>
     public void Dispose()
     {
-        Dispose(true);
+        this.Dispose(true);
         GC.SuppressFinalize(this);
     }
 
@@ -37,7 +37,7 @@ public partial class AuthRouter : ComponentBase, IDisposable
     /// </summary>
     protected override void OnInitialized()
     {
-        AuthService.AuthenticationStateChanged += OnAuthStateChanged;
+        this.AuthService.AuthenticationStateChanged += this.OnAuthStateChanged;
     }
 
     /// <summary>
@@ -49,15 +49,15 @@ public partial class AuthRouter : ComponentBase, IDisposable
     /// </param>
     protected virtual void Dispose(bool disposing)
     {
-        if (!_disposed)
+        if (!this._disposed)
         {
             if (disposing)
             {
                 // Освобождение управляемых ресурсов
-                AuthService.AuthenticationStateChanged -= OnAuthStateChanged;
+                this.AuthService.AuthenticationStateChanged -= this.OnAuthStateChanged;
             }
 
-            _disposed = true;
+            this._disposed = true;
         }
     }
 
@@ -69,7 +69,7 @@ public partial class AuthRouter : ComponentBase, IDisposable
     /// <param name="e">Аргументы события.</param>
     private void OnAuthStateChanged(object? sender, EventArgs e)
     {
-        StateHasChanged();
+        this.StateHasChanged();
     }
 
     #endregion

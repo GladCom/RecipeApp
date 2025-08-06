@@ -1,5 +1,5 @@
-﻿using Microsoft.AspNetCore.Components;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
 using RecipeApp.Services;
 
 namespace RecipeApp.Components;
@@ -55,12 +55,12 @@ public partial class LoginModal : ComponentBase
     private async Task Login()
     {
         // Захардкоженная логика - всегда считаем пользователя неавторизованным
-        var success = await AuthService.LoginAsync(Username, Password);
+        var success = await this.AuthService.LoginAsync(this.Username, this.Password);
         if (!success)
         {
-            ErrorMessage = "Неверный логин или пароль";
-            Username = "";
-            Password = "";
+            this.ErrorMessage = "Неверный логин или пароль";
+            this.Username = string.Empty;
+            this.Password = string.Empty;
         }
     }
 
