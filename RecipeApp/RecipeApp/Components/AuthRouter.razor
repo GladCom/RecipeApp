@@ -9,15 +9,3 @@ else
 {
     <LoginModal IsVisible="true" />
 }
-
-@code {
-    protected override void OnInitialized()
-    {
-        AuthService.AuthenticationStateChanged += StateHasChanged;
-    }
-
-    public void Dispose()
-    {
-        AuthService.AuthenticationStateChanged -= StateHasChanged;
-    }
-}
