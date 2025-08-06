@@ -17,7 +17,7 @@
                            class="login-input"
                            @bind="Username"
                            placeholder="Введите логин"
-                           @onkeydown="@(e => { if (e.Key == "Enter") Login(); })" />
+                           @onkeydown="@(async e => { if (e.Key == "Enter") await Login(); })" />
                 </div>
 
                 <div class="form-group">
@@ -27,7 +27,7 @@
                            class="login-input"
                            @bind="Password"
                            placeholder="Введите пароль"
-                           @onkeydown="@(e => { if (e.Key == "Enter") Login(); })" />
+                           @onkeydown="@(async e => { if (e.Key == "Enter") await Login(); })" />
                 </div>
 
                 @if (!string.IsNullOrEmpty(ErrorMessage))
@@ -45,26 +45,4 @@
             </div>
         </div>
     </div>
-}
-
-@code {
-    [Parameter] public bool IsVisible { get; set; }
-    [Parameter] public EventCallback<bool> IsVisibleChanged { get; set; }
-
-    private string Username { get; set; } = "";
-    private string Password { get; set; } = "";
-    private string ErrorMessage { get; set; } = "";
-
-    private async Task Login()
-    {
-        
-        // Захардкоженная логика - всегда считаем пользователя неавторизованным
-        var success = await AuthService.LoginAsync(Username, Password);
-        if (!success)
-        {
-            ErrorMessage = "Неверный логин или пароль";
-            Username = "";
-            Password = "";
-        }
-    }
 }
