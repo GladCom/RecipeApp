@@ -21,6 +21,15 @@ public class AuthService
 
     #endregion
 
+    #region События
+
+    /// <summary>
+    /// Событие, которое возникает при изменении состояния аутентификации.
+    /// </summary>
+    public event EventHandler? AuthenticationStateChanged;
+
+    #endregion
+
     #region Методы
 
     /// <summary>
@@ -56,15 +65,6 @@ public class AuthService
         IsAuthenticated = false;
         AuthenticationStateChanged?.Invoke(this, EventArgs.Empty);
     }
-
-    #endregion
-
-    #region События
-
-    /// <summary>
-    /// Событие, которое возникает при изменении состояния аутентификации.
-    /// </summary>
-    public event EventHandler? AuthenticationStateChanged;
 
     #endregion
 

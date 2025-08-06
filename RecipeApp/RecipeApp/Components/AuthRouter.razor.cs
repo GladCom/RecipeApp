@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
-using RecipeApp.Services;
 using System;
+using RecipeApp.Services;
 
 namespace RecipeApp.Components;
 
@@ -11,17 +11,24 @@ namespace RecipeApp.Components;
 /// </summary>
 public partial class AuthRouter : ComponentBase, IDisposable
 {
+    #region Поля и свойства
+
+    /// <summary>
+    /// Флаг, указывающий, был ли объект уже освобожден.
+    /// </summary>
+    private bool _disposed;
+
+    #endregion
+
     #region Методы
 
     /// <summary>
-    /// Обработчик события изменения состояния аутентификации.
-    /// Вызывает перерисовку компонента при изменении состояния авторизации.
+    /// Освобождает ресурсы, используемые компонентом.
     /// </summary>
-    /// <param name="sender">Источник события.</param>
-    /// <param name="e">Аргументы события.</param>
-    private void OnAuthStateChanged(object? sender, EventArgs e)
+    public void Dispose()
     {
-        StateHasChanged();
+        Dispose(true);
+        GC.SuppressFinalize(this);
     }
 
     /// <summary>
@@ -34,12 +41,35 @@ public partial class AuthRouter : ComponentBase, IDisposable
     }
 
     /// <summary>
-    /// Освобождает ресурсы, используемые компонентом.
-    /// Отписывается от события изменения состояния аутентификации.
+    /// Освобождает неуправляемые ресурсы и при необходимости освобождает управляемые ресурсы.
     /// </summary>
-    public void Dispose()
+    /// <param name="disposing">
+    /// Значение <c>true</c> для освобождения управляемых и неуправляемых ресурсов;
+    /// значение <c>false</c> для освобождения только неуправляемых ресурсов.
+    /// </param>
+    protected virtual void Dispose(bool disposing)
     {
-        AuthService.AuthenticationStateChanged -= OnAuthStateChanged;
+        if (!_disposed)
+        {
+            if (disposing)
+            {
+                // Освобождение управляемых ресурсов
+                AuthService.AuthenticationStateChanged -= OnAuthStateChanged;
+            }
+
+            _disposed = true;
+        }
+    }
+
+    /// <summary>
+    /// Обработчик события изменения состояния аутентификации.
+    /// Вызывает перерисовку компонента при изменении состояния авторизации.
+    /// </summary>
+    /// <param name="sender">Источник события.</param>
+    /// <param name="e">Аргументы события.</param>
+    private void OnAuthStateChanged(object? sender, EventArgs e)
+    {
+        StateHasChanged();
     }
 
     #endregion

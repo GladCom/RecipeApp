@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Components;
-using RecipeApp.Services;
 using System.Threading.Tasks;
+using RecipeApp.Services;
 
 namespace RecipeApp.Components;
 
@@ -13,21 +13,6 @@ public partial class LoginModal : ComponentBase
     #region Поля и свойства
 
     /// <summary>
-    /// Получает или задает имя пользователя, введенное в поле логина.
-    /// </summary>
-    private string Username { get; set; } = "";
-
-    /// <summary>
-    /// Получает или задает пароль, введенный в поле пароля.
-    /// </summary>
-    private string Password { get; set; } = "";
-
-    /// <summary>
-    /// Получает или задает сообщение об ошибке для отображения пользователю.
-    /// </summary>
-    private string ErrorMessage { get; set; } = "";
-
-    /// <summary>
     /// Получает или задает значение, указывающее, видимо ли модальное окно.
     /// </summary>
     [Parameter]
@@ -38,6 +23,21 @@ public partial class LoginModal : ComponentBase
     /// </summary>
     [Parameter]
     public EventCallback<bool> IsVisibleChanged { get; set; }
+
+    /// <summary>
+    /// Получает или задает имя пользователя, введенное в поле логина.
+    /// </summary>
+    private string Username { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Получает или задает пароль, введенный в поле пароля.
+    /// </summary>
+    private string Password { get; set; } = string.Empty;
+
+    /// <summary>
+    /// Получает или задает сообщение об ошибке для отображения пользователю.
+    /// </summary>
+    private string ErrorMessage { get; set; } = string.Empty;
 
     #endregion
 
