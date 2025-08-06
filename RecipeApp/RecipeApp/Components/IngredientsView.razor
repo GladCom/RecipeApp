@@ -1,0 +1,70 @@
+﻿@page "/all_ingredients"
+@inject IngredientService IngredientService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+
+<div class="recipe-view container p-4 rounded">
+    <div class="d-flex align-items-center mb-3">
+        <button class="btn btn-sm btn-outline-primary d-flex align-items-center me-auto" @onclick="GoBack">
+            <img src="icons/back.png" alt="Назад" width="16" class="me-2"/>
+            <span>Назад</span>
+        </button>
+    </div>
+
+    @if (ingredients == null)
+    {
+        <p>Загрузка...</p>
+    }
+    else
+    {
+        <div class="text-center">
+            <h2 class="fw-bold mb-3">Список всех ингредиентов</h2>
+        </div>    
+
+        <div class="table-responsive">
+            <table class="list-ingredient-table">
+                <thead>
+                    <tr>
+                        <th>Название</th>
+                        <th>Калории</th>
+                        <th>Белки</th>
+                        <th>Жиры</th>
+                        <th>Углеводы</th>
+                    </tr>
+                </thead>
+                <tbody>
+                @foreach (var ing in ingredients)
+                {
+                    <tr>
+                        <td>
+                            <div style="background-color: transparent; border: none;">
+                                @ing.Name
+                            </div>
+                        </td>
+                        <td>
+                            <div style="background-color: transparent; border: none;">
+                                @ing.Calories
+                            </div>
+                        </td>
+                        <td>
+                            <div style="background-color: transparent; border: none;">
+                                @ing.Protein
+                            </div>
+                        </td>
+                        <td>
+                            <div style="background-color: transparent; border: none;">
+                                @ing.Fat
+                            </div>
+                        </td>
+                        <td>
+                            <div  style="background-color: transparent; border: none;">
+                                @ing.Carbs
+                            </div>
+                        </td>
+                    </tr>
+                }
+                </tbody>
+            </table>
+        </div>
+    }
+</div>

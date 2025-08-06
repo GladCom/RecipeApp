@@ -393,3 +393,48 @@ article {
 .text-danger {
     color: #ff0300;
 }
+
+.list-ingredient-table {
+    border-collapse: collapse;
+    font-size: 0.95rem;
+    color: #4b2e2e;
+    margin-top: 1.5rem;
+    white-space: normal;
+    word-break: break-word;
+    table-layout: fixed;
+}
+
+.list-ingredient-table th,
+.list-ingredient-table td {
+    padding: 0.4rem 0.6rem;
+    border-bottom: 1px solid #f0e6d8;
+    vertical-align: top;
+    text-align: center;
+    word-break: break-word;
+    white-space: normal;
+}
+
+.list-ingredient-table th:nth-child(1),
+.list-ingredient-table td:nth-child(1) {
+    width: 25%;
+}
+
+.list-ingredient-table th:nth-child(2),
+.list-ingredient-table td:nth-child(2) {
+    width: 20%;
+}
+
+.list-ingredient-table th:nth-child(3),
+.list-ingredient-table td:nth-child(3) {
+    width: 20%;
+}
+
+.list-ingredient-table th:nth-child(4),
+.list-ingredient-table td:nth-child(4) {
+    width: 20%;
+}
+
+.list-ingredient-table th:nth-child(5),
+.list-ingredient-table td:nth-child(5) {
+    width: 20%;
+}

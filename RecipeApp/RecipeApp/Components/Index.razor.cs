@@ -122,5 +122,13 @@ public partial class Index
       this.currentPage = page;
   }
 
+  /// <summary>
+  /// Открыть страницу всех ингредиентов.
+  /// </summary>
+  private void GetAllIngredients()
+  {
+    this.NavigationManager.NavigateTo("/all_ingredients");
+  }
+
   #endregion
 }
