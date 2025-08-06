@@ -1,8 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36202.13 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeApp", "RecipeApp\RecipeApp.csproj", "{81F7161A-A4D1-456F-ABA2-0FC277F693B1}"
-EndProject
-
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,5 +18,8 @@ Global
 		{81F7161A-A4D1-456F-ABA2-0FC277F693B1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{81F7161A-A4D1-456F-ABA2-0FC277F693B1}.StyleCheck|Any CPU.ActiveCfg = StyleCheck|Any CPU
 		{81F7161A-A4D1-456F-ABA2-0FC277F693B1}.StyleCheck|Any CPU.Build.0 = StyleCheck|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
 	EndGlobalSection
 EndGlobal
