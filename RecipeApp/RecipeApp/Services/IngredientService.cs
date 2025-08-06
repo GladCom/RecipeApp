@@ -14,7 +14,7 @@ public class IngredientService(RecipesDbContext db)
   /// Получить все ингредиенты.
   /// </summary>
   /// <returns>Все ингредиенты.</returns>
-  public List<Ingredient> GetAllIngredient()
+  public IEnumerable<Ingredient> GetAllIngredient()
   {
     return db.Ingredients.ToList();
   }
