@@ -27,7 +27,7 @@ public partial class LoginModal : ComponentBase
     /// <summary>
     /// Получает или задает значение, указывающее, находится ли форма в режиме регистрации.
     /// </summary>
-    private bool IsRegistrationMode { get; set; } = false;
+    private bool IsRegistrationMode { get; set; }
 
     /// <summary>
     /// Получает или задает имя пользователя, введенное в поле логина.
@@ -104,7 +104,6 @@ public partial class LoginModal : ComponentBase
 
         this.ErrorMessage = string.Empty;
 
-        // Валидация логина
         if (string.IsNullOrWhiteSpace(this.Username))
         {
             this.ErrorMessage = "Логин не может быть пустым";
@@ -123,14 +122,12 @@ public partial class LoginModal : ComponentBase
             return false;
         }
 
-        // Проверка на использование только латиницы и цифр
         if (!System.Text.RegularExpressions.Regex.IsMatch(this.Username, @"^[a-zA-Z0-9]+$"))
         {
             this.ErrorMessage = "Логин может содержать только латинские буквы и цифры";
             return false;
         }
 
-        // Валидация пароля
         if (string.IsNullOrWhiteSpace(this.Password))
         {
             this.ErrorMessage = "Пароль не может быть пустым";
@@ -149,14 +146,12 @@ public partial class LoginModal : ComponentBase
             return false;
         }
 
-        // Проверка пароля на латинские буквы, цифры и специальные символы
         if (!System.Text.RegularExpressions.Regex.IsMatch(this.Password, ValidCharactersPattern))
         {
             this.ErrorMessage = "Пароль может содержать только латинские буквы, цифры и специальные символы";
             return false;
         }
 
-        // Валидация подтверждения пароля
         if (string.IsNullOrWhiteSpace(this.ConfirmPassword))
         {
             this.ErrorMessage = "Подтвердите пароль";
