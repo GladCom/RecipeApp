@@ -393,3 +393,115 @@ article {
 .text-danger {
     color: #ff0300;
 }
+
+/* Стили для модального окна авторизации */
+.login-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.login-modal {
+    background-color: #fffdf5;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+    max-width: 400px;
+    width: 90%;
+    border: 2px solid #a67c52;
+}
+
+.login-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+    .login-header h2 {
+        color: #604631;
+        font-family: 'Montserrat', serif;
+        font-size: 1.8rem;
+        margin: 0;
+    }
+
+.login-body {
+    margin-bottom: 2rem;
+}
+
+.form-group {
+    margin-bottom: 1.5rem;
+}
+
+    .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        color: #604631;
+        font-family: 'Montserrat', sans-serif;
+        font-weight: 600;
+        font-size: 0.9rem;
+        text-transform: uppercase;
+    }
+
+.login-input {
+    width: 100%;
+    padding: 0.8rem 1rem;
+    border: 2px solid #e3dcd3;
+    border-radius: 8px;
+    background-color: #fdfaf4;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    color: #4b2e2e;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    box-sizing: border-box;
+}
+
+    .login-input:focus {
+        outline: none;
+        border-color: #a67c52;
+        box-shadow: 0 0 0 3px rgba(155, 125, 95, 0.15);
+    }
+
+    .login-input::placeholder {
+        color: #a59382;
+        font-style: italic;
+    }
+
+.login-footer {
+    text-align: center;
+}
+
+.login-btn {
+    background-color: #a67c52;
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    border-radius: 8px;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    text-transform: uppercase;
+}
+
+    .login-btn:hover {
+        background-color: #8b6744;
+    }
+
+.error-message {
+    background-color: #f8d7da;
+    color: #721c24;
+    padding: 0.8rem;
+    border-radius: 6px;
+    margin-top: 1rem;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    text-align: center;
+    border: 1px solid #f5c6cb;
+}

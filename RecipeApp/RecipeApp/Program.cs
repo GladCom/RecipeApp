@@ -33,6 +33,7 @@ public static class Program
     builder.Services.AddRazorPages();
     builder.Services.AddServerSideBlazor();
     builder.Services.AddScoped<RecipeService>();
+    builder.Services.AddScoped<AuthService>();
 
     var app = builder.Build();
 
