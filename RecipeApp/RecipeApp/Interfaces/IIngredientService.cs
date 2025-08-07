@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using RecipeApp.Model;
 
-namespace RecipeApp.Interface;
+namespace RecipeApp.Interfaces;
 
 /// <summary>
 /// Интерфейс для сервиса, предоставляющего доступ к списку ингредиентов.

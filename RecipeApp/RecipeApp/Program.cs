@@ -5,7 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RecipeApp.Components;
-using RecipeApp.Interface;
+using RecipeApp.Interfaces;
 using RecipeApp.Services;
 
 namespace RecipeApp;

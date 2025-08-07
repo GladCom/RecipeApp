@@ -2,7 +2,7 @@
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
-using RecipeApp.Interface;
+using RecipeApp.Interfaces;
 using RecipeApp.Model;
 
 namespace RecipeApp.Components;
@@ -32,7 +32,10 @@ public partial class IngredientView
   /// <inheritdoc/>
   protected override Task OnInitializedAsync()
   {
-    this.ingredients = this.IngredientService.GetAllIngredient().ToList();
+    if (this.IngredientService != null)
+      this.ingredients = this.IngredientService.GetAllIngredient().ToList();
+    else
+      this.ingredients = null;
 
     return Task.CompletedTask;
   }
