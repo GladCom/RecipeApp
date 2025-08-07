@@ -6,7 +6,7 @@
     <div class="login-overlay">
         <div class="login-modal">
             <div class="login-header">
-                <h2>Авторизация</h2>
+                <h2>@(IsRegistrationMode ? "Регистрация" : "Авторизация")</h2>
             </div>
 
             <div class="login-body">
@@ -17,7 +17,7 @@
                            class="login-input"
                            @bind="Username"
                            placeholder="Введите логин"
-                           @onkeydown="@(async e => { if (e.Key == "Enter") await Login(); })" />
+                           @onkeydown="@(async e => { if (e.Key == "Enter") await SubmitForm(); })" />
                 </div>
 
                 <div class="form-group">
@@ -27,8 +27,21 @@
                            class="login-input"
                            @bind="Password"
                            placeholder="Введите пароль"
-                           @onkeydown="@(async e => { if (e.Key == "Enter") await Login(); })" />
+                           @onkeydown="@(async e => { if (e.Key == "Enter") await SubmitForm(); })" />
                 </div>
+
+                @if (IsRegistrationMode)
+                {
+                    <div class="form-group">
+                        <label for="confirmPassword" class="form-label">Подтвердите пароль:</label>
+                        <input type="password"
+                               id="confirmPassword"
+                               class="login-input"
+                               @bind="ConfirmPassword"
+                               placeholder="Повторите пароль"
+                               @onkeydown="@(async e => { if (e.Key == "Enter") await SubmitForm(); })" />
+                    </div>
+                }
 
                 @if (!string.IsNullOrEmpty(ErrorMessage))
                 {
@@ -39,9 +52,15 @@
             </div>
 
             <div class="login-footer">
-                <button class="login-btn" @onclick="Login">
-                    Войти
+                <button class="login-btn" @onclick="SubmitForm">
+                    @(IsRegistrationMode ? "Зарегистрироваться" : "Войти")
                 </button>
+                
+                <div class="form-switch">
+                    <button type="button" class="switch-btn" @onclick="ToggleMode">
+                        @(IsRegistrationMode ? "Уже есть аккаунт? Войти" : "Нет аккаунта? Зарегистрироваться")
+                    </button>
+                </div>
             </div>
         </div>
     </div>
