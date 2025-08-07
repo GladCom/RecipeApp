@@ -1,8 +1,10 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Components;
+using RecipeApp.Interface;
+using RecipeApp.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using RecipeApp.Model;
 
 namespace RecipeApp.Components;
 
@@ -78,6 +80,12 @@ public partial class Index
       .Skip((this.currentPage - 1) * PageSize)
       .Take(PageSize)
     ?? [];
+
+  /// <summary>
+  /// Сервис для управления ингредиентами.
+  /// </summary>
+  [Inject]
+  private IIngredientService? IngredientService { get; set; }
 
   #endregion
 

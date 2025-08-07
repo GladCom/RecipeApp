@@ -1,5 +1,4 @@
 ﻿@page "/all_ingredients"
-@inject IngredientService IngredientService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime Js
 
@@ -11,9 +10,9 @@
         </button>
     </div>
 
-    @if (ingredients == null)
+    @if (ingredients == null || ingredients.Count == 0)
     {
-        <p>Загрузка...</p>
+        <p>Ингредиентов пока нет.</p>
     }
     else
     {

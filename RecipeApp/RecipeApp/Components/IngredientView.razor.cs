@@ -1,6 +1,8 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
+using RecipeApp.Interface;
 using RecipeApp.Model;
 
 namespace RecipeApp.Components;
@@ -17,6 +19,12 @@ public partial class IngredientView
   /// </summary>
   private List<Ingredient>? ingredients;
 
+  /// <summary>
+  /// Сервис для управления ингредиентами.
+  /// </summary>
+  [Inject]
+  private IIngredientService? IngredientService { get; set; }
+
   #endregion
 
   #region Базовый класс
@@ -24,7 +32,7 @@ public partial class IngredientView
   /// <inheritdoc/>
   protected override Task OnInitializedAsync()
   {
-    this.ingredients = this.IngredientService.GetAllIngredient();
+    this.ingredients = this.IngredientService.GetAllIngredient().ToList();
 
     return Task.CompletedTask;
   }
