@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
 using System.Linq;
 using System.Threading.Tasks;
@@ -58,6 +59,8 @@ public partial class RecipeForm
   /// <summary>
   /// Список ингредиентов для формы.
   /// </summary>
+  [SuppressMessage("Usage", "CA1002:Do notexpose generic lists", Justification = "Используется в компоненте Blazor для binding.")] 
+  [SuppressMessage("Usage","CA2227:Collection properties should be read only", Justification = "Должно быть с set, чтобы можно было инициализировать из данныхрецепта.")]
   public List<RecipeIngredientFormModel> FormIngredients { get; set; } = [];
 
   #endregion
