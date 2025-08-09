@@ -32,10 +32,10 @@ else
                     @recipe.Title
                 </div>
 
-                @if (recipe.Ingredients.Any())
+                @if (recipe.RecipeIngredients.Any())
                 {
                     <div class="recipe-ingredients mt-1">
-                        @string.Join(", ", recipe.Ingredients.Select(i => i.Name.ToLower()))
+                        @string.Join(", ", recipe.RecipeIngredients.Select(ri => ri.Ingredient.Name.ToLower()))
                     </div>
                 }
             </div>
