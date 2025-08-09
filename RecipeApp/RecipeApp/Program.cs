@@ -1,11 +1,14 @@
+using System;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http.Features;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RecipeApp.Components;
 using RecipeApp.Services;
+using RecipeApp.Model;
 
 namespace RecipeApp;
 
@@ -26,6 +29,29 @@ public static class Program
       .AddInteractiveServerComponents();
     builder.Services.AddDbContext<RecipesDbContext>(options =>
       options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
+    
+    builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+      {
+        options.Password.RequireDigit = true;
+        options.Password.RequiredLength = 6;
+        options.Password.RequireNonAlphanumeric = false;
+        options.Password.RequireUppercase = false;
+        options.Password.RequireLowercase = false;
+        
+        options.User.RequireUniqueEmail = true;
+      })
+      .AddEntityFrameworkStores<RecipesDbContext>()
+      .AddDefaultTokenProviders();
+    
+    builder.Services.ConfigureApplicationCookie(options =>
+    {
+      options.Cookie.HttpOnly = true;
+      options.ExpireTimeSpan = TimeSpan.FromMinutes(60);
+      options.LoginPath = "/Identity/Account/Login";
+      options.AccessDeniedPath = "/Identity/Account/AccessDenied";
+      options.SlidingExpiration = true;
+    });
+
     builder.Services.Configure<FormOptions>(options =>
     {
       options.MultipartBodyLengthLimit = 10 * 1024 * 1024;
@@ -59,6 +85,10 @@ public static class Program
     app.UseRouting();
     app.UseAntiforgery();
 
+    app.MapControllers();
+    app.MapBlazorHub();
+    //app.MapFallbackToPage("/_Host");
+    
     app.Run();
   }
 }

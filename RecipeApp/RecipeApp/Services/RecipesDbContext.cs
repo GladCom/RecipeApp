@@ -1,5 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using RecipeApp.Model;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 
 namespace RecipeApp.Services;
 
@@ -7,9 +8,14 @@ namespace RecipeApp.Services;
 /// DBContext для рецептов.
 /// </summary>
 /// <param name="options">Настройка контекста.</param>
-public class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
-  : DbContext(options)
+public class RecipesDbContext
+  : IdentityDbContext<ApplicationUser>
 {
+  public RecipesDbContext(DbContextOptions<RecipesDbContext> options) 
+    : base(options)
+  {
+    
+  }
   #region Поля и свойства
 
   /// <summary>
@@ -29,6 +35,7 @@ public class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
   /// <inheritdoc/>
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
+    base.OnModelCreating(modelBuilder);
     modelBuilder.Entity<Recipe>()
       .HasMany(r => r.Ingredients)
       .WithOne(i => i.Recipe)
