@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using RecipeApp.Model;
 
@@ -41,10 +42,15 @@ public partial class RecipeEdit
   /// <summary>
   /// Сохранить изменения в рецепте.
   /// </summary>
+  /// <param name="ingredientData">Данные об ингредиентах.</param>
   /// <returns>Задача по сохранению рецепта.</returns>
-  private Task Save()
+  private Task Save(List<(string name, double amount, UnitType unit)> ingredientData)
   {
-    this.RecipeService.SaveDbContext();
+    if (this._recipe != null)
+    {
+      this.RecipeService.UpdateRecipe(this._recipe, ingredientData);
+    }
+
     this.NavigationManager.NavigateTo($"/recipes/{this.Id}");
 
     return Task.CompletedTask;
