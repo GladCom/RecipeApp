@@ -15,7 +15,7 @@ namespace RecipeApp.Migrations
 
             migrationBuilder.Sql("ALTER SEQUENCE \"Ingredients_Id_seq\" RESTART WITH 1");
             migrationBuilder.Sql("ALTER SEQUENCE \"Recipes_Id_seq\" RESTART WITH 1");
-            
+
             migrationBuilder.DropForeignKey(
                 name: "FK_Ingredients_Recipes_RecipeId",
                 table: "Ingredients");
