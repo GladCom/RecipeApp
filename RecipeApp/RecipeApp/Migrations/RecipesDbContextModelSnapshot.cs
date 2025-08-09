@@ -29,9 +29,6 @@ namespace RecipeApp.Migrations
 
                     NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
 
-                    b.Property<double>("Amount")
-                        .HasColumnType("double precision");
-
                     b.Property<float>("Calories")
                         .HasColumnType("real");
 
@@ -48,15 +45,7 @@ namespace RecipeApp.Migrations
                     b.Property<float>("Protein")
                         .HasColumnType("real");
 
-                    b.Property<int>("RecipeId")
-                        .HasColumnType("integer");
-
-                    b.Property<int>("Unit")
-                        .HasColumnType("integer");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("RecipeId");
 
                     b.ToTable("Ingredients");
                 });
@@ -85,20 +74,54 @@ namespace RecipeApp.Migrations
                     b.ToTable("Recipes");
                 });
 
-            modelBuilder.Entity("RecipeApp.Model.Ingredient", b =>
+            modelBuilder.Entity("RecipeApp.Model.RecipeIngredient", b =>
                 {
+                    b.Property<int>("RecipeId")
+                        .HasColumnType("integer");
+
+                    b.Property<int>("IngredientId")
+                        .HasColumnType("integer");
+
+                    b.Property<double>("Amount")
+                        .HasColumnType("double precision");
+
+                    b.Property<int>("Unit")
+                        .HasColumnType("integer");
+
+                    b.HasKey("RecipeId", "IngredientId");
+
+                    b.HasIndex("IngredientId");
+
+                    b.ToTable("RecipeIngredients");
+                });
+
+            modelBuilder.Entity("RecipeApp.Model.RecipeIngredient", b =>
+                {
+                    b.HasOne("RecipeApp.Model.Ingredient", "Ingredient")
+                        .WithMany("RecipeIngredients")
+                        .HasForeignKey("IngredientId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("RecipeApp.Model.Recipe", "Recipe")
-                        .WithMany("Ingredients")
+                        .WithMany("RecipeIngredients")
                         .HasForeignKey("RecipeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.Navigation("Ingredient");
+
                     b.Navigation("Recipe");
+                });
+
+            modelBuilder.Entity("RecipeApp.Model.Ingredient", b =>
+                {
+                    b.Navigation("RecipeIngredients");
                 });
 
             modelBuilder.Entity("RecipeApp.Model.Recipe", b =>
                 {
-                    b.Navigation("Ingredients");
+                    b.Navigation("RecipeIngredients");
                 });
 #pragma warning restore 612, 618
         }
