@@ -10,6 +10,12 @@ namespace RecipeApp.Migrations
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.Sql("DELETE FROM \"Ingredients\"");
+            migrationBuilder.Sql("DELETE FROM \"Recipes\"");
+
+            migrationBuilder.Sql("ALTER SEQUENCE \"Ingredients_Id_seq\" RESTART WITH 1");
+            migrationBuilder.Sql("ALTER SEQUENCE \"Recipes_Id_seq\" RESTART WITH 1");
+            
             migrationBuilder.DropForeignKey(
                 name: "FK_Ingredients_Recipes_RecipeId",
                 table: "Ingredients");
