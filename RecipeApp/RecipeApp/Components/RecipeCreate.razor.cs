@@ -1,4 +1,5 @@
-﻿using System.Threading.Tasks;
+﻿using System.Collections.Generic;
+using System.Threading.Tasks;
 using RecipeApp.Model;
 
 namespace RecipeApp.Components;
@@ -10,10 +11,7 @@ public partial class RecipeCreate
 {
   #region Поля и свойства
 
-  private readonly Recipe _recipe = new ()
-  {
-    Ingredients = []
-  };
+  private readonly Recipe _recipe = new ();
 
   #endregion
 
@@ -22,10 +20,11 @@ public partial class RecipeCreate
   /// <summary>
   /// Сохранить рецепт.
   /// </summary>
+  /// <param name="ingredientData">Данные об ингредиентах.</param>
   /// <returns>Задача выполнения.</returns>
-  private Task Save()
+  private Task Save(List<(string name, double amount, UnitType unit)> ingredientData)
   {
-    this.RecipeService.AddRecipe(this._recipe);
+    this.RecipeService.AddRecipe(this._recipe, ingredientData);
     this.NavigationManager.NavigateTo("/");
 
     return Task.CompletedTask;
