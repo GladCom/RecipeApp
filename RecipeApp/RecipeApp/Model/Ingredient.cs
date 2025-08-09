@@ -40,5 +40,7 @@ public class Ingredient
   /// <summary>
   /// Связи с рецептами через промежуточную таблицу.
   /// </summary>
+  [SuppressMessage("Usage", "CA1002:Do notexpose generic lists", Justification = "Используется в компоненте Blazor для binding.")]
+  [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Должно быть с set, чтобы можно было инициализировать из данныхрецепта.")]
   public List<RecipeIngredient> RecipeIngredients { get; set; } = [];
 }
