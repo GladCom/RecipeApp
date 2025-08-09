@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Components;
+using RecipeApp.Interfaces;
 using RecipeApp.Model;
 
 namespace RecipeApp.Components;
@@ -79,6 +81,12 @@ public partial class Index
       .Take(PageSize)
     ?? [];
 
+  /// <summary>
+  /// Сервис для управления ингредиентами.
+  /// </summary>
+  [Inject]
+  private IIngredientService? IngredientService { get; set; }
+
   #endregion
 
   #region Базовый класс
@@ -120,6 +128,14 @@ public partial class Index
   {
     if (page >= 1 && page <= this.TotalPages)
       this.currentPage = page;
+  }
+
+  /// <summary>
+  /// Открыть страницу всех ингредиентов.
+  /// </summary>
+  private void GetAllIngredients()
+  {
+    this.NavigationManager.NavigateTo("/all_ingredients");
   }
 
   #endregion

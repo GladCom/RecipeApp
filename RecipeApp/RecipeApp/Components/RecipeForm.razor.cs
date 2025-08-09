@@ -1,5 +1,8 @@
 ﻿using System;
+using System.Collections.Generic;
+using System.Diagnostics.CodeAnalysis;
 using System.IO;
+using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Components;
 using Microsoft.AspNetCore.Components.Forms;
@@ -39,7 +42,7 @@ public partial class RecipeForm
   /// Обработчик события на сохранение.
   /// </summary>
   [Parameter]
-  public EventCallback OnSave { get; set; }
+  public EventCallback<List<(string name, double amount, UnitType unit)>> OnSave { get; set; }
 
   /// <summary>
   /// Обработчик события отмены.
@@ -53,6 +56,13 @@ public partial class RecipeForm
   [Parameter]
   public bool IsEditMode { get; set; }
 
+  /// <summary>
+  /// Список ингредиентов для формы.
+  /// </summary>
+  [SuppressMessage("Usage", "CA1002:Do notexpose generic lists", Justification = "Используется в компоненте Blazor для binding.")]
+  [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Должно быть с set, чтобы можно было инициализировать из данныхрецепта.")]
+  public List<RecipeIngredientFormModel> FormIngredients { get; set; } = [];
+
   #endregion
 
   #region Базовый класс
@@ -62,6 +72,13 @@ public partial class RecipeForm
   {
     this.markdownValue = this.Recipe.Content;
     this.imagePreviewUrl = this.Recipe.ImagePath;
+
+    this.FormIngredients = this.Recipe.RecipeIngredients?.Select(ri => new RecipeIngredientFormModel
+    {
+      Name = ri.Ingredient.Name,
+      Amount = ri.Amount,
+      Unit = ri.Unit
+    }).ToList() ?? new List<RecipeIngredientFormModel>();
   }
 
   #endregion
@@ -77,16 +94,16 @@ public partial class RecipeForm
   /// </summary>
   private void AddIngredient()
   {
-    this.Recipe.Ingredients.Add(new Ingredient());
+    this.FormIngredients.Add(new RecipeIngredientFormModel());
   }
 
   /// <summary>
   /// Удалить выбранный ингредиент.
   /// </summary>
   /// <param name="ingredient">Выбранный ингредиент.</param>
-  private void RemoveIngredient(Ingredient ingredient)
+  private void RemoveIngredient(RecipeIngredientFormModel ingredient)
   {
-    this.Recipe.Ingredients.Remove(ingredient);
+    this.FormIngredients.Remove(ingredient);
   }
 
   /// <summary>
@@ -96,7 +113,8 @@ public partial class RecipeForm
   {
     this.Recipe.Content = this.markdownValue;
 
-    await this.OnSave.InvokeAsync();
+    var ingredientData = this.FormIngredients.Select(fi => (fi.Name, fi.Amount, fi.Unit)).ToList();
+    await this.OnSave.InvokeAsync(ingredientData);
   }
 
   /// <summary>

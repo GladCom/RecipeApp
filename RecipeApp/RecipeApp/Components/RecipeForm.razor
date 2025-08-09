@@ -49,7 +49,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    @foreach (var ing in Recipe.Ingredients)
+                    @foreach (var ing in FormIngredients)
                     {
                         <tr>
                             <td><input class="form-control" @bind="ing.Name"/></td>
