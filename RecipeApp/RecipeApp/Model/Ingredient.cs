@@ -1,4 +1,6 @@
-﻿namespace RecipeApp.Model;
+﻿using System.Collections.Generic;
+
+namespace RecipeApp.Model;
 
 /// <summary>
 /// Ингредиент.
@@ -16,42 +18,27 @@ public class Ingredient
   public string Name { get; set; } = string.Empty;
 
   /// <summary>
-  /// Количество.
-  /// </summary>
-  public double Amount { get; set; }
-
-  /// <summary>
-  /// Единицы измерения.
-  /// </summary>
-  public UnitType Unit { get; set; }
-
-  /// <summary>
-  /// Количество каллорий.
+  /// Количество каллорий на 100г.
   /// </summary>
   public float Calories { get; set; }
 
   /// <summary>
-  /// Количество протеина.
+  /// Количество протеина на 100г.
   /// </summary>
   public float Protein { get; set; }
 
   /// <summary>
-  /// Количество жира.
+  /// Количество жира на 100г.
   /// </summary>
   public float Fat { get; set; }
 
   /// <summary>
-  /// Количество углеводов.
+  /// Количество углеводов на 100г.
   /// </summary>
   public float Carbs { get; set; }
 
   /// <summary>
-  /// ИД связанного рецепта.
+  /// Связи с рецептами через промежуточную таблицу.
   /// </summary>
-  public int RecipeId { get; set; }
-
-  /// <summary>
-  /// Навигационное свойство связанного рецепта.
-  /// </summary>
-  public Recipe Recipe { get; set; } = null!;
+  public List<RecipeIngredient> RecipeIngredients { get; set; } = [];
 }
