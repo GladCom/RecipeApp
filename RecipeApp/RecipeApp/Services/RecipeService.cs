@@ -52,7 +52,7 @@ public class RecipeService(RecipesDbContext db)
   /// </summary>
   /// <param name="recipe">Рецепт, который нужно добавить.</param>
   /// <param name="ingredientData">Данные об ингредиентах (название, количество, единица).</param>
-  [SuppressMessage("Usage", "CA1002:Do notexpose generic lists", Justification = "Используется в компоненте Blazor для binding.")] 
+  [SuppressMessage("Usage", "CA1002:Do notexpose generic lists", Justification = "Используется в компоненте Blazor для binding.")]
   public void AddRecipe(Recipe recipe, List<(string name, double amount, UnitType unit)> ingredientData)
   {
     db.Recipes.Add(recipe);
@@ -117,7 +117,7 @@ public class RecipeService(RecipesDbContext db)
   /// </summary>
   /// <param name="recipe">Обновленный рецепт.</param>
   /// <param name="ingredientData">Данные об ингредиентах (название, количество, единица).</param>
-  [SuppressMessage("Usage", "CA1002:Do notexpose generic lists", Justification = "Используется в компоненте Blazor для binding.")] 
+  [SuppressMessage("Usage", "CA1002:Do notexpose generic lists", Justification = "Используется в компоненте Blazor для binding.")]
   public void UpdateRecipe(Recipe recipe, List<(string name, double amount, UnitType unit)> ingredientData)
   {
     db.Recipes.Update(recipe);
