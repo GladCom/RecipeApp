@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
@@ -20,7 +21,8 @@ public class RecipeService(RecipesDbContext db)
   public List<Recipe> GetRecipes()
   {
     return db.Recipes
-      .Include(r => r.Ingredients)
+      .Include(r => r.RecipeIngredients)
+        .ThenInclude(ri => ri.Ingredient)
       .ToList();
   }
 
@@ -32,7 +34,8 @@ public class RecipeService(RecipesDbContext db)
   public Recipe? GetRecipe(int id)
   {
     return db.Recipes
-      .Include(r => r.Ingredients)
+      .Include(r => r.RecipeIngredients)
+        .ThenInclude(ri => ri.Ingredient)
       .FirstOrDefault(r => r.Id == id);
   }
 
@@ -48,9 +51,120 @@ public class RecipeService(RecipesDbContext db)
   /// Добавить рецепт.
   /// </summary>
   /// <param name="recipe">Рецепт, который нужно добавить.</param>
-  public void AddRecipe(Recipe recipe)
+  /// <param name="ingredientData">Данные об ингредиентах (название, количество, единица).</param>
+  public void AddRecipe(Recipe recipe, List<(string name, double amount, UnitType unit)> ingredientData)
   {
     db.Recipes.Add(recipe);
+    db.SaveChanges();
+
+    var groupedIngredients = ingredientData
+      .Where(item => !string.IsNullOrWhiteSpace(item.name))
+      .GroupBy(item => item.name.Trim(), StringComparer.OrdinalIgnoreCase)
+      .Select(group => new
+      {
+        Name = group.Key,
+        TotalAmount = group.Sum(item => item.amount),
+        Unit = group.First().unit
+      })
+      .ToList();
+
+    foreach (var ingredientGroup in groupedIngredients)
+    {
+      var existingIngredient = db.Ingredients.FirstOrDefault(i => i.Name == ingredientGroup.Name);
+
+      if (existingIngredient == null)
+      {
+        existingIngredient = new Ingredient
+        {
+          Name = ingredientGroup.Name,
+          Calories = 0,
+          Protein = 0,
+          Fat = 0,
+          Carbs = 0
+        };
+        db.Ingredients.Add(existingIngredient);
+        db.SaveChanges();
+      }
+
+      var existingRecipeIngredient = db.RecipeIngredients
+        .FirstOrDefault(ri => ri.RecipeId == recipe.Id && ri.IngredientId == existingIngredient.Id);
+
+      if (existingRecipeIngredient == null)
+      {
+        var recipeIngredient = new RecipeIngredient
+        {
+          RecipeId = recipe.Id,
+          IngredientId = existingIngredient.Id,
+          Amount = ingredientGroup.TotalAmount,
+          Unit = ingredientGroup.Unit
+        };
+
+        db.RecipeIngredients.Add(recipeIngredient);
+      }
+      else
+      {
+        existingRecipeIngredient.Amount += ingredientGroup.TotalAmount;
+        db.RecipeIngredients.Update(existingRecipeIngredient);
+      }
+    }
+
+    db.SaveChanges();
+  }
+
+  /// <summary>
+  /// Обновить рецепт.
+  /// </summary>
+  /// <param name="recipe">Обновленный рецепт.</param>
+  /// <param name="ingredientData">Данные об ингредиентах (название, количество, единица).</param>
+  public void UpdateRecipe(Recipe recipe, List<(string name, double amount, UnitType unit)> ingredientData)
+  {
+    db.Recipes.Update(recipe);
+
+    var oldRecipeIngredients = db.RecipeIngredients.Where(ri => ri.RecipeId == recipe.Id);
+    db.RecipeIngredients.RemoveRange(oldRecipeIngredients);
+
+    db.SaveChanges();
+
+    var groupedIngredients = ingredientData
+      .Where(item => !string.IsNullOrWhiteSpace(item.name))
+      .GroupBy(item => item.name.Trim(), StringComparer.OrdinalIgnoreCase)
+      .Select(group => new
+      {
+        Name = group.Key,
+        TotalAmount = group.Sum(item => item.amount),
+        Unit = group.First().unit
+      })
+      .ToList();
+
+    foreach (var ingredientGroup in groupedIngredients)
+    {
+      var existingIngredient = db.Ingredients.FirstOrDefault(i => i.Name == ingredientGroup.Name);
+
+      if (existingIngredient == null)
+      {
+        existingIngredient = new Ingredient
+        {
+          Name = ingredientGroup.Name,
+          Calories = 0,
+          Protein = 0,
+          Fat = 0,
+          Carbs = 0
+        };
+        db.Ingredients.Add(existingIngredient);
+        db.SaveChanges();
+      }
+
+      var recipeIngredient = new RecipeIngredient
+      {
+        RecipeId = recipe.Id,
+        IngredientId = existingIngredient.Id,
+        Amount = ingredientGroup.TotalAmount,
+        Unit = ingredientGroup.Unit
+      };
+
+      db.RecipeIngredients.Add(recipeIngredient);
+    }
+
     db.SaveChanges();
   }
 
