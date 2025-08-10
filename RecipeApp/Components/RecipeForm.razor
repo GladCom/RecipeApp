@@ -1,0 +1,90 @@
+﻿@using Microsoft.AspNetCore.Hosting
+@inject IWebHostEnvironment Env
+
+<EditForm Model="Recipe"
+          OnValidSubmit="Save"
+          OnInvalidSubmit="HandleInvalidSubmit">
+    <DataAnnotationsValidator/>
+
+    <main class="recipe-view">
+        <div class="recipe-card">
+            <input
+                class="form-control recipe-title-input mb-4"
+                placeholder="Введите название рецепта"
+                @bind="Recipe.Title"/>
+
+            <div class="image-upload-wrapper mb-4">
+                <label for="imageInput" class="image-upload-label">
+                    @if (!string.IsNullOrEmpty(imagePreviewUrl))
+                    {
+                        <img src="@imagePreviewUrl" class="recipe-image-preview"/>
+                    }
+                    else
+                    {
+                        <div class="image-placeholder">
+                            <span class="upload-text">
+                                <img src="icons/add_image.png" alt="Удалить" width="40" class="me-1"/>
+                            </span>
+                        </div>
+                    }
+                </label>
+                <InputFile id="imageInput" class="d-none" OnChange="HandleFileSelected"/>
+            </div>
+
+            <div class="mb-3">
+                <h3>Рецепт</h3>
+                <MarkdownEditor
+                    @bind-Value="markdownValue"/>
+            </div>
+
+            <h5>Ингредиенты</h5>
+
+            <div class="table-responsive">
+                <table class="table table-bordered ingredient-table">
+                    <thead>
+                    <tr>
+                        <th style="width: 60%">Название</th>
+                        <th>Кол-во</th>
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    @foreach (var ing in Recipe.Ingredients)
+                    {
+                        <tr>
+                            <td><input class="form-control" @bind="ing.Name"/></td>
+                            <td>
+                                <div class="quantity-unit">
+                                    <input class="form-control form-control-sm" type="number" @bind="ing.Amount" style="max-width: 100px;"/>
+                                    <select class="form-select form-select-sm" @bind="ing.Unit" style="max-width: 100px;">
+                                        @foreach (var unit in UnitTypeUtils.UnitTypes)
+                                        {
+                                            <option value="@unit">@UnitTypeUtils.GetUnitLabel(unit)</option>
+                                        }
+                                    </select>
+                                </div>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => RemoveIngredient(ing)">✕</button>
+                            </td>
+                        </tr>
+                    }
+                    </tbody>
+                </table>
+            </div>
+
+            <button type="button" class="btn btn-secondary mb-3" @onclick="AddIngredient">+ Добавить ингредиент</button>
+
+            <div class="mt-4">
+                <div class="mt-4">
+                    <button type="submit" class="btn btn-primary">Сохранить</button>
+                    <button class="btn btn-secondary ms-2" @onclick="OnCancel">Отмена</button>
+
+                    <div class="text-danger mt-2">
+                        <ValidationMessage For="@(() => Recipe.Title)"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</EditForm>

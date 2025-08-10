@@ -1,0 +1,66 @@
+﻿@page "/"
+@rendermode InteractiveServer
+@inject RecipeService RecipeService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+
+<main>
+    <h1 class="text-center site-title">Рецепты</h1>
+    <div class="search-and-add">
+        <div class="search-container">
+            <input type="text" class="form-control search-box" placeholder="Найти блюдо..." @bind="SearchText" />
+        </div>
+        <button class="btn btn-primary add-button mt-2" @onclick="AddRecipe">Добавить блюдо</button>
+    </div>
+
+@if (recipes == null)
+{
+    <p>Загрузка...</p>
+}
+else if (!recipes.Any())
+{
+    <p>Рецептов пока нет.</p>
+}
+else
+{
+    <div class="recipe-list">
+        @foreach (var recipe in PagedRecipes)
+        {
+            <div class="recipe-item border-bottom pb-3 mb-3" @onclick="() => ViewRecipe(recipe.Id)">
+                <div class="recipe-title">
+                    @recipe.Title
+                </div>
+
+                @if (recipe.Ingredients.Any())
+                {
+                    <div class="recipe-ingredients mt-1">
+                        @string.Join(", ", recipe.Ingredients.Select(i => i.Name.ToLower()))
+                    </div>
+                }
+            </div>
+        }
+    </div>
+
+    @if (TotalPages > 1)
+    {
+        <nav>
+            <ul class="pagination">
+                <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                    <button class="page-link" @onclick="() => GoToPage(currentPage - 1)">«</button>
+                </li>
+                @for (int i = 1; i <= TotalPages; i++)
+                {
+                    var pageNumber = i; // Локальная переменная для замыкания
+                    <li class="page-item @(pageNumber == currentPage ? "active" : "")">
+                        <button class="page-link" @onclick="() => GoToPage(pageNumber)">@pageNumber</button>
+                    </li>
+                }
+                <li class="page-item @(currentPage == TotalPages ? "disabled" : "")">
+                    <button class="page-link" @onclick="() => GoToPage(currentPage + 1)">»</button>
+                </li>
+            </ul>
+        </nav>
+    }
+
+}
+</main>

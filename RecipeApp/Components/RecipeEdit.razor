@@ -1,0 +1,15 @@
+﻿@page "/recipes/edit/{Id:int}"
+@inject RecipeService RecipeService
+@inject NavigationManager NavigationManager
+
+@if (_recipe == null)
+{
+  <p>Загрузка...</p>
+}
+else
+{
+  <RecipeForm Recipe="_recipe"
+              OnSave="Save"
+              OnCancel="Cancel"
+              IsEditMode="true" />
+}

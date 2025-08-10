@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -9,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using RecipeApp.Components;
 using RecipeApp.Services;
 using RecipeApp.Model;
+
 
 namespace RecipeApp;
 
@@ -27,6 +29,11 @@ public static class Program
 
     builder.Services.AddRazorComponents()
       .AddInteractiveServerComponents();
+    
+    builder.Services.AddScoped<CustomAuthStateProvider>();
+    builder.Services.AddScoped<AuthenticationStateProvider>(sp => sp.GetRequiredService<CustomAuthStateProvider>());
+    builder.Services.AddScoped<Services.AuthService>();
+    
     builder.Services.AddDbContext<RecipesDbContext>(options =>
       options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
     
@@ -59,7 +66,6 @@ public static class Program
     builder.Services.AddRazorPages();
     builder.Services.AddServerSideBlazor();
     builder.Services.AddScoped<RecipeService>();
-    builder.Services.AddScoped<AuthService>();
 
     var app = builder.Build();
 
