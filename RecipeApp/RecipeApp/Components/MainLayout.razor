@@ -1,0 +1,75 @@
+﻿@inherits LayoutComponentBase
+@implements IDisposable
+@inject AuthenticationStateProvider AuthStateProvider
+@inject AuthService AuthService
+
+<div class="page">
+    <div class="sidebar">
+        <NavMenu />
+    </div>
+
+    <div class="main">
+        <div class="top-row px-4">
+            @if (isAuthenticated)
+            {
+                <span class="user-greeting">Привет, @username!</span>
+                <button class="btn btn-link logout-btn" @onclick="Logout">
+                    Выйти
+                </button>
+            }
+            else
+            {
+                <button class="btn btn-primary login-btn" @onclick="ShowLoginModal">
+                    Войти
+                </button>
+            }
+        </div>
+
+        <div class="content px-4">
+            @Body
+        </div>
+    </div>
+</div>
+
+<LoginModal @bind-IsVisible="showLoginModal" />
+
+@code {
+    private bool showLoginModal = false;
+    private bool isAuthenticated = false;
+    private string? username;
+
+    protected override async Task OnInitializedAsync()
+    {
+        await UpdateAuthenticationState();
+        AuthStateProvider.AuthenticationStateChanged += OnAuthenticationStateChanged;
+    }
+
+    private async Task UpdateAuthenticationState()
+    {
+        var authState = await AuthStateProvider.GetAuthenticationStateAsync();
+        isAuthenticated = authState.User.Identity?.IsAuthenticated ?? false;
+        username = authState.User.Identity?.Name;
+    }
+
+    private async void OnAuthenticationStateChanged(Task<AuthenticationState> task)
+    {
+        await UpdateAuthenticationState();
+        StateHasChanged();
+    }
+
+    private void ShowLoginModal()
+    {
+        showLoginModal = true;
+    }
+
+    private async Task Logout()
+    {
+        await AuthService.LogoutAsync();
+        showLoginModal = false;
+    }
+
+    public void Dispose()
+    {
+        AuthStateProvider.AuthenticationStateChanged -= OnAuthenticationStateChanged;
+    }
+}

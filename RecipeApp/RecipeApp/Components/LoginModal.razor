@@ -7,6 +7,7 @@
         <div class="login-modal">
             <div class="login-header">
                 <h2>@(IsRegistrationMode ? "Регистрация" : "Авторизация")</h2>
+                <button class="close-btn" @onclick="Close">×</button>
             </div>
 
             <div class="login-body">

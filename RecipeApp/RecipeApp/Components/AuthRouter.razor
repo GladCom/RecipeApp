@@ -1,11 +1,28 @@
-﻿@rendermode InteractiveServer
+﻿@using Microsoft.AspNetCore.Components.Authorization
+@rendermode InteractiveServer
 @inject AuthService AuthService
+@inject AuthenticationStateProvider AuthenticationStateProvider
 
-@if (AuthService.IsAuthenticated)
-{
-    <Routes @rendermode="InteractiveServer" />
-}
-else
-{
-    <LoginModal IsVisible="true" />
+<CascadingAuthenticationState>
+    @if (isAuthenticated)
+    {
+        <Routes @rendermode="InteractiveServer" />
+    }
+    else
+    {
+        <LoginModal IsVisible="true" />
+    }
+</CascadingAuthenticationState>
+
+@code {
+    private bool isAuthenticated;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var authState = await AuthenticationStateProvider.GetAuthenticationStateAsync();
+        isAuthenticated = authState.User.Identity?.IsAuthenticated ?? false;
+        
+        // Подписываемся на изменения состояния аутентификации
+        (AuthenticationStateProvider as CustomAuthStateProvider)?.NotifyAuthenticationStateChanged();
+    }
 }

@@ -527,3 +527,34 @@ article {
     color: #8b6744;
     background: none;
 }
+
+.close-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    cursor: pointer;
+    color: #666;
+    padding: 0 8px;
+}
+
+.close-btn:hover {
+    color: #000;
+}
+
+.login-header {
+    position: relative;
+    padding-right: 30px; 
+}
+.page {
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+.main {
+    flex: 1;
+    padding-top: 1rem;
+}

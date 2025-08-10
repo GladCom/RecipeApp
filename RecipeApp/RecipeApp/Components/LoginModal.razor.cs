@@ -48,6 +48,8 @@ public partial class LoginModal : ComponentBase
     /// Получает или задает сообщение об ошибке для отображения пользователю.
     /// </summary>
     private string ErrorMessage { get; set; } = string.Empty;
+    
+    private bool IsProcessing;
 
     #endregion
 
@@ -210,6 +212,24 @@ public partial class LoginModal : ComponentBase
         this.IsRegistrationMode = false;
         this.ClearForm();
         this.ErrorMessage = "Регистрация успешно выполнена! Теперь вы можете войти.";
+    }
+    
+    private async Task Close()
+    {
+        if (IsProcessing) return; 
+    
+        IsVisible = false;
+        await IsVisibleChanged.InvokeAsync(false);
+        ResetForm();
+    }
+
+    private void ResetForm()
+    {
+        Username = string.Empty;
+        Password = string.Empty;
+        ConfirmPassword = string.Empty;
+        ErrorMessage = string.Empty;
+        IsProcessing = false;
     }
 
     #endregion

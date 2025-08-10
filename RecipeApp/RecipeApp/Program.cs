@@ -1,5 +1,6 @@
 using System;
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Components.Authorization;
 using Microsoft.AspNetCore.Http.Features;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -27,6 +28,7 @@ public static class Program
 
     builder.Services.AddRazorComponents()
       .AddInteractiveServerComponents();
+    
     builder.Services.AddDbContext<RecipesDbContext>(options =>
       options.UseNpgsql(builder.Configuration.GetConnectionString("DefaultConnection")));
     
@@ -38,10 +40,14 @@ public static class Program
         options.Password.RequireUppercase = false;
         options.Password.RequireLowercase = false;
         
-        options.User.RequireUniqueEmail = true;
+        options.User.RequireUniqueEmail = false;
       })
       .AddEntityFrameworkStores<RecipesDbContext>()
       .AddDefaultTokenProviders();
+    builder.Services.AddScoped<CustomAuthStateProvider>();
+    builder.Services.AddScoped<AuthenticationStateProvider>(sp => 
+      sp.GetRequiredService<CustomAuthStateProvider>());
+    builder.Services.AddScoped<AuthService>();
     
     builder.Services.ConfigureApplicationCookie(options =>
     {
@@ -76,13 +82,16 @@ public static class Program
     }
 
     app.UseHttpsRedirection();
-
     app.UseStaticFiles();
-
+    
+    app.UseRouting();
+    
+    app.UseAuthentication();
+    app.UseAuthorization();
+    
     app.MapRazorComponents<App>()
       .AddInteractiveServerRenderMode();
-
-    app.UseRouting();
+    
     app.UseAntiforgery();
 
     app.MapControllers();
