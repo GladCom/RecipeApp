@@ -505,3 +505,25 @@ article {
     text-align: center;
     border: 1px solid #f5c6cb;
 }
+
+.form-switch {
+    margin-top: 1rem;
+    text-align: center;
+}
+
+.switch-btn {
+    background: none;
+    border: none;
+    color: #a67c52;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 0.9rem;
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 0.5rem;
+    transition: color 0.3s ease;
+}
+
+.switch-btn:hover {
+    color: #8b6744;
+    background: none;
+}
