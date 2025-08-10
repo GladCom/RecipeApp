@@ -11,6 +11,7 @@
             <input type="text" class="form-control search-box" placeholder="Найти блюдо..." @bind="SearchText" />
         </div>
         <button class="btn btn-primary add-button mt-2" @onclick="AddRecipe">Добавить блюдо</button>
+        <button class="btn btn-primary add-button mt-2" style="margin-top: 10px;" @onclick="GetAllIngredients">Список ингредиентов</button>
     </div>
 
 @if (recipes == null)

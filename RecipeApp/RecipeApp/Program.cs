@@ -5,6 +5,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RecipeApp.Components;
+using RecipeApp.Interfaces;
 using RecipeApp.Services;
 
 namespace RecipeApp;
@@ -33,6 +34,7 @@ public static class Program
     builder.Services.AddRazorPages();
     builder.Services.AddServerSideBlazor();
     builder.Services.AddScoped<RecipeService>();
+    builder.Services.AddScoped<IIngredientService, IngredientService>();
     builder.Services.AddScoped<AuthService>();
 
     var app = builder.Build();
