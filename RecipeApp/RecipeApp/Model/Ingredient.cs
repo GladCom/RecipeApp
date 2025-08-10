@@ -1,4 +1,6 @@
-﻿namespace RecipeApp.Model;
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace RecipeApp.Model;
 
 /// <summary>
 /// Ингредиент.
@@ -13,6 +15,7 @@ public class Ingredient
   /// <summary>
   /// Имя ингредиента.
   /// </summary>
+  [Required(ErrorMessage = "Название обязательно")]
   public string Name { get; set; } = string.Empty;
 
   /// <summary>

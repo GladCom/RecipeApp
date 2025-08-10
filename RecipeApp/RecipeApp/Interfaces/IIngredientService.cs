@@ -13,4 +13,16 @@ public interface IIngredientService
   /// </summary>
   /// <returns>Коллекция ингредиентов.</returns>
   IEnumerable<Ingredient> GetAllIngredient();
+
+  /// <summary>
+  /// Получить ингредиент.
+  /// </summary>
+  /// <param name="id">ИД ингредиента.</param>
+  /// <returns>Найденный ингредиент. Иначе <c>null</c>.</returns>
+  Ingredient? GetIngredientById(int id);
+
+  /// <summary>
+  /// Сохранить изменения.
+  /// </summary>
+  void SaveDbContext();
 }

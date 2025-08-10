@@ -21,7 +21,7 @@
         </div>    
 
         <div class="table-responsive">
-            <table class="list-ingredient-table">
+            <table class="table table-bordered list-ingredient-table list-allingredient-table">
                 <thead>
                     <tr>
                         <th>Название</th>
@@ -34,7 +34,7 @@
                 <tbody>
                 @foreach (var ing in ingredients)
                 {
-                    <tr>
+                    <tr @onclick="() => ViewIngredient(ing.Id)">
                         <td>
                             <div style="background-color: transparent; border: none;">
                                 @ing.Name
@@ -56,7 +56,7 @@
                             </div>
                         </td>
                         <td>
-                            <div  style="background-color: transparent; border: none;">
+                            <div style="background-color: transparent; border: none;">
                                 @ing.Carbs
                             </div>
                         </td>

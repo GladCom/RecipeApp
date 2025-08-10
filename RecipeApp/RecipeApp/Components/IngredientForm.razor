@@ -1,0 +1,104 @@
+﻿@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+
+@if (Ingredient == null)
+{
+    <p>Загрузка...</p>
+}
+else
+{
+    <EditForm Model="Ingredient"
+              OnValidSubmit="Save">
+    <DataAnnotationsValidator/>
+
+    <div class="table-responsive">
+        <table class="list-ingredient-table">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Калории</th>
+                    <th>Белки</th>
+                    <th>Жиры</th>
+                    <th>Углеводы</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        @if (IsEditMode)
+                        {
+                            <InputText class="form-control" @bind-Value="Ingredient.Name" />
+                        }
+                        else
+                        {
+                            <div style="background-color: transparent; border: none;">
+                                @Ingredient.Name
+                            </div>  
+                        }
+                    </td>
+                    <td>
+                        @if (IsEditMode)
+                        {
+                            <InputNumber class="form-control" @bind-Value="Ingredient.Calories"/>
+                        }
+                        else
+                        {
+                            <div style="background-color: transparent; border: none;">
+                                @Ingredient.Calories
+                            </div>    
+                        }
+                    </td>
+                    <td>
+                        @if (IsEditMode)
+                        {
+                            <InputNumber class="form-control" @bind-Value="Ingredient.Protein"/>
+                        }
+                        else
+                        {
+                            <div style="background-color: transparent; border: none;">
+                                @Ingredient.Protein
+                            </div>   
+                        }
+                    </td>
+                    <td>
+                        @if (IsEditMode)
+                        {
+                            <InputNumber class="form-control" @bind-Value="Ingredient.Fat"/>
+                        }
+                        else
+                        {
+                            <div style="background-color: transparent; border: none;">
+                                @Ingredient.Fat
+                            </div>    
+                        }
+                    </td>
+                    <td>
+                        @if (IsEditMode)
+                        {
+                            <InputNumber class="form-control" @bind-Value="Ingredient.Carbs"/>
+                        }
+                        else
+                        {
+                            <div style="background-color: transparent; border: none;">
+                                @Ingredient.Carbs
+                            </div>    
+                        }
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+        
+    @if (IsEditMode)
+        {
+            <div class="mt-4" style="margin-top: 10px">
+                <button type="submit" class="btn btn-primary">Сохранить</button>
+                <button class="btn btn-secondary ms-2" @onclick="Cancel">Отмена</button>
+            </div>
+
+            <div class="text-danger mt-2">
+                <ValidationMessage For="@(() => Ingredient.Name)"/>
+            </div>
+        }
+    </EditForm>
+}

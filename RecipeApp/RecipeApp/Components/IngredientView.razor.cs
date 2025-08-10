@@ -45,6 +45,15 @@ public partial class IngredientView
   #region Методы
 
   /// <summary>
+  /// Открыть ингредиент.
+  /// </summary>
+  /// <param name="id">ИД ингредиента, который нужно открыть.</param>
+  private void ViewIngredient(int id)
+  {
+    this.NavigationManager.NavigateTo($"/ingredient/{id}");
+  }
+
+  /// <summary>
   /// Вернуться назад.
   /// </summary>
   private void GoBack()
