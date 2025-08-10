@@ -266,7 +266,6 @@ article {
     border-bottom: none;
 }
 
-
 .ingredient-table td {
     padding: 0.4rem;
     vertical-align: middle;
@@ -527,28 +526,63 @@ article {
     white-space: normal;
 }
 
+.list-ingredient-table th {
+    font-weight: 600;
+    color: #7a6654;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+}
+
 .list-ingredient-table th:nth-child(1),
 .list-ingredient-table td:nth-child(1) {
     width: 25%;
 }
 
 .list-ingredient-table th:nth-child(2),
-.list-ingredient-table td:nth-child(2) {
-    width: 20%;
-}
-
+.list-ingredient-table td:nth-child(2),
 .list-ingredient-table th:nth-child(3),
-.list-ingredient-table td:nth-child(3) {
-    width: 20%;
-}
-
+.list-ingredient-table td:nth-child(3),
 .list-ingredient-table th:nth-child(4),
-.list-ingredient-table td:nth-child(4) {
-    width: 20%;
-}
-
+.list-ingredient-table td:nth-child(4),
 .list-ingredient-table th:nth-child(5),
 .list-ingredient-table td:nth-child(5) {
     width: 20%;
- }
+}
+
+.list-ingredient-table td {
+    padding: 0.4rem;
+    vertical-align: middle;
+}
+
+.list-ingredient-table th {
+    background-color: #f6f3f0;
+    color: #604631;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.8rem;
+    padding: 0.5rem;
+    text-align: center;
+    border-bottom: 1px solid #e8e1d9;
+}
+
+.list-ingredient-table input {
+    border: 1px solid #e3dcd3;
+    border-radius: 8px;
+    background-color: #fdfaf4;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: 'Montserrat', sans-serif;
+    color: #4b2e2e;
+    transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    min-width: 100px;
+    padding: 0.3rem;
+    font-size: 0.95rem;
+}
+
+.list-allingredient-table tr:hover {
+    outline: none;
+    border-color: #a67c52;
+    box-shadow: 0 0 0 2px rgba(155, 125, 95, 0.15);
+}
+
 

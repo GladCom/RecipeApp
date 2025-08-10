@@ -27,6 +27,24 @@ public class IngredientService : IIngredientService
   /// <returns>Все ингредиенты.</returns>
   public IEnumerable<Ingredient> GetAllIngredient()
   {
-    return this.db.Ingredients.AsEnumerable();
+    return this.db.Ingredients.OrderBy(i => i.Name);
+  }
+
+  /// <summary>
+  /// Получить ингредиент.
+  /// </summary>
+  /// <param name="id">ИД ингредиента.</param>
+  /// <returns>Найденный ингредиент. Иначе <c>null</c>.</returns>
+  public Ingredient? GetIngredientById(int id)
+  {
+      return this.db.Ingredients.FirstOrDefault(x => x.Id == id);
+  }
+
+  /// <summary>
+  /// Сохранить изменения.
+  /// </summary>
+  public void SaveDbContext()
+  {
+    this.db.SaveChanges();
   }
 }

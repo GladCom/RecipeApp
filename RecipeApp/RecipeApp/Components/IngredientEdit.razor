@@ -1,0 +1,22 @@
+﻿@page "/ingredient/edit/{Id:int}"
+@inject IIngredientService IngredientService
+@inject NavigationManager NavigationManager
+
+<div class="recipe-view container p-4 rounded">
+
+    @if (ingredient == null)
+    {
+        <p>Загрузка...</p>
+    }
+    else
+    {
+        <div class="text-center">
+            <h2 class="fw-bold mb-3">@ingredient.Name</h2>
+        </div> 
+
+        <IngredientForm Ingredient = "ingredient"
+                        IsEditMode="true"
+                        OnSave="SaveIngredient"
+                        OnCancel="CancelEdit" />
+    }
+</div>
