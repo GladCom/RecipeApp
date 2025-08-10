@@ -22,6 +22,11 @@ public class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
   /// </summary>
   public DbSet<Ingredient> Ingredients { get; set; }
 
+  /// <summary>
+  /// Связи рецептов с ингредиентами.
+  /// </summary>
+  public DbSet<RecipeIngredient> RecipeIngredients { get; set; }
+
   #endregion
 
   #region Базовый класс
@@ -29,11 +34,20 @@ public class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
   /// <inheritdoc/>
   protected override void OnModelCreating(ModelBuilder modelBuilder)
   {
-    modelBuilder.Entity<Recipe>()
-      .HasMany(r => r.Ingredients)
-      .WithOne(i => i.Recipe)
-      .HasForeignKey(i => i.RecipeId)
+    modelBuilder.Entity<RecipeIngredient>()
+      .HasKey(ri => new { ri.RecipeId, ri.IngredientId });
+
+    modelBuilder.Entity<RecipeIngredient>()
+      .HasOne(ri => ri.Recipe)
+      .WithMany(r => r.RecipeIngredients)
+      .HasForeignKey(ri => ri.RecipeId)
       .OnDelete(DeleteBehavior.Cascade);
+
+    modelBuilder.Entity<RecipeIngredient>()
+      .HasOne(ri => ri.Ingredient)
+      .WithMany(i => i.RecipeIngredients)
+      .HasForeignKey(ri => ri.IngredientId)
+      .OnDelete(DeleteBehavior.Restrict);
   }
 
   #endregion
