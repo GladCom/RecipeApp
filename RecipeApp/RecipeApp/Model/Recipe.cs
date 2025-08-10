@@ -38,9 +38,9 @@ public class Recipe
   public string? ImagePath { get; set; }
 
   /// <summary>
-  /// Ингредиенты рецепта.
+  /// Связи с ингредиентами через промежуточную таблицу.
   /// </summary>
   [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Должно быть с set, чтобы EF смог обработать.")]
   [SuppressMessage("Usage", "CA1002:Do not expose generic lists", Justification = "Пока оставим как есть.")]
-  public List<Ingredient> Ingredients { get; set; } = [];
+  public List<RecipeIngredient> RecipeIngredients { get; set; } = [];
 }
