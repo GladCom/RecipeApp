@@ -35,6 +35,11 @@ public class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
       .HasForeignKey(i => i.RecipeId)
       .OnDelete(DeleteBehavior.Cascade);
   }
-
-  #endregion
+    /*
+    modelBuilder.Entity<Recipe>()
+  .HasMany(r => r.Ingredients)      // У одного рецепта может быть много ингредиентов
+  .WithOne(i => i.Recipe)           // У каждого ингредиента один рецепт
+  .HasForeignKey(i => i.RecipeId)   // Внешний ключ: Ingredient.RecipeId → Recipe.Id
+  .OnDelete(DeleteBehavior.Cascade); // Если удалить рецепт → удалятся все его ингредиенты*/
+    #endregion
 }

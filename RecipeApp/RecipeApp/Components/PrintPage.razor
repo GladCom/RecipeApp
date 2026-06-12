@@ -1,0 +1,277 @@
+﻿@page "/print-preview"
+@using RecipeApp.Model
+@using RecipeApp.Services
+@using Microsoft.AspNetCore.WebUtilities
+@using Microsoft.EntityFrameworkCore
+@inject RecipesDbContext DbContext
+@inject NavigationManager NavigationManager
+@inject IJSRuntime JSRuntime
+
+<main>
+    
+    <title>Предварительный просмотр меню</title>
+    
+
+    @if (isLoading)
+    {
+        <div class="loading-box">
+            <h3>⏳ Загрузка...</h3>
+        </div>
+    }
+    else if (!string.IsNullOrEmpty(errorMessage))
+    {
+        <div class="error-box">
+            <h3>❌ Ошибка</h3>
+            <p>@errorMessage</p>
+            <button class="btn-back" @onclick="GoBack">⬅️ Вернуться назад</button>
+        </div>
+    }
+    else
+    {
+        <h1 style="text-align: center;">🍽️ План питания</h1>
+        <p style="text-align: center; color: #666;">Создано: @DateTime.Now.ToString("dddd, d MMMM yyyy")</p>
+        <hr />
+
+        <!-- ЗАВТРАК -->
+        @if (breakfastRecipes.Any())
+        {
+            <div class="meal-section">
+                <div class="h2_breakfast">🍳 Завтрак</div>
+                @foreach (var recipe in breakfastRecipes)
+                {
+                    <div class="recipe-card">
+                        <div class="h3_breakfast" style="margin: 0px, 10px, 20px, 10px;">@recipe.Title</div>
+
+                        @if (recipe.Ingredients != null && recipe.Ingredients.Any())
+                        {
+                            <div style="margin-top: 10px;">
+                                <strong>📝 Ингредиенты:</strong>
+                                <span>
+                                    @string.Join("; ", recipe.Ingredients.Select(ing => $"{ing.Name} - {ing.Amount} {GetUnitLabel(ing.Unit)}"))
+                                </span>
+                            </div>
+                        }
+
+                    </div>
+                }
+            </div>
+        }
+
+        <!-- ОБЕД -->
+        @if (lunchRecipes.Any())
+        {
+            <div class="meal-section">
+                <h2>🍲 Обед</h2>
+                @foreach (var recipe in lunchRecipes)
+                {
+                    <div class="recipe-card">
+                        <h3>@recipe.Title</h3>
+
+                        @if (recipe.Ingredients != null && recipe.Ingredients.Any())
+                        {
+                            <div style="margin-top: 10px;">
+                                <strong>📝 Ингредиенты:</strong>
+                                <span>
+                                    @string.Join("; ", recipe.Ingredients.Select(ing => $"{ing.Name} - {ing.Amount} {GetUnitLabel(ing.Unit)}"))
+                                </span>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(recipe.Content))
+                        {
+                            <div class="content-text">
+                                <strong>👨‍🍳 Приготовление:</strong>
+                                <p>@recipe.Content</p>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+
+        <!-- УЖИН -->
+        @if (dinnerRecipes.Any())
+        {
+            <div class="meal-section">
+                <h2>🍷 Ужин</h2>
+                @foreach (var recipe in dinnerRecipes)
+                {
+                    <div class="recipe-card">
+                        <h3>@recipe.Title</h3>
+
+                        @if (recipe.Ingredients != null && recipe.Ingredients.Any())
+                        {
+                            <div style="margin-top: 10px;">
+                                <strong>📝 Ингредиенты:</strong>
+                                <span>
+                                    @string.Join("; ", recipe.Ingredients.Select(ing => $"{ing.Name} - {ing.Amount} {GetUnitLabel(ing.Unit)}"))
+                                </span>
+                            </div>
+                        }
+
+                        @if (!string.IsNullOrEmpty(recipe.Content))
+                        {
+                            <div class="content-text">
+                                <strong>👨‍🍳 Приготовление:</strong>
+                                <p>@recipe.Content</p>
+                            </div>
+                        }
+                    </div>
+                }
+            </div>
+        }
+
+        @if (!breakfastRecipes.Any() && !lunchRecipes.Any() && !dinnerRecipes.Any())
+        {
+            <div class="empty-message" style="text-align: center; padding: 50px;">
+                Нет выбранных блюд для отображения
+            </div>
+        }
+
+        <div class="button-container">
+            <button class="btn-back" @onclick="GoBack">⬅️ Назад к редактированию</button>
+            <button class="btn-print" @onclick="PrintToPdf">🖨️ Сохранить в PDF / Печать</button>
+        </div>
+    }
+</main>
+@code {
+    private List<Recipe> breakfastRecipes = new();
+    private List<Recipe> lunchRecipes = new();
+    private List<Recipe> dinnerRecipes = new();
+    private bool isLoading = true;
+    private string errorMessage = "";
+
+    protected override async Task OnInitializedAsync()
+    {
+        try
+        {
+            Console.WriteLine("=== НАЧАЛО ЗАГРУЗКИ СТРАНИЦЫ ПЕЧАТИ ===");
+
+            // Получаем Query параметры из URL
+            var uri = NavigationManager.ToAbsoluteUri(NavigationManager.Uri);
+            var query = QueryHelpers.ParseQuery(uri.Query);
+
+            var breakfastIdsStr = query.ContainsKey("BreakfastIds") ? query["BreakfastIds"].ToString() : "";
+            var lunchIdsStr = query.ContainsKey("LunchIds") ? query["LunchIds"].ToString() : "";
+            var dinnerIdsStr = query.ContainsKey("DinnerIds") ? query["DinnerIds"].ToString() : "";
+
+            Console.WriteLine($"BreakfastIds: {breakfastIdsStr}");
+            Console.WriteLine($"LunchIds: {lunchIdsStr}");
+            Console.WriteLine($"DinnerIds: {dinnerIdsStr}");
+
+            // Собираем все ID в один список
+            var allNeededIds = new List<int>();
+
+            if (!string.IsNullOrEmpty(breakfastIdsStr))
+            {
+                var ids = breakfastIdsStr.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Where(x => int.TryParse(x, out _))
+                    .Select(int.Parse)
+                    .ToList();
+                allNeededIds.AddRange(ids);
+            }
+
+            if (!string.IsNullOrEmpty(lunchIdsStr))
+            {
+                var ids = lunchIdsStr.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Where(x => int.TryParse(x, out _))
+                    .Select(int.Parse)
+                    .ToList();
+                allNeededIds.AddRange(ids);
+            }
+
+            if (!string.IsNullOrEmpty(dinnerIdsStr))
+            {
+                var ids = dinnerIdsStr.Split(',', StringSplitOptions.RemoveEmptyEntries)
+                    .Where(x => int.TryParse(x, out _))
+                    .Select(int.Parse)
+                    .ToList();
+                allNeededIds.AddRange(ids);
+            }
+
+            if (allNeededIds.Any())
+            {
+                // Загружаем только нужные рецепты с их ингредиентами
+                var allRecipes = await DbContext.Recipes
+                    .Where(r => allNeededIds.Contains(r.Id))
+                    .Include(r => r.Ingredients)
+                    .AsNoTracking()
+                    .ToListAsync();
+
+                Console.WriteLine($"Загружено рецептов: {allRecipes.Count}");
+
+                // Распределяем по приемам пищи
+                if (!string.IsNullOrEmpty(breakfastIdsStr))
+                {
+                    var breakfastIdList = breakfastIdsStr
+                        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                        .Select(int.Parse)
+                        .ToList();
+                    breakfastRecipes = allRecipes.Where(r => breakfastIdList.Contains(r.Id)).ToList();
+                    Console.WriteLine($"Завтрак: {breakfastRecipes.Count} рецептов");
+                }
+
+                if (!string.IsNullOrEmpty(lunchIdsStr))
+                {
+                    var lunchIdList = lunchIdsStr
+                        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                        .Select(int.Parse)
+                        .ToList();
+                    lunchRecipes = allRecipes.Where(r => lunchIdList.Contains(r.Id)).ToList();
+                    Console.WriteLine($"Обед: {lunchRecipes.Count} рецептов");
+                }
+
+                if (!string.IsNullOrEmpty(dinnerIdsStr))
+                {
+                    var dinnerIdList = dinnerIdsStr
+                        .Split(',', StringSplitOptions.RemoveEmptyEntries)
+                        .Select(int.Parse)
+                        .ToList();
+                    dinnerRecipes = allRecipes.Where(r => dinnerIdList.Contains(r.Id)).ToList();
+                    Console.WriteLine($"Ужин: {dinnerRecipes.Count} рецептов");
+                }
+            }
+        }
+        catch (Exception ex)
+        {
+            errorMessage = $"Ошибка: {ex.Message}";
+            Console.WriteLine($"ОШИБКА: {ex.Message}");
+            Console.WriteLine($"СТЭК ТРЕЙС: {ex.StackTrace}");
+        }
+        finally
+        {
+            isLoading = false;
+            StateHasChanged();
+        }
+    }
+
+    private string GetUnitLabel(UnitType unit)
+    {
+        return unit switch
+        {
+            UnitType.Gram => "г",
+            UnitType.Piece => "шт",
+            UnitType.Tablespoon => "ст. ложка",
+            UnitType.Milliliter => "мл",
+            UnitType.Liter => "л",
+            _ => ""
+        };
+    }
+
+    private void GoBack()
+    {
+        NavigationManager.NavigateTo("/menu/create");
+    }
+
+    private async Task PrintToPdf()
+    {
+        try
+        {
+            await JSRuntime.InvokeVoidAsync("window.print");
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Ошибка при печати: {ex.Message}");
+        }
+    }
+}

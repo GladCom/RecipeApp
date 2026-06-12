@@ -38,8 +38,8 @@ button:hover, .btn:hover {
 
 .recipe-card {
     background-color: #fff8ec;
-    padding: 1rem;
-    margin-bottom: 1.5rem;
+    padding: 0.5rem;
+    margin-bottom: 0.1rem;
 }
 
 .markdown-body {
@@ -239,7 +239,7 @@ article {
     word-break: break-word;
     table-layout: fixed;
 }
-
+    /*  первая часть нижней таблицы с именем  */
 .ingredient-table th,
 .ingredient-table td {
     padding: 0.4rem 0.6rem;
@@ -248,7 +248,7 @@ article {
     text-align: left;
     word-break: break-word;
     white-space: normal;
-    width: 60%;
+    width: 40%;
 }
 
 .ingredient-table th {
@@ -268,7 +268,7 @@ article {
 
 
 .ingredient-table td {
-    padding: 0.4rem;
+    padding: 0.1rem;
     vertical-align: middle;
 }
 
@@ -306,7 +306,7 @@ article {
 }
 
 .quantity-unit input {
-    flex: 2;
+    flex: 5;
     min-width: 40px;
 }
 
@@ -392,4 +392,49 @@ article {
 
 .text-danger {
     color: #ff0300;
+}
+
+
+.two-columns {
+    display: flex;
+    gap: 30px;
+}
+
+.column {
+    flex: 1;
+}
+
+@media print {
+    button, .add-button, .btn, [onclick] {
+        display: none !important;
+    }
+
+    .no-print {
+        display: none !important;
+    }
+
+    body {
+        padding: 20px;
+        font-size: 12pt;
+    }
+
+    .recipe-item {
+        page-break-inside: avoid;
+    }
+}
+
+.h1_Style {
+    font-size: 30px;
+    margin: 0px 0px 20px 0px;
+}
+
+.h2_Style {
+    font-size:30px;
+    margin: 0px 0px 20px 0px;
+
+}
+
+.h3_Style {
+    font-size: 22px;
+    margin: 0px 0px 10px 0px;
 }
