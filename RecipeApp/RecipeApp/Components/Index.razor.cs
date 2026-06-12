@@ -102,6 +102,12 @@ public partial class Index
   {
     this.NavigationManager.NavigateTo("/recipes/create");
   }
+  private void AddMenu()
+  {
+    this.NavigationManager.NavigateTo("/menu/create");
+  }
+
+
 
   /// <summary>
   /// Открыть рецепт.

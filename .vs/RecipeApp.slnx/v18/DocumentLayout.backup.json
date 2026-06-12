@@ -1,0 +1,243 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\Program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Services\\UnitTypeUtils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\Services\\UnitTypeUtils.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Services\\RecipeService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\Services\\RecipeService.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Services\\RecipesDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\Services\\RecipesDbContext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\Components\\Index.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Model\\Ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\Model\\Ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\wwwroot\\favicon.png||{177559E0-D141-11D0-92DF-00A0C9138C45}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\wwwroot\\favicon.png||{177559E0-D141-11D0-92DF-00A0C9138C45}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\wwwroot\\app.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\App.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\Components\\App.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Model\\UnitType.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\Model\\UnitType.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Properties\\launchSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:RecipeApp\\RecipeApp\\Properties\\launchSettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 15,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Index.razor.cs",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\Components\\Index.razor.cs",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\Index.razor.cs",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\Components\\Index.razor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T10:41:08.616Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Ingredient.cs",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Model\\Ingredient.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\Model\\Ingredient.cs",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Model\\Ingredient.cs",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\Model\\Ingredient.cs",
+              "ViewState": "AgIAADAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T10:40:56.52Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "favicon.png - PNG [50x50, 32-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, PNG]",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\wwwroot\\favicon.png",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\wwwroot\\favicon.png",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\wwwroot\\favicon.png - PNG [50x50, 32-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, PNG]",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\wwwroot\\favicon.png - PNG [50x50, 32-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, PNG]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001533|",
+              "WhenOpened": "2026-05-31T10:40:49.883Z",
+              "EditorCaption": " - PNG [50x50, 32-\u0440\u0430\u0437\u0440\u044F\u0434\u043D\u043E\u0435, PNG]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "app.css",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\wwwroot\\app.css",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\wwwroot\\app.css",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\wwwroot\\app.css",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\wwwroot\\app.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2026-05-31T10:40:47.093Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "UnitTypeUtils.cs",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Services\\UnitTypeUtils.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\Services\\UnitTypeUtils.cs",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Services\\UnitTypeUtils.cs",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\Services\\UnitTypeUtils.cs",
+              "ViewState": "AgIAABUAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T10:40:36.518Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "RecipeService.cs",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Services\\RecipeService.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\Services\\RecipeService.cs",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Services\\RecipeService.cs",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\Services\\RecipeService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T10:40:13.968Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "RecipesDbContext.cs",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Services\\RecipesDbContext.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\Services\\RecipesDbContext.cs",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Services\\RecipesDbContext.cs",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\Services\\RecipesDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T10:40:00.557Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "App.razor",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\App.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\Components\\App.razor",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Components\\App.razor",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\Components\\App.razor",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-05-31T10:39:54.85Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "UnitType.cs",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Model\\UnitType.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\Model\\UnitType.cs",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Model\\UnitType.cs",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\Model\\UnitType.cs",
+              "ViewState": "AgIAAAwAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T10:39:43.914Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "launchSettings.json",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Properties\\launchSettings.json",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\Properties\\launchSettings.json",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Properties\\launchSettings.json",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\Properties\\launchSettings.json",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-31T10:39:29.528Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Program.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\Program.cs",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\Program.cs",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\Program.cs",
+              "ViewState": "AgIAAB4AAAAAAAAAAAAUwDkAAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-05-31T10:39:01.391Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\appsettings.json",
+              "RelativeDocumentMoniker": "RecipeApp\\RecipeApp\\appsettings.json",
+              "ToolTip": "D:\\Pycharn\\VS\\repos\\Dmitrii-Aleksei4\\RecipeApp\\RecipeApp\\RecipeApp\\appsettings.json",
+              "RelativeToolTip": "RecipeApp\\RecipeApp\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2026-05-31T10:27:03.997Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
