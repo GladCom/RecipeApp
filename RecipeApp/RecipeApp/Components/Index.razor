@@ -1,66 +1,195 @@
 ﻿@page "/"
 @rendermode InteractiveServer
 @inject RecipeService RecipeService
+@inject MenuService MenuService
 @inject NavigationManager NavigationManager
 @inject IJSRuntime Js
 
 <main>
-    <h1 class="text-center site-title">Рецепты</h1>
-    <div class="search-and-add">
+  <h1 class="text-center site-title">Рецепты и меню</h1>
+  <div class="row g-4">
+    <div class="col-md-6">
+      <div class="search-and-add">
         <div class="search-container">
             <input type="text" class="form-control search-box" placeholder="Найти блюдо..." @bind="SearchText" />
         </div>
         <button class="btn btn-primary add-button mt-2" @onclick="AddRecipe">Добавить блюдо</button>
-    </div>
+      </div>
 
-@if (recipes == null)
-{
-    <p>Загрузка...</p>
-}
-else if (!recipes.Any())
-{
-    <p>Рецептов пока нет.</p>
-}
-else
-{
-    <div class="recipe-list">
-        @foreach (var recipe in PagedRecipes)
-        {
+      @if (recipes == null)
+      {
+        <p>Загрузка...</p>
+      }
+      else if (!recipes.Any())
+      {
+        <p>Рецептов пока нет.</p>
+      }
+      else
+      {
+        <div class="recipe-list">
+          @foreach (var recipe in PagedRecipes)
+          {
             <div class="recipe-item border-bottom pb-3 mb-3" @onclick="() => ViewRecipe(recipe.Id)">
-                <div class="recipe-title">
-                    @recipe.Title
+              <div class="recipe-title">
+                @recipe.Title
+              </div>
+
+              @if (recipe.Ingredients.Any())
+              {
+                <div class="recipe-ingredients mt-1">
+                  @string.Join(", ", recipe.Ingredients.Select(i => i.Name.ToLower()))
+                </div>
+              }
+            </div>
+          }
+        </div>
+
+        @if (TotalPages > 1)
+        {
+          <nav>
+            <ul class="pagination">
+              <li class="page-item @(currentPage == 1 ? "disabled" : "")">
+                <button class="page-link" @onclick="() => GoToPage(currentPage - 1)">«</button>
+              </li>
+              @for (int i = 1; i <= TotalPages; i++)
+              {
+                var pageNumber = i;
+                <li class="page-item @(pageNumber == currentPage ? "active" : "")">
+                  <button class="page-link" @onclick="() => GoToPage(pageNumber)">@pageNumber</button>
+                </li>
+              }
+              <li class="page-item @(currentPage == TotalPages ? "disabled" : "")">
+                <button class="page-link" @onclick="() => GoToPage(currentPage + 1)">»</button>
+              </li>
+            </ul>
+          </nav>
+        }
+
+      }
+    </div>
+      @* КОЛОНКА 2: МЕНЮ (С ФИЛЬТРАМИ) *@
+      <div class="col-md-6">
+        <div class="search-and-add">
+          <div class="search-container">
+            <input type="text" class="form-control search-box" placeholder="Найти меню..." @bind="SearchMenuText" />
+          </div>
+          <button class="btn btn-primary add-button mt-2 mb-3" @onclick="AddMenu">Добавить меню</button>
+        </div>
+
+        @* НОВЫЙ БЛОК: Сворачиваемые фильтры по группам времени суток *@
+        <div class="filter-accordion mb-4" style="margin: 0 1rem;">
+        
+          @* Фильтр 1: Показать все *@
+          <div class="filter-group-item border rounded mb-2 shadow-sm bg-white">
+            <div class="filter-header p-2 d-flex justify-content-between align-items-center"
+                 style="cursor: pointer; background-color: #fff8ec;" @onclick="() => SelectFilter(0)">
+              <span class="fw-bold text-dark">Показать все меню</span>
+            </div>
+          </div>
+
+          @* Фильтр 2: Утреннее меню (группа 1) *@
+          <div class="filter-group-item border rounded mb-2 shadow-sm bg-white">
+            <div class="filter-header p-3 d-flex justify-content-between align-items-center"
+                 style="cursor: pointer; background-color: #fff8ec;" @onclick="() => ToggleFilterSection(1)">
+              <span class="fw-bold text-primary">Утреннее меню</span>
+            </div>
+            @if (isMorningExpanded)
+            {
+              <div class="p-2 border-top bg-light-custom">
+                <button class="btn btn-sm btn-outline-primary w-100" @onclick="() => SelectFilter(1)">
+                  @(selectedGroupId == 1 ? "✓ Выбрано" : "Показать утренние")
+                </button>
+              </div>
+            }
+          </div>
+
+          @* Фильтр 3: Дневное меню (группа 2) *@
+          <div class="filter-group-item border rounded mb-2 shadow-sm bg-white">
+            <div class="filter-header p-3 d-flex justify-content-between align-items-center"
+                 style="cursor: pointer; background-color: #fff8ec;" @onclick="() => ToggleFilterSection(2)">
+              <span class="fw-bold text-success">Дневное меню</span>
+            </div>
+            @if (isDayExpanded)
+            {
+              <div class="p-2 border-top bg-light-custom">
+                <button class="btn btn-sm btn-outline-success w-100" @onclick="() => SelectFilter(2)">
+                  @(selectedGroupId == 2 ? "✓ Выбрано" : "Показать дневные")
+                </button>
+              </div>
+            }
+          </div>
+
+          @* Фильтр 4: Вечернее меню (группа 3) *@
+          <div class="filter-group-item border rounded mb-2 shadow-sm bg-white">
+            <div class="filter-header p-3 d-flex justify-content-between align-items-center"
+                 style="cursor: pointer; background-color: #fff8ec;" @onclick="() => ToggleFilterSection(3)">
+            <span class="fw-bold text-success">Вечернее меню</span>
+            </div>
+            @if (isEveningExpanded)
+            {
+              <div class="p-2 border-top bg-light-custom">
+                <button class="btn btn-sm btn-outline-warning text-dark w-100" @onclick="() => SelectFilter(3)">
+                  @(selectedGroupId == 3 ? "✓ Выбрано" : "Показать вечерние")
+                </button>
+              </div>
+            }
+          </div>
+
+        </div>
+
+        @* ВЫВОД СПИСКА МЕНЮ *@
+        @if (dishes == null)
+        {
+          <p>Загрузка...</p>
+        }
+        else if (!FilteredMenus.Any())
+        {
+          <p class="text-muted ms-3">В этой группе меню пока нет.</p>
+        }
+        else
+        {
+          <div class="dish-list">
+            @foreach (var dish in PagedMenu)
+            {
+              <div class="menu-item border-bottom pb-3 mb-3" style="cursor: pointer;" @onclick="() => MenuView(dish.Id)">
+                <div class="menu-title d-flex justify-content-between align-items-center">
+                  <span>@dish.Name</span>
+                  <span class="small text-muted" style="font-size: 0.75rem;">
+                    @(dish.group_id == 1 ? "🌅 Утро" : dish.group_id == 2 ? "☀️ День" : "🌙 Вечер")
+                  </span>
                 </div>
 
-                @if (recipe.Ingredients.Any())
+                @if (dish.Dishes != null && dish.Dishes.Any())
                 {
-                    <div class="recipe-ingredients mt-1">
-                        @string.Join(", ", recipe.Ingredients.Select(i => i.Name.ToLower()))
-                    </div>
+                  <div class="menu-dish mt-1">
+                    @string.Join(", ", dish.Dishes.Select(i => i.Name.ToLower()))
+                  </div>
                 }
-            </div>
+              </div>
+            }
+          </div>
+
+          @if (TotalMenuPages > 1)
+          {
+            <nav>
+              <ul class="pagination">
+                <li class="page-item @(currentMenuPage == 1 ? "disabled" : "")">
+                  <button class="page-link" @onclick="() => GoToMenuPage(currentMenuPage - 1)">«</button>
+                </li>
+                @for (int i = 1; i <= TotalMenuPages; i++)
+                {
+                  var pageNumber = i;
+                  <li class="page-item @(pageNumber == currentMenuPage ? "active" : "")">
+                    <button class="page-link" @onclick="() => GoToMenuPage(pageNumber)">@pageNumber</button>
+                  </li>
+                }
+                <li class="page-item @(currentMenuPage == TotalMenuPages ? "disabled" : "")">
+                  <button class="page-link" @onclick="() => GoToMenuPage(currentMenuPage + 1)">»</button>
+                </li>
+              </ul>
+            </nav>
+          }
         }
-    </div>
-
-    @if (TotalPages > 1)
-    {
-        <nav>
-            <ul class="pagination">
-                <li class="page-item @(currentPage == 1 ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(currentPage - 1)">«</button>
-                </li>
-                @for (int i = 1; i <= TotalPages; i++)
-                {
-                    var pageNumber = i; // Локальная переменная для замыкания
-                    <li class="page-item @(pageNumber == currentPage ? "active" : "")">
-                        <button class="page-link" @onclick="() => GoToPage(pageNumber)">@pageNumber</button>
-                    </li>
-                }
-                <li class="page-item @(currentPage == TotalPages ? "disabled" : "")">
-                    <button class="page-link" @onclick="() => GoToPage(currentPage + 1)">»</button>
-                </li>
-            </ul>
-        </nav>
-    }
-
-}
+      </div>
+  </div>
 </main>

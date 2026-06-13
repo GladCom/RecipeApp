@@ -1,0 +1,380 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\index.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\index.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\menucreate.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\menucreate.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\app.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\_imports.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\index.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\menuedit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\menuedit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\menuform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\menuform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\menuview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\menuview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\recipecreate.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\recipecreate.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\recipeedit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\recipeedit.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\recipeform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\recipeform.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\recipeview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\recipeview.razor||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\model\\unittype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\model\\unittype.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\model\\recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\model\\recipe.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\model\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\model\\ingredient.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\model\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\model\\menu.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\model\\dish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\model\\dish.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\services\\menuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\services\\menuservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\menuedit.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\menuedit.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\migrations\\recipesdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\migrations\\recipesdbcontextmodelsnapshot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|c:\\users\\denis\\desktop\\github\\recipeapp-miha\\recipeapp\\recipeapp\\components\\menuview.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{81F7161A-A4D1-456F-ABA2-0FC277F693B1}|RecipeApp\\RecipeApp.csproj|solutionrelative:recipeapp\\components\\menuview.razor.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 5,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Index.razor.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\Index.razor.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\Index.razor.cs",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\Index.razor.cs",
+              "RelativeToolTip": "RecipeApp\\Components\\Index.razor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-13T03:44:17.854Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "_Imports.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\_Imports.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\_Imports.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\_Imports.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\_Imports.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T19:33:01.166Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "App.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\App.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\App.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\App.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\App.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T19:32:57.919Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "MenuCreate.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuCreate.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\MenuCreate.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuCreate.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\MenuCreate.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T19:32:23.621Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "MenuEdit.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuEdit.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\MenuEdit.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuEdit.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\MenuEdit.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T19:32:22.666Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "RecipeCreate.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\RecipeCreate.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\RecipeCreate.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\RecipeCreate.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\RecipeCreate.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T19:31:40.265Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "RecipeEdit.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\RecipeEdit.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\RecipeEdit.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\RecipeEdit.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\RecipeEdit.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T19:31:28.661Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\Index.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\Index.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\Index.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\Index.razor",
+              "ViewState": "AgIAALkAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T19:24:22.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "UnitType.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Model\\UnitType.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Model\\UnitType.cs",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Model\\UnitType.cs",
+              "RelativeToolTip": "RecipeApp\\Model\\UnitType.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAAwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T19:09:13.275Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "RecipeView.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\RecipeView.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\RecipeView.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\RecipeView.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\RecipeView.razor",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAABIAAABDAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T19:05:01.518Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "MenuForm.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuForm.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\MenuForm.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuForm.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\MenuForm.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAJIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T19:03:32.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "MenuView.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuView.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\MenuView.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuView.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\MenuView.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABUAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T19:05:11.392Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "Ingredient.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Model\\Ingredient.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Model\\Ingredient.cs",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Model\\Ingredient.cs",
+              "RelativeToolTip": "RecipeApp\\Model\\Ingredient.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T18:16:18.117Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "RecipeForm.razor",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\RecipeForm.razor",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\RecipeForm.razor",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\RecipeForm.razor",
+              "RelativeToolTip": "RecipeApp\\Components\\RecipeForm.razor",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF4AAABGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2026-06-12T18:59:04.983Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Menu.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Model\\Menu.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Model\\Menu.cs",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Model\\Menu.cs",
+              "RelativeToolTip": "RecipeApp\\Model\\Menu.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T18:27:54.332Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "MenuView.razor.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuView.razor.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\MenuView.razor.cs",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuView.razor.cs",
+              "RelativeToolTip": "RecipeApp\\Components\\MenuView.razor.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T19:05:06.677Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "Recipe.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Model\\Recipe.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Model\\Recipe.cs",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Model\\Recipe.cs",
+              "RelativeToolTip": "RecipeApp\\Model\\Recipe.cs",
+              "ViewState": "AgIAAC4AAAAAAAAAAAAtwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T18:16:42.609Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "Dish.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Model\\Dish.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Model\\Dish.cs",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Model\\Dish.cs",
+              "RelativeToolTip": "RecipeApp\\Model\\Dish.cs",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAABIAAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T18:16:29.711Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "RecipesDbContextModelSnapshot.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Migrations\\RecipesDbContextModelSnapshot.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Migrations\\RecipesDbContextModelSnapshot.cs",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Migrations\\RecipesDbContextModelSnapshot.cs",
+              "RelativeToolTip": "RecipeApp\\Migrations\\RecipesDbContextModelSnapshot.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAIBJwAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T18:55:19.046Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "MenuService.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Services\\MenuService.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Services\\MenuService.cs",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Services\\MenuService.cs",
+              "RelativeToolTip": "RecipeApp\\Services\\MenuService.cs",
+              "ViewState": "AgIAAA0AAAAAAAAAAAAQwBAAAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T17:17:24.42Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "MenuEdit.razor.cs",
+              "DocumentMoniker": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuEdit.razor.cs",
+              "RelativeDocumentMoniker": "RecipeApp\\Components\\MenuEdit.razor.cs",
+              "ToolTip": "C:\\Users\\Denis\\Desktop\\GitHub\\RecipeApp-miha\\RecipeApp\\RecipeApp\\Components\\MenuEdit.razor.cs",
+              "RelativeToolTip": "RecipeApp\\Components\\MenuEdit.razor.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2026-06-12T17:15:18.221Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

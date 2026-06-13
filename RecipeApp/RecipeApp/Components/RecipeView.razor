@@ -11,6 +11,16 @@
         </button>
     </div>
 
+            <div class="nutrition-summary mb-4">
+                <h5>Пищевая ценность (БЖУ)</h5>
+                <div class="d-flex gap-3 justify-content-center">
+                    <div>Калории: <strong>@recipe.Calories</strong> ккал</div>
+                    <div>Белки: <strong>@recipe.Protein</strong> г</div>
+                    <div>Жиры: <strong>@recipe.Fat</strong> г</div>
+                    <div>Углеводы: <strong>@recipe.Carbs</strong> г</div>
+                </div>
+            </div>
+
     @if (recipe == null)
     {
         <p>Загрузка...</p>

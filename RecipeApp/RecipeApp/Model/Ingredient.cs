@@ -26,24 +26,7 @@ public class Ingredient
   public UnitType Unit { get; set; }
 
   /// <summary>
-  /// Количество каллорий.
-  /// </summary>
-  public float Calories { get; set; }
-
-  /// <summary>
-  /// Количество протеина.
-  /// </summary>
-  public float Protein { get; set; }
-
-  /// <summary>
-  /// Количество жира.
-  /// </summary>
-  public float Fat { get; set; }
-
-  /// <summary>
-  /// Количество углеводов.
-  /// </summary>
-  public float Carbs { get; set; }
+  /// Количество калорий и макронутриентов удалено.
 
   /// <summary>
   /// ИД связанного рецепта.

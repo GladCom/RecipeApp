@@ -2,6 +2,7 @@
 @inject IWebHostEnvironment Env
 
 <EditForm Model="Recipe"
+          FormName="recipeForm"
           OnValidSubmit="Save"
           OnInvalidSubmit="HandleInvalidSubmit">
     <DataAnnotationsValidator/>
@@ -74,6 +75,28 @@
             </div>
 
             <button type="button" class="btn btn-secondary mb-3" @onclick="AddIngredient">+ Добавить ингредиент</button>
+
+            <div class="nutrition-section mt-4">
+                <h5>Пищевая ценность (БЖУ)</h5>
+                <div class="row g-2">
+                    <div class="col-md-3">
+                        <label class="form-label">Калории (ккал)</label>
+                        <input class="form-control" type="number" step="any" @bind="Recipe.Calories" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Белки (г)</label>
+                        <input class="form-control" type="number" step="any" @bind="Recipe.Protein" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Жиры (г)</label>
+                        <input class="form-control" type="number" step="any" @bind="Recipe.Fat" />
+                    </div>
+                    <div class="col-md-3">
+                        <label class="form-label">Углеводы (г)</label>
+                        <input class="form-control" type="number" step="any" @bind="Recipe.Carbs" />
+                    </div>
+                </div>
+            </div>
 
             <div class="mt-4">
                 <div class="mt-4">

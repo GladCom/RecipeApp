@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 #nullable disable
 
@@ -55,16 +56,59 @@ namespace RecipeApp.Migrations
                 name: "IX_Ingredients_RecipeId",
                 table: "Ingredients",
                 column: "RecipeId");
-        }
+
+            migrationBuilder.CreateTable(
+                name: "Menu",
+                columns: table => new
+                {
+                  Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", Npgsql.EntityFrameworkCore.PostgreSQL.Metadata.NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                  Name = table.Column<string>(type: "text", nullable: true),
+                  group_id = table.Column<int>(nullable: true),
+                  StartDate = table.Column<DateTime>(nullable: true),
+                  Content = table.Column<string>(type: "jsonb", nullable: true),
+                  ImagePath = table.Column<string>(type: "text", nullable: true)
+                },
+                constraints: table =>
+                {
+                  table.PrimaryKey("PK_Menu", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Dish",
+                columns: table => new
+                {
+                  Id = table.Column<int>(nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", Npgsql.EntityFrameworkCore.PostgreSQL.Metadata.NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                  Name = table.Column<string>(type: "text", nullable: true),
+                  recipe_id = table.Column<int>(nullable: true),
+                  group_id = table.Column<int>(nullable: true),
+                  menu_id = table.Column<int>(nullable: true)
+                },
+                constraints: table =>
+                {
+                  table.PrimaryKey("PK_Dish", x => x.Id);
+                  table.ForeignKey(
+                        name: "FK_Dish_Menu_menu_id",
+                        column: x => x.menu_id,
+                        principalTable: "Menu",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Dish_menu_id",
+                table: "Dish",
+                column: "menu_id");
+    }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "Ingredients");
-
-            migrationBuilder.DropTable(
-                name: "Recipes");
-        }
+            migrationBuilder.DropTable(name: "Ingredients");
+            migrationBuilder.DropTable(name: "Recipes");
+            migrationBuilder.DropTable(name: "Dish");
+            migrationBuilder.DropTable(name: "Menu");
+    }
     }
 }

@@ -1,0 +1,82 @@
+﻿@page "/menu/{Id:int}"
+@inject MenuService MenuService
+@inject NavigationManager NavigationManager
+@inject IJSRuntime Js
+
+<div class="recipe-view container p-4 rounded">
+  <div class="d-flex align-items-center mb-3">
+    <button class="btn btn-sm btn-outline-primary d-flex align-items-center me-auto" @onclick="GoBack">
+      <img src="icons/back.png" alt="Назад" width="16" class="me-2"/>
+      <span>Назад</span>
+    </button>
+  </div>
+
+      <div class="nutrition-summary mb-4">
+        <h5>Общая пищевая ценность меню</h5>
+        <div class="d-flex gap-3 justify-content-center">
+          <div>Калории: <strong>@totalCalories</strong> ккал</div>
+          <div>Белки: <strong>@totalProtein</strong> г</div>
+          <div>Жиры: <strong>@totalFat</strong> г</div>
+          <div>Углеводы: <strong>@totalCarbs</strong> г</div>
+        </div>
+      </div>
+
+  @if (menu == null)
+  {
+    <p>Загрузка...</p>
+  }
+  else
+  {
+    <div class="text-center">
+      <h2 class="fw-bold mb-3">@menu.Name</h2>
+
+      @if (!string.IsNullOrEmpty(menu.ImagePath))
+      {
+          <img src="@menu.ImagePath" class="recipe-image" />
+      }
+
+      <div class="d-flex justify-content-start gap-2 mb-4">
+        <button class="btn btn-sm btn-outline-secondary" @onclick="EditMenu">
+          <img src="icons/edit.png" alt="Редактировать" width="16" class="me-1"/>
+          Редактировать
+        </button>
+        <button class="btn btn-sm btn-outline-danger delete-btn" @onclick="ConfirmDelete">
+          <img src="icons/delete.png" alt="Удалить" width="16" class="me-1"/>
+          Удалить
+        </button>
+      </div>
+
+      <div class="table-responsive">
+        <table class="table table-bordered dish-table text-start">
+          <thead>
+            <tr>
+              <th>Список блюд</th>
+            </tr>
+          </thead>
+          <tbody>
+            @foreach (var ing in menu.Dishes)
+            {
+              <tr @onclick="() => NavigateToRecipe(ing.recipe_id)"
+                  style="@(ing.recipe_id > 0 ? "cursor: pointer; transition: background-color 0.2s;" : "")"
+                  class="dish-row">
+                <td>
+                  <div class="form-control d-flex align-items-center justify-content-between"
+                       style="background-color: transparent; border: none; text-align: left;">
+                  
+                    <span class="@(ing.recipe_id > 0 ? "text-primary fw-bold" : "")">
+                      @ing.Name
+                    </span>
+                    @if (ing.recipe_id > 0 && recipeMap.ContainsKey(ing.recipe_id))
+                    {
+                        <small class="text-muted"> — @recipeMap[ing.recipe_id].Calories kcal, @recipeMap[ing.recipe_id].Protein g / @recipeMap[ing.recipe_id].Fat g / @recipeMap[ing.recipe_id].Carbs g</small>
+                    }
+                  </div>
+                </td>
+              </tr>
+            }
+          </tbody>
+        </table>
+      </div>
+    </div>
+  }
+</div>

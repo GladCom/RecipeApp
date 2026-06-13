@@ -1,0 +1,160 @@
+﻿@using Microsoft.AspNetCore.Hosting
+@using System.Data
+@inject IWebHostEnvironment Env
+@inject NavigationManager NavigationManager
+@inject RecipeService RecipeService
+
+<EditForm Model="Menu"
+          FormName="menuForm"
+          OnValidSubmit="Save"
+          OnInvalidSubmit="HandleInvalidSubmit">
+  <DataAnnotationsValidator />
+
+  <main class="menu-view">
+    <div class="menu-card">
+      <input class="form-control menu-title-input mb-4"
+             placeholder="Введите название меню"
+             @bind="Menu.Name" />
+
+      <div class="image-upload-wrapper mb-4">
+        <label for="imageInput" class="image-upload-label">
+          @if (!string.IsNullOrEmpty(imagePreviewUrl))
+          {
+            <img src="@imagePreviewUrl" class="menu-image-preview" />
+          }
+          else
+          {
+            <div class="image-placeholder">
+              <span class="upload-text">
+                <img src="icons/add_image.png" alt="Удалить" width="40" class="me-1" />
+              </span>
+            </div>
+          }
+        </label>
+        <InputFile id="imageInput" class="d-none" OnChange="HandleFileSelected" />
+      </div>
+
+      @*Блок для выбора утра/дня/вечера*@
+      <h3>Выберите время</h3>
+      <div class="checkbox-container">
+        <label class="form-control">
+          @*проверяем состояние checked *@
+          <input type="checkbox" checked="@IsMorning" @onchange="ToggleMorning" /> Утро
+        </label>
+        <label class="form-control">
+          <input type="checkbox" checked="@IsDay" @onchange="ToggleDay" /> День
+        </label>
+        <label class="form-control">
+          <input type="checkbox" checked="@IsEvening" @onchange="ToggleEvening" /> Вечер
+        </label>
+      </div>
+
+      <p>
+        Вы выбрали:
+        @if (IsMorning)
+        {
+          <span>Утро</span>
+        }
+        @if (IsDay)
+        {
+          <span>День</span>
+        }
+        @if (IsEvening)
+        {
+          <span>Вечер</span>
+        }
+      </p>
+@code {
+  private bool IsMorning { get; set; } = false;
+  private bool IsDay { get; set; } = false;
+  private bool IsEvening { get; set; } = false;
+
+  private void ToggleMorning(ChangeEventArgs e)
+  {
+    IsMorning = (bool)e.Value!;
+    if (IsMorning)
+    {
+      IsDay = false;
+      IsEvening = false;
+      SelectedGroupId = 1;
+      UpdateDishesGroupId();
+    }
+  }
+  private void ToggleDay(ChangeEventArgs e)
+  {
+    IsDay = (bool)e.Value!;
+    if (IsDay)
+    {
+      IsMorning = false;
+      IsEvening = false;
+      SelectedGroupId = 2;
+      UpdateDishesGroupId();
+    }
+  }
+  private void ToggleEvening(ChangeEventArgs e)
+  {
+    IsEvening = (bool)e.Value!;
+    if (IsEvening)
+    {
+      IsMorning = false;
+      IsDay = false;
+      SelectedGroupId = 3;
+      UpdateDishesGroupId();
+    }
+  }
+  private void UpdateDishesGroupId()
+  {
+    if (this.Menu.Dishes != null)
+    {
+      foreach (var dish in this.Menu.Dishes)
+      {
+        dish.group_id = SelectedGroupId;
+      }
+    }
+  }
+}
+
+<InputSelect @bind-Value="SelectedRecipeId" class="form-control">
+  <option value="">-- Выберите рецепт --</option>
+  @foreach (var recipe in _recipes)
+  {
+    <option value="@recipe.Id">@recipe.Title</option>
+  }
+</InputSelect>
+
+<div class="table-responsive">
+  <table class="table table-bordered dish-table">
+    <thead>
+      <tr>
+        <th style="width: 20%">Список выбранных блюд</th>
+      </tr>
+    </thead>
+    <tbody>
+      @foreach (var ing in Menu.Dishes)
+      {
+        <tr>
+          <td><input class="form-control" @bind="ing.Name" /></td>
+          <td>
+            <button type="button" class="btn btn-outline-danger btn-sm" @onclick="() => RemoveDish(ing)">✕</button>
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>
+<button type="button" class="btn btn-secondary mb-3" @onclick="AddSelectedRecipe">+ Добавить выбранное блюдо</button>
+<button type="button" class="btn btn-secondary mb-3" @onclick="AddDish">+ Создать новое блюдо</button>
+
+<div class="mt-4">
+  <div class="mt-4">
+    <button type="submit" class="btn btn-primary">Сохранить</button>
+    <button type="button" class="btn btn-secondary ms-2" @onclick="OnCancel">Отмена</button>
+
+    <div class="text-danger mt-2">
+      <ValidationMessage For="@(() => Menu.Name)" />
+    </div>
+  </div>
+</div>
+</div>
+</main>
+</EditForm>

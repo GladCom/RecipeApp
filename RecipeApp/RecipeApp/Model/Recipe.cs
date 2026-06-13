@@ -38,6 +38,26 @@ public class Recipe
   public string? ImagePath { get; set; }
 
   /// <summary>
+  /// Калории всего рецепта.
+  /// </summary>
+  public float Calories { get; set; }
+
+  /// <summary>
+  /// Белки всего рецепта.
+  /// </summary>
+  public float Protein { get; set; }
+
+  /// <summary>
+  /// Жиры всего рецепта.
+  /// </summary>
+  public float Fat { get; set; }
+
+  /// <summary>
+  /// Углеводы всего рецепта.
+  /// </summary>
+  public float Carbs { get; set; }
+
+  /// <summary>
   /// Ингредиенты рецепта.
   /// </summary>
   [SuppressMessage("Usage", "CA2227:Collection properties should be read only", Justification = "Должно быть с set, чтобы EF смог обработать.")]

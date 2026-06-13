@@ -13,7 +13,7 @@ public class RecipesDbContext(DbContextOptions<RecipesDbContext> options)
   #region Поля и свойства
 
   /// <summary>
-  /// Рецепты.
+  /// Рецепты
   /// </summary>
   public DbSet<Recipe> Recipes { get; set; }
 

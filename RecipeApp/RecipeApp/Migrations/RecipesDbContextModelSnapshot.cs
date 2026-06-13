@@ -10,7 +10,7 @@ using RecipeApp.Services;
 namespace RecipeApp.Migrations
 {
     [DbContext(typeof(RecipesDbContext))]
-    partial class RecipesDbContextModelSnapshot : ModelSnapshot
+    partial class MenuAndDishDbContextModel : ModelSnapshot
     {
         protected override void BuildModel(ModelBuilder modelBuilder)
         {
@@ -32,21 +32,13 @@ namespace RecipeApp.Migrations
                     b.Property<double>("Amount")
                         .HasColumnType("double precision");
 
-                    b.Property<float>("Calories")
-                        .HasColumnType("real");
 
-                    b.Property<float>("Carbs")
-                        .HasColumnType("real");
-
-                    b.Property<float>("Fat")
-                        .HasColumnType("real");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("text");
 
-                    b.Property<float>("Protein")
-                        .HasColumnType("real");
+
 
                     b.Property<int>("RecipeId")
                         .HasColumnType("integer");
@@ -75,6 +67,18 @@ namespace RecipeApp.Migrations
 
                     b.Property<string>("ImagePath")
                         .HasColumnType("text");
+
+                    b.Property<float>("Calories")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Protein")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Fat")
+                        .HasColumnType("real");
+
+                    b.Property<float>("Carbs")
+                        .HasColumnType("real");
 
                     b.Property<string>("Title")
                         .IsRequired()

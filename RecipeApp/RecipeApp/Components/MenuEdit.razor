@@ -1,0 +1,15 @@
+﻿@page "/menu/edit/{Id:int}"
+@inject MenuService MenuService
+@inject NavigationManager NavigationManager
+
+@if (_menu == null)
+{
+  <p>Загрузка...</p>
+}
+else
+{
+  <MenuForm Menu="_menu"
+              OnSave="Save"
+              OnCancel="Cancel"
+              IsEditMode="true" />
+}
